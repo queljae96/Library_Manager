@@ -9,8 +9,6 @@
         header('Location: inicio (1).php');
     }
     $logado = $_SESSION['email'];
-    // echo"$logado";
-    //$sql = "SELECT * FROM usuarios WHERE id_email = '$logado' ";
 
     if(!empty($_GET['search']))
     {
@@ -26,12 +24,7 @@
     //print_r($result);
 
     $verificar_compartilhamento = mysqli_query($conexao,"SELECT compartilhamento_de_dados FROM cadastro_de_usuario WHERE email='$logado' AND compartilhamento_de_dados='ativo' LIMIT 1 ");
-    //print_r($verificar_compartilhamento);
     
-    // if(mysqli_num_rows($verificar_compartilhamento) == 1){
-    //     $mostrar_dados_compartilhados = mysqli_query($conexao,"SELECT * FROM conta_compartilhada WHERE email='$logado' AND compartilhamento_de_dados='ativo' LIMIT 1 ");
-    // }
-        
     if(isset($_POST ['submit']))
     {
         //print_r($_POST['nome']);

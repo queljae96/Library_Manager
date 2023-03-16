@@ -18,6 +18,19 @@ header{
     background-color: #284f82;
 }
 
+/* seta de voltar */
+
+.voltar{
+    margin-top: 1vw;
+}
+
+.volt{
+    cursor: pointer;
+    margin-left: 5vw;
+}
+
+
+
 .form-control{
     margin-top:25px;
     margin-bottom:25px;

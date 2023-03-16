@@ -9,8 +9,20 @@
         header('Location: inicio (1).php');
     }
     $logado = $_SESSION['email'];
-    $sql = "SELECT * FROM livros WHERE id_email = '$logado' ";
+    $sql = "SELECT * FROM livros WHERE id_email = '$logado' ORDER BY id DESC";
     $result=$conexao->query($sql);
+
+    if(!empty($_GET['search']))
+    {
+        $data = $_GET['search'];
+        $sql = "SELECT autor,nome,estoque FROM livros WHERE autor LIKE '%$data%' or nome LIKE '%$data%'  ORDER BY id DESC";
+    }
+    else
+    {
+        $sql = "SELECT nome,autor,estoque FROM livros ORDER BY id DESC";
+    }
+    $result=$conexao->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +40,7 @@
     <header>
         <a href="pagprinc(1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
         <input type="search" class="form-control" placeholder="Pesquisar" id="pesquisar"></input>
-        <button class="lupa">
+        <button onclick="searchData()" class="lupa">
             <img src="img/lupa (4).png">
         </button> 
     </header>
@@ -40,28 +52,53 @@
 
         </div>
 
-        <div class="form_group">
-            <p class="nome"><b>Nome</b></p>
-            <p class="turma"><b>Autor</b></p>
-        </div>
-
         <table>
+            <form action="" method="POST">
                 <?php
-                
+                 echo "<tr>";
+                 echo "<td class='nome'><b>Nome</b></td>";
+                 echo "<td class='autor'><b>Autor</b></td>";
+                 echo "<td class='estoque'><b>Estoque</b></td>";
                         while ($user_data = mysqli_fetch_assoc ($result)) {
                             echo "<tr>";
                             echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
                             echo "<td class='dado2'>" . $user_data['autor'] . "</td>";
-                            echo "</tr>";
-                            
+                            echo "<td class='dado3'>" . $user_data['estoque'] . "</td>";
+                            echo "<td><button type='submit' name='submit' class='excluir'><img src='img/lixeira (1).png'</button></td>";
                         }
+                echo "</tr>";
 
                 ?>
+            </form>
         </table>
     </main>
     <footer>
         <div> <a class="bt" href="suporte (1).php">Suporte</a> </div>
     </footer>
 </body>
+
+<script>
+    var search = document.getElementById('pesquisar');
+
+    search.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") 
+        {
+            searchData();
+        }
+    });
+
+    function searchData()
+    {
+        window.location = 'livro.php?search='+search.value;
+    }
+
+
+  const menuHamburguer = document.querySelector('.menu-hamburguer');
+  const menuHamburguerToggle = document.querySelector('.menu-hamburguer-toggle');
+  
+  menuHamburguerToggle.addEventListener('click');
+
+
+</script>
 
 </html>

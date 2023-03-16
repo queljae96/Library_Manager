@@ -47,12 +47,12 @@
                         if(isset($_POST['livro'])){
                             if(!empty($_POST['livro']))  { 
                                 
-                                    $result = array_map(null, $_POST['livro'], $_POST['datadev'],  $_POST['autor']);
+                                    $result = array_map(null, $_POST['livro'], $_POST['autor'], $_POST['datadev']);
 
                                     foreach($result as $value) {
                                         $data=date("Y-m-d");
-                                        $data_devolucao = date('y/m/d', strtotime($value[1]));
-                                        $add = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$value[0]','$value[2]','$data','$data_devolucao','Pendente')");
+                                        $data_devolucao = date('y/m/d', strtotime($value[2]));
+                                        $add = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$value[0]','$value[1]','$data','$data_devolucao','Pendente')");
                                         $delete1 = mysqli_query($conexao,"DELETE FROM emprestar_livro WHERE nome_livro='' ");
                                     }
                             }           

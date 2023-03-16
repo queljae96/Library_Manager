@@ -54,6 +54,10 @@
         </button> 
     </header>
 
+    <div class="voltar">
+        <a class="volt" href="pagprinc(1).php"><img src="img/de-volta (1).png"></a>
+    </div>
+
     <main>
         <section class="princ">
                 <table>
@@ -76,19 +80,19 @@
                 ?>
 
                     <script>
-                        var confirmacao = confirm("Tem certeza que deseja excluir esse usuário?");
-                        if (confirmacao == true) {
 
-                            <?php
-                                //sleep(5);
-                                $delete_registro = mysqli_query($conexao,"DELETE FROM usuarios WHERE nome = '$nome' AND turma = '$turma' ");
-                                //sleep(5);
-                                //header("Location: pagprinc(1).php");
-                            ?>
-                            alert("usuário deletado com sucesso");
-                            window.location = 'pagprinc(1).php';
-                        } else {
-                        }
+                            var confirmacao = confirm("Tem certeza que deseja excluir esse usuário?");
+
+                            if (confirmacao == true) {
+
+                                 var nome = "<?php echo "$nome"; ?>";
+                                 var turma = "<?php echo "$turma"; ?>";
+
+                                 var link = "excluir_user.php?nome="+nome+"&turma="+encodeURIComponent(turma);
+                                 window.location.href = link;
+
+                            }
+                                                    
                     </script>
                     
                 <?php
@@ -150,7 +154,10 @@
 
     function searchData()
     {
-        window.location = 'visualizar.php?nome='$nome'&turma='$turma'&search='+search.value;
+        var nome = "<?php echo "$nome"; ?>";
+        var turma = "<?php echo "$turma"; ?>";
+
+        window.location = "visualizar.php?nome="+nome+"&turma="+turma+"&search="+search.value;
     }
 </script>
 
