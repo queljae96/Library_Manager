@@ -1,0 +1,57 @@
+*{
+    padding: 0%;
+    outline: 0;
+    margin: 0%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.inicio{
+    text-align: center;
+    padding: 20px;
+}
+
+
+.logo{
+    width: 330px;
+    margin-top: 70px;
+}
+
+.login{
+    padding: 30px;
+    text-align: center;
+}
+
+.login a{
+    text-decoration: none;
+    display: flex;
+    margin: 15px;
+    justify-content: center;
+    text-align: center; 
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: -50px 50 50 -50px;
+    
+}
+
+.login button{
+    border: none;
+    cursor: pointer;
+    background-color: #284f82;
+    color: #fff;
+    margin: 3px;
+    padding: 15px 15px; 
+    font-size: 15px;
+}
+
+button:hover{
+    opacity: 0.8;
+}
+
+.login button:hover{
+    color: rgb(255, 255, 255);
+    border: 1px color black;
+    background-color: rgb(25, 66, 153);
+    
+}
+

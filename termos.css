@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color:#f2efef;
+}
+
+header{
+    display:flex;
+    background-color: #284f82;
+    margin-bottom: 3vw;
+}
+
+.erro{
+    margin-left: 0.9vw;
+}
+
+.cadastrar{
+    margin-left: 0.4vw;
+}
+
+.volt{
+    cursor: pointer;
+    margin-left: 5vw;
+}
+
+section{
+    padding-top:1.0vw;
+    padding-bottom:3.0vw;
+    background-color: rgb(255, 255, 255);
+    width: 60%;
+    margin: auto;
+    margin-top: 3.5vw;
+    margin-bottom: 8vw;
+}
+
+.campo_mail{
+    padding-bottom: 19vw;
+}
+
+.logo{
+    width: 80px;
+    margin-left: 25px;
+    margin-top: 5px;
+}
+
+h1{
+    text-align: center;
+    font-size: 40px;
+    margin: 20px;
+    color: #284f82;
+}
+
+h2{
+    margin: 10px;
+    margin-left: 3.0vw;
+    color: #284f82;
+}
+
+p{
+    margin: 30px;
+    margin-left: 3.0vw;
+}
+
+form{
+    text-align: center;
+}
+
+input,textarea{
+    display: block;
+    margin-top: 30px;
+    width: 80%;
+}
+
+/*muda a cor da borda do input quando ele é selecionado*/
+input:focus,textarea:focus{
+    box-shadow: #284f82;
+    outline:0.1vw solid #284f82;
+}
+
+button,.btn{
+    padding: 10px;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    background-color: #284f82;
+    border: 0;
+    width: 120px;
+    margin-top: 2.0vw;
+    text-align: center;
+}
+

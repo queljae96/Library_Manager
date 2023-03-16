@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color:#f2efef;
+}
+
+header{
+    display:flex;
+    background-color: #284f82;
+    
+}
+
+main{
+    margin-top: 3.5vw;
+    margin-left: 29.0vw;
+    margin-right: 29.0vw;
+    padding-top: 2.0vw;
+    padding-bottom: 2.0vw;
+    background-color: white;
+}
+
+.logo{
+    width: 80px;
+    margin-left: 25px;
+    margin-top: 5px;
+}
+
+h1,h2{
+    text-align: center;
+    font-size: 40px;
+    margin: 20px;
+    color: #284f82;
+}
+
+p{
+    margin: 30px;
+}
+
+form{
+    text-align: center;
+}
+
+input,textarea{
+    display: block;
+    margin-top: 30px;
+    width: 80%;
+}
+
+/*muda a cor da borda do input quando ele é selecionado*/
+input:focus,textarea:focus{
+    box-shadow: #284f82;
+    outline:0.1vw solid #284f82;
+}
+
+button,.btn{
+    padding: 10px;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    background-color: #284f82;
+    border: 0;
+    width: 120px;
+    margin-top: 3.5vw;
+    text-align: center;
+}
+
+.btn:hover{
+    opacity: 0.8;
+}
+
+input,textarea{
+    border: solid 1px #ccc;
+    padding: 10px;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+.recuperar{
+    justify-content: center;
+    text-decoration: none;
+    color: #284f82;
+    margin-bottom: 20px;
+    border: 0;
+    width: 140px;
+    display: block;
+    margin: 0px auto;
+    text-align: center;
+    margin-top: 1.0vw;
+}
+
+.recuperar:hover{
+    text-decoration: underline;
+}

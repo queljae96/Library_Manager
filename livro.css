@@ -1,0 +1,244 @@
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            border: 0;
+            padding: 0;
+        }
+
+        *{
+            margin: 0;
+            outline: 0;
+            padding: 0;
+        }
+
+        .contain{
+            margin-bottom: 3.0vw;
+            margin-top: 20.0;
+        }
+
+        main{
+            margin-left: 5.0vw;
+        }
+
+        header{
+            display:flex;
+            background-color: #284f82;
+            
+        }
+
+        .logo{
+            width: 75px;
+            margin: 10px;
+            margin-left:15px;
+        }
+    
+        .form-control{
+            margin-top:25px;
+            margin-bottom:25px;
+            width:50%;
+            padding-left:0.9vw;
+            margin-left:10.0vw;
+        }
+    
+        .lupa{
+            margin-top:25px;
+            margin-bottom:25px;
+            padding-left:10px;
+            padding-right:10px;
+        }
+    
+        .lupa img{
+            width:30px;
+        }
+
+        h2{
+            font-size:70px;
+        }
+
+        .logo{
+            width: 75px;
+            margin: 10px;
+        }
+    
+        .sair{
+            margin-top:35px;
+            margin-bottom: 30px;
+            margin-left: 20.9vw;
+            padding-bottom: 7px;
+            padding-top: 7px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background-color: white;
+            color: red;
+            text-decoration: none;
+            border: 2px solid red;
+        }
+    
+        .sair:hover{
+            background-color:red;color:white;
+        }
+
+        .container{
+            margin-top:1.9vw;
+            margin-left: 0.9vw;
+        }
+
+        .new_user{
+            text-decoration: none;
+            background-color:white;
+            border: 3px solid #284f82;
+            color:#284f82;
+            font-size: 1.2vw;
+            padding-top: 0.5vw;
+            padding-bottom: 0.5vw;
+            padding-left: 0.3vw;
+            padding-right: 0.3vw;
+        }
+
+        .new_user:hover{
+            color:white;
+            background-color:#284f82;
+        }
+        
+        .book{
+            text-decoration: none;
+            background-color:white;
+            border: 3px solid rgb(213, 172, 8);
+            color:rgb(213, 172, 8);
+            font-size: 1.2vw;
+            padding-top: 0.5vw;
+            padding-bottom: 0.5vw;
+            padding-left: 0.3vw;
+            padding-right: 0.3vw;
+            margin-left: 2.7vw;
+        }
+
+        .book:hover{
+            color:white;
+            background-color:rgb(213, 172, 8);
+        }
+
+        .relatorio{
+            text-decoration: none;
+            background-color:white;
+            border: 3px solid rgb(213, 97, 8);
+            color:rgb(213, 97, 8);
+            font-size: 1.2vw;
+            padding-top: 0.5vw;
+            padding-bottom: 0.5vw;
+            padding-left: 0.3vw;
+            padding-right: 0.3vw;
+            margin-left: 2.7vw;
+        }
+
+        .relatorio:hover{
+            color:white;
+            background-color:rgb(213, 97, 8);
+        }
+
+        form{
+            margin:0px;
+        }
+    
+        .cadastro{
+            background-color:white;
+            color: #284f82;
+            border: 2px solid #284f82;
+            margin-left: 5%;
+            width: 8%;
+            padding: 10px;
+        }
+    
+        .cadastro:hover{
+            background-color: #284f82;
+            color: white;
+        }
+    
+        .form_group{
+            justify-content:space-around;
+            display: inline-flex;
+            font-size:20px;
+            margin-bottom:15px;
+            margin-left: 30.0vw;
+        }
+    
+        .form_group p{
+            border:1px solid black;
+            margin:1px;
+        }
+
+        .nome{
+            text-align: center;
+            width: 15.0vw;
+            padding-left:4.7vw;
+            padding-right:4.7vw;  
+            padding-top:8px;
+            padding-bottom:8px;
+        }
+    
+        .turma{
+            text-align: center;
+            width: 7.5vw;
+            padding-top:8px;
+            padding-bottom:8px;
+            background-color:#284f82;
+            color: white;
+    
+        }
+
+        .dado1,.dado2{
+            border-bottom: 13px solid white;
+            background-color: rgb(237, 234, 234);
+        }
+     
+
+        .dado1{
+            width: 15.0vw;
+            padding-left:4.7vw;
+            padding-right:4.7vw;  
+            padding-top:8px;
+            padding-bottom:8px;
+           
+        }
+    
+        .dado2{
+            padding-left:3.0vw;
+            padding-right:3.0vw;  
+            padding-top:8px;
+            padding-bottom:8px;
+            background-color:#d3d3d3;
+        }
+
+        footer{
+            background-color: #284f82;
+            width: 100%;
+            height: 70px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    
+        footer div{
+            margin-top:20px;
+            margin-left:20px;
+        }
+    
+        footer a{
+            text-decoration: none;
+            color: white;
+        }
+    
+        .bt{
+            margin-top:20px;
+        }
+    
+        footer a:hover{
+            text-decoration: underline;
+        }
+     
+
+        table{
+            margin-left: auto;
+            margin-right: auto;
+        }

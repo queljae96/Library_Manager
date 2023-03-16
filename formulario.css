@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color:#f2efef;
+}
+
+header{
+    display:flex;
+    background-color: #284f82;
+    margin-bottom: 3vw;
+    
+}
+
+.erro{
+    margin-left: 0.9vw;
+}
+
+.cadastrar{
+    margin-left: 0.4vw;
+}
+
+.volt{
+    cursor: pointer;
+    margin-left: 5vw;
+}
+
+.livroinfo{
+    color:red;
+}
+
+section{
+    padding-top:1.0vw;
+    padding-bottom:3.0vw;
+    background-color: rgb(255, 255, 255);
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4.5vw;
+}
+
+.campo_mail{
+    padding-bottom: 19vw;
+}
+
+.logo{
+    width: 80px;
+    margin-left: 25px;
+    margin-top: 5px;
+}
+
+h1,h2{
+    text-align: center;
+    font-size: 40px;
+    margin: 20px;
+    color: #284f82;
+}
+
+p{
+    margin: 30px;
+}
+
+form{
+    text-align: center;
+}
+
+input,textarea{
+    display: block;
+    margin-top: 30px;
+    width: 80%;
+}
+
+/*muda a cor da borda do input quando ele é selecionado*/
+input:focus,textarea:focus{
+    box-shadow: #284f82;
+    outline:0.1vw solid #284f82;
+}
+
+.btn{
+    padding: 10px;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    background-color: #284f82;
+    border: 0;
+    width: 120px;
+    margin-top: 2.0vw;
+    text-align: center;
+}
+
+.compartilhar{
+    padding: 10px;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    background-color: #284f82;
+    border: 0;
+    width: 200px;
+    margin-top: 2.0vw;
+    text-align: center;
+}
+
+/* .termos{
+    color:#284f82;
+    text-decoration: none;
+} */
+
+/* .termos:hover{
+    text-decoration: underline;
+} */
+
+.btn,.compartilhar:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+input,textarea{
+    border: solid 1px #ccc;
+    padding: 10px;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+.termos{
+    display: inline;
+    margin-left: -15vw;
+    width: 20px;
+}
+
+.termos:focus{
+    outline:0;
+}
+
+.recuperar{
+    justify-content: center;
+    text-decoration: none;
+    color: #284f82;
+    background-color: white;
+    margin-bottom: 20px;
+    border: 0;
+    width: 270px;
+    display: block;
+    margin: 0px auto;
+    text-align: center;
+    margin-top: 1.0vw;
+    cursor: pointer;
+}
+
+.recuperar:hover{
+    text-decoration: underline;
+} 
+
+/* janela modal */
+
+hj{
+    background-color: #284f82;
+}

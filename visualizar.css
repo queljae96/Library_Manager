@@ -1,0 +1,231 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    background-color: #f2efef;
+}
+
+*{
+    margin: 0;
+    outline: 0;
+    padding: 0;
+}
+
+header{
+    display:flex;
+    background-color: #284f82;
+}
+
+.form-control{
+    margin-top:25px;
+    margin-bottom:25px;
+    width:50%;
+    padding-left:0.9vw;
+    margin-left:10.0vw;
+}
+
+.lupa{
+    margin-top:25px;
+    margin-bottom:25px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.lupa img{
+    width:30px;
+}
+
+main{
+    background-color:#f2efef;
+}
+
+.logo{
+    width: 75px;
+    margin: 10px;
+    margin-left:15px;
+    background-color: #284f82;
+}
+
+.funcoes {
+    margin-left:21.0vw;
+} 
+
+
+
+ .princ{
+    background-color: white;
+    padding: 1.5vw;
+    width: 70%;
+    border-top: 30px solid #f2efef;
+    margin: auto;
+    border-bottom: 50px solid #f2efef;
+}
+
+
+table{
+    margin-bottom: 3.0vw;
+}
+
+#livro_info{
+    color:#6d6b6b;
+    margin-top: 2vw;
+    font-size: 17px;
+}
+
+.detalhe{
+    margin-bottom: 0.3vw;
+    font-size:17px;
+    width: 23vw;
+    display: inline-block;
+    color:#284f82;
+}
+
+.autor{
+    display: inline-block;
+    padding-left: 1vw;
+    width: 15vw;
+    font-size:17px;
+}
+
+.statuss{
+    display: inline-block;
+    padding-left: 1vw;
+    width: 15vw;
+    font-size: 17px;
+    margin-left: 4vw;
+}
+
+.autorName{
+    display: inline-block;
+    width:21.5%;
+    font-size:17px;
+    padding-left: 1vw;
+    color:#284f82;
+}
+
+.dataDev{
+    display: inline;
+    width:23px;
+    font-size:17px;
+    padding-left: 1vw;
+    color:#284f82;
+
+}
+
+.status{
+    color:#284f82;
+    display: inline;
+    font-size:15px;
+    margin-left: 5vw;
+}
+
+.devolucao{
+    width:9.5vw;
+    padding-left: 1vw;
+    display: inline-block;
+    padding-left: 1vw;
+    font-size: 17px;
+}
+
+.info{
+    font-size: 18px;
+    width: 80%;
+    margin-right: 3vw;
+
+}
+
+.infoName{
+    padding-right: 3vw;
+    display: inline-block;
+    /* background-color: green; */
+    display: inline-block;
+    width: 20vw;
+    font-size: 17px;
+}
+
+.dado{
+    font-size:20px;
+    margin-top: 1.0vw;
+    display: inline-flex;
+    margin-left: 5.0vw;
+}
+
+.dado p{
+    font-size:20px;
+    color: #284f82;
+    margin-right: 0.5vw;
+}
+
+td{
+    width: 100%;
+
+}
+
+.h2{
+    display:inline-flex;
+    font-size:20px;
+    color: #284f82;
+}
+
+.texto{
+    text-align: center;
+    background-color: white;
+    margin-left: 20px;
+}
+
+.botao{
+    text-decoration: none;
+    font-size: 18px;
+    color: #284f82;
+    border: 2px solid #284f82;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.contato{
+    text-decoration: none;
+    font-size: 18px;
+    color: #dd8613;
+    border: 2px solid #dd8613;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    margin-left: 1.0vw;
+}
+
+.delete{
+    text-decoration: none;
+    font-size: 18px;
+    color: #dd1313;
+    border: 2px solid #dd1313;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    margin-left: 1.0vw;
+    cursor: pointer;
+    background-color: white;
+}
+
+.botao:hover{
+    color:white;
+    background-color: #284f82;
+}
+
+.contato:hover{
+    color:white;
+    background-color: #dd8613;
+}
+
+.delete:hover{
+    color:white;
+    background-color: #dd1313;
+}
+/* 
+footer{
+    background-color: #284f82;
+    width: 100%;
+    height: 70px;
+    bottom: 0;
+    left: 0;
+} */
+
