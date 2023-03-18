@@ -379,4 +379,51 @@
             font-size: 23px;
         }
 
-        
+        /* janela modal */
+
+        .openModal{
+            cursor: pointer;
+        }
+
+        .modal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			left: 55vw;
+			top: 5vw;
+			width: 60%;
+			height: 100%;
+			overflow: auto;
+		}
+		.modal-content {
+			margin: 10% auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 40%;
+		}
+
+        .modal-content a{
+            text-decoration: none;
+            display: block;
+            font-size:20px;
+            margin-top: 1vw;
+            color: #000;
+        }
+
+        .modal-content a:hover{
+            text-decoration: underline;
+        }
+
+		.modal-close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+		.modal-close:hover,
+		.modal-close:focus {
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+

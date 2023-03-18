@@ -29,7 +29,7 @@
     <title>Emprestar livro</title>
     <link rel="stylesheet" href="emprestar.css">
     <!-- <link rel="stylesheet" href="emprestar.css"> -->
-    <link rel="icon" type="image/png" href="img/Library.png">
+    <link rel="icon" type="image/png" href="img/Library (1).png">
 
 </head>
 <body>
@@ -47,13 +47,17 @@
                         if(isset($_POST['livro'])){
                             if(!empty($_POST['livro']))  { 
                                 
-                                    $result = array_map(null, $_POST['livro'], $_POST['autor'], $_POST['datadev']);
+                                    $result = array_map(null, $_POST['livro'], $_POST['autor']);
 
                                     foreach($result as $value) {
                                         $data=date("Y-m-d");
-                                        $data_devolucao = date('y/m/d', strtotime($value[2]));
-                                        $add = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$value[0]','$value[1]','$data','$data_devolucao','Pendente')");
-                                        $delete1 = mysqli_query($conexao,"DELETE FROM emprestar_livro WHERE nome_livro='' ");
+                                        $autor = $value[1];
+                                        
+                                        if($value[0] != ""){
+                                            //$data_devolucao = date('Y-m-d', strtotime($value[1]));
+                                            $add = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$value[0]','$autor','$data','2004/01/12','Pendente')");
+                                            //$delete1 = mysqli_query($conexao,"DELETE FROM emprestar_livro WHERE nome_livro='' ");
+                                        }
                                     }
                             }           
                             
@@ -65,6 +69,7 @@
                 <form action="" method="POST">
                         <!-- código para visualizar os livros cadastrados no banco de dados -->
                     <?php
+        
                         echo "<button type='submit' value='Enviar' name='enviar'>Adicionar livro</button> ";                          
                         while($valorivro = mysqli_fetch_array($visualizar_livros)){
                             $valor = $valorivro['nome'];
@@ -78,8 +83,10 @@
                             echo "<label class='nome'>$valor</label>";
 
                             echo "<td>";
-                            echo "<input name='autor[]' value='$autor' class='autor' readonly>";
+                            echo "<input type='checkbox' name='autor[]' value='$autor' class='autor' checked readonly>";
                             echo "</td>";
+                            echo "<label class='nome'>$autor</label>";
+
 
                             echo "<td>";
                             echo "<input type='date' name='datadev[]' value='' class='date'>";
