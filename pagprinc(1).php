@@ -58,26 +58,19 @@
         <button class="lupa" onclick="searchData()">
             <img src="img/lupa (4).png">
         </button> 
-
-        
-
-
-        <img class="user" src="img/do-utilizador.png" href=""></img>
     </header>
 
+    <button onclick="abrirModal()" class="openModal">kkk</button>
     <button class="menu-hamburguer-toggle" aria-label="Abrir menu hamburguer">
             <span class="menu-hamburguer-toggle-icon">
-            <nav class="menu-hamburguer">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </nav>
-
-            </span>
-
-            
+                <nav class="menu-hamburguer">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </nav>
+            </span> 
     </button>
 
     <main>
@@ -99,13 +92,18 @@
                     ?>
             </table>
         </section>
+	<!-- Botão para abrir a janela modal -->
 
-        <div class="container">
-            <div>
-                <a href="usuario_cadastro.php">Adicionar novo usuário</a>
-                <a href="livro.php">Livros</a>
-                <a href="">Solicitar relatório</a>
-                <a href="perfil_de_compartilhamento.php">dados compartilhados</a>
+        <!-- Janela modal -->
+        <div id="minhaModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="fecharModal()">&times;</span>
+                <nav>
+                    <a href="usuario_cadastro.php">Adicionar novo usuário</a>
+                    <a href="livro.php">Livros</a>
+                    <a href="">Solicitar relatório</a>
+                    <a href="perfil_de_compartilhamento.php">dados compartilhados</a>
+                </nav>
             </div>
         </div>
 
@@ -131,10 +129,21 @@
     }
 
 
-  const menuHamburguer = document.querySelector('.menu-hamburguer');
-  const menuHamburguerToggle = document.querySelector('.menu-hamburguer-toggle');
-  
-  menuHamburguerToggle.addEventListener('click');
+    const menuHamburguer = document.querySelector('.menu-hamburguer');
+    const menuHamburguerToggle = document.querySelector('.menu-hamburguer-toggle');
+    
+    menuHamburguerToggle.addEventListener('click');
+
+
+    // Função para abrir a janela modal
+            function abrirModal() {
+                document.getElementById("minhaModal").style.display = "block";
+            }
+
+            // Função para fechar a janela modal
+            function fecharModal() {
+                document.getElementById("minhaModal").style.display = "none";
+            }
 
 
 </script>
