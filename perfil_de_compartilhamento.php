@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dados compartilhados</title>
-    <link rel="stylesheet" href="pagprinc.css">
+    <link rel="stylesheet" href="perfil.css">
     <link rel="icon" type="image/png" href="img/library (1).png">
     <link href="script_menu.js">
 </head>
@@ -28,11 +28,14 @@
         <a href="pagprinc(1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
     </header>
 
+    <a class="volt" href="pagprinc(1).php"><img src="img/de-volta (1).png"></a>
+
     <main>
         <section>
 
             <h1>Perfil de compartilhamento</h1>
-            
+            <a href="compartilhar_dados.php" class="solicitar">solicitar compartilhamento</a>
+
             <h3>Dados compartilhados comigo</h3>
 
             <?php
@@ -45,12 +48,10 @@
                 // }
             ?>
 
-            <a href="compartilhar_dados.php" >solicitar compartilhamento</a>
+            <h3>Quem tem acesso aos meus dados?</h3>
+
+
         </section>
     </main>
-    <!-- <footer>
-        <div> <a class="bt" href="suporte (1).php">Suporte</a> </div>
-    </footer> -->
 </body>
-
 </html>

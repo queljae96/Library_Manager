@@ -3,12 +3,15 @@
     session_start();
     include_once('config.php');
     //print_r($_SESSION['email']);
-    if((!isset($_SESSION['email'])== true) and (!isset($_SESSION['senha'])== true)){
+    $logado = $_SESSION['email'];
+
+    $verificar_status = mysqli_query($conexao,"SELECT email,statuss FROM status_login WHERE email='$logado' AND statuss='ativo' LIMIT 1");
+
+    if (mysqli_num_rows($verificar_status)!=1){
         unset( $_SESSION['email']);
         unset ($_SESSION['senha']);
-        header('Location: inicio (1).php');
+        header('Location: sair.php');
     }
-    $logado = $_SESSION['email'];
 
     if(!empty($_GET['search']))
     {
@@ -58,54 +61,46 @@
         <button class="lupa" onclick="searchData()">
             <img src="img/lupa (4).png">
         </button> 
+
+        <button onclick="abrirModal()" class="openModal"><img src="img/barra-de-menu.png"></button>
+
     </header>
 
-    <button onclick="abrirModal()" class="openModal">kkk</button>
-    <button class="menu-hamburguer-toggle" aria-label="Abrir menu hamburguer">
-            <span class="menu-hamburguer-toggle-icon">
-                <nav class="menu-hamburguer">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Sobre</a></li>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
-                </nav>
-            </span> 
-    </button>
-
-    <main>
-        <section>
-            <div class="form_group">
-                <p class="nome"><b>Nome</b></p>
-                <p class="turma"><b>Turma</b></p>
-            </div>
-
-            <table>
-                    <?php
-                            while ($user_data = mysqli_fetch_assoc ($result)) {
-                                echo "<tr>";
-                                echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
-                                echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
-                                echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]'><img src='img/visualizar (1).png'></td>";
-                                echo "</tr>";
-                            }
-                    ?>
-            </table>
-        </section>
-	<!-- Botão para abrir a janela modal -->
-
-        <!-- Janela modal -->
-        <div id="minhaModal" class="modal">
+    <!-- Janela modal -->
+    <div id="minhaModal" class="modal">
             <div class="modal-content">
                 <span class="modal-close" onclick="fecharModal()">&times;</span>
+                <br>
                 <nav>
                     <a href="usuario_cadastro.php">Adicionar novo usuário</a>
                     <a href="livro.php">Livros</a>
                     <a href="">Solicitar relatório</a>
                     <a href="perfil_de_compartilhamento.php">dados compartilhados</a>
+                    <a href="sair.php">Sair</a>
                 </nav>
             </div>
-        </div>
+    </div>
+
+    <main>
+            <section>
+                <table>
+                        <?php
+                            echo "<tr>";
+                            echo "<td class='nome'><b>Nome</b></td>";
+                            echo "<td class='turma'><b>Turma</b></td>";
+                                while ($user_data = mysqli_fetch_assoc ($result)) {
+                                    echo "<tr>";
+                                    echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
+                                    echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
+                                    echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]'><img src='img/visualizar (1).png'></td>";
+                                    echo "</tr>";
+                                }
+                            echo "</tr>";
+                        ?>
+                </table>
+            </section>
+
+        
 
     </main>
     <footer>
@@ -144,7 +139,6 @@
             function fecharModal() {
                 document.getElementById("minhaModal").style.display = "none";
             }
-
 
 </script>
 
