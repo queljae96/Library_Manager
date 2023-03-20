@@ -46,35 +46,34 @@
     </header>
 
     <main>
+
+        <a class="volt" href="pagprinc(1).php"><img src="img/de-volta (1).png"></a>
+
         <div class="container">
             <a class="new_user" href="new_livro.php">Adicionar novo livro</a>
         </div>
 
+        <div class="info">
+            <table>
+                    <?php
+                        echo "<tr>";
+                        echo "<td class='nome'><b>Nome</b></td>";
+                        echo "<td class='autor'><b>Autor</b></td>";
+                        echo "<td class='estoque'><b>Estoque</b></td>";
+                                while ($user_data = mysqli_fetch_assoc ($result)) {
+                                    echo "<tr>";
+                                    echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
+                                    echo "<td class='dado2'>" . $user_data['autor'] . "</td>";
+                                    echo "<td class='dado3'>" . $user_data['estoque'] . "</td>";
+                                    echo "<td><button type='submit' name='submit' class='excluir'><img src='img/lixeira (1).png'</button></td>";
+                                    echo "</tr>";
+                                }
+                        echo "</tr>";
+                    ?>
+            </table>
         </div>
 
-        <table>
-            <form action="" method="POST">
-                <?php
-                 echo "<tr>";
-                 echo "<td class='nome'><b>Nome</b></td>";
-                 echo "<td class='autor'><b>Autor</b></td>";
-                 echo "<td class='estoque'><b>Estoque</b></td>";
-                        while ($user_data = mysqli_fetch_assoc ($result)) {
-                            echo "<tr>";
-                            echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
-                            echo "<td class='dado2'>" . $user_data['autor'] . "</td>";
-                            echo "<td class='dado3'>" . $user_data['estoque'] . "</td>";
-                            echo "<td><button type='submit' name='submit' class='excluir'><img src='img/lixeira (1).png'</button></td>";
-                        }
-                echo "</tr>";
-
-                ?>
-            </form>
-        </table>
     </main>
-    <footer>
-        <div> <a class="bt" href="suporte (1).php">Suporte</a> </div>
-    </footer>
 </body>
 
 <script>

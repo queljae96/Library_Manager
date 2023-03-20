@@ -17,10 +17,6 @@
             margin-top: 20.0;
         }
 
-        main{
-            margin-left: 5.0vw;
-        }
-
         header{
             display:flex;
             background-color: #284f82;
@@ -31,6 +27,27 @@
             width: 75px;
             margin: 10px;
             margin-left:15px;
+        }
+
+        .volt{
+            cursor: pointer;
+            margin-left: 5vw;
+            float: left;
+            margin-top: 1.5vw;
+        }
+
+        .info{
+            text-align: center;            
+        }
+
+        table{
+            margin-top: 4.5vw;
+            display: inline-block;
+
+        }
+
+        .info{
+            text-align: center;
         }
     
         .form-control{
@@ -63,8 +80,9 @@
         }
 
         .container{
-            margin-top:1.9vw;
-            margin-left: 0.9vw;
+            margin-top:1vw;
+            margin-right: 1vw;
+            float: right;
         }
 
         .new_user{

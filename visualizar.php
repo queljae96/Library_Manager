@@ -60,19 +60,22 @@
 
     <main>
         <section class="princ">
-                <table>
-                        <!-- exibe os dados do usuario cadastrado -->
-                        <?php
-                            while($user_data = mysqli_fetch_array($usuario)){
-                                echo "<tr>";
-                                echo "<td class='dado'><p> Nome: </p>". $user_data['nome'] . "</td>";
-                                echo "<td class='dado'><p> Turma: </p>" . $user_data['turma'] . "</td>";
-                                echo "<td class='dado'><p> E-mail: </p>" . $user_data['email'] . "</td>";
-                                echo "<td class='dado'><p> Telefone: </p>" . $user_data['telefone'] . "</td>";
-                                echo "</tr>";
-                            }
-                        ?>
-                </table>
+                
+                <div class="informacoes">
+                    <table>
+                            <!-- exibe os dados do usuario cadastrado -->
+                            <?php
+                                while($user_data = mysqli_fetch_array($usuario)){
+                                    echo "<tr>";
+                                    echo "<td class='dado'><p> Nome: </p>". $user_data['nome'] . "</td>";
+                                    echo "<td class='dado'><p> Turma: </p>" . $user_data['turma'] . "</td>";
+                                    echo "<td class='dado'><p> E-mail: </p>" . $user_data['email'] . "</td>";
+                                    echo "<td class='dado'><p> Telefone: </p>" . $user_data['telefone'] . "</td>";
+                                    echo "</tr>";
+                                }
+                            ?>
+                    </table>
+                </div>
 
                 <?php
                     if(isset($_POST['excluir'])){
@@ -99,16 +102,18 @@
                     }
                 ?>
                 
-                <?php
-                        echo"<form action='' method='POST'>";
-                        echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma'>+Livro</a>";
-                        while($usuario = mysqli_fetch_array($contato)){
-                            $email = $usuario['email'];
-                            echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email'>Entrar em contato</a>";
-                        }
-                        echo "<input type='submit' name='excluir' class='delete' value='Excluir usuário'></input>";
-                        echo "</form>";
-                ?>
+                <div class="botoes">
+                    <?php
+                            echo"<form action='' method='POST'>";
+                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma'>+Livro</a>";
+                            while($usuario = mysqli_fetch_array($contato)){
+                                $email = $usuario['email'];
+                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email'>Entrar em contato</a>";
+                            }
+                            echo "<input type='submit' name='excluir' class='delete' value='Excluir usuário'></input>";
+                            echo "</form>";
+                    ?>
+                </div>
 
                 <?php
 

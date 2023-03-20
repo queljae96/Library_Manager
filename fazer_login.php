@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include_once('config.php');
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +31,6 @@
 
                 if(isset($_POST['submit'])){
                     //print_r("maior");
-                    include_once('config.php');
                     $email=$_POST['email'];
                     $senha=$_POST['senha'];
                 
@@ -45,6 +45,7 @@
                         }elseif(mysqli_num_rows($verificar)==0){//verificar se a senha coincide com o email cadastrado
                             echo "<p class='erro'><b><font color=\"#d78700\"> Erro: Verifique se você inseriu todas as informações corretamente </font></b></p>";
                         }else{
+                            $update_status =  mysqli_query($conexao,"UPDATE status_login SET statuss = 'ativo' WHERE email='$email' ");
                             $_SESSION['email'] = $email;
                             $_SESSION['senha'] = $senha;
                             header("Location: pagprinc(1).php");
