@@ -29,9 +29,36 @@
 
     }
 
-    
-
 ?>
+
+<!-- <?php
+    // if(isset($_POST['status'])){
+    //     while($user = mysqli_fetch_array($ver_livro)){
+    //     $verStatus = $user['statuss'];
+    //     $idStatus = $user['id'];
+?>
+
+            <script>
+
+                var confirmacao = confirm("Tem certeza que deseja excluir esse usuário?");
+
+                if (confirmacao == true) {
+                    <?php
+                        
+                        // if($verStatus == 'Pendente'){
+                        //     $update_status =  mysqli_query($conexao,"UPDATE emprestar_livro SET statuss = 'Devolvido' WHERE email='$logado' AND id='$idStatus' ");
+                        // }else{
+                        //     $update_status2 =  mysqli_query($conexao,"UPDATE emprestar_livro SET statuss = 'Pendente' WHERE email='$logado' AND id='$idStatus' ");
+                        // }
+                    ?>
+                }
+                                                    
+            </script>
+                    
+<?php
+    //   }
+    // }
+?> -->
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -105,7 +132,7 @@
                 <div class="botoes">
                     <?php
                             echo"<form action='' method='POST'>";
-                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma'>+Livro</a>";
+                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma'>+ Livro</a>";
                             while($usuario = mysqli_fetch_array($contato)){
                                 $email = $usuario['email'];
                                 echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email'>Entrar em contato</a>";
@@ -115,30 +142,49 @@
                     ?>
                 </div>
 
-                <?php
+                <section class="emprestimo">
+                    <div>
+                        <table>
+                            <?php
+                                    echo "<tr>";
+                                    echo "<td class='livroName'><b>Livro</b></td>";
+                                    echo "<td class='autor'><b>Autor</b></td>";
+                                    echo "<td class='dataDev'><b>Data de devolução</b></td>";
+                                    echo "<td class='statuss'><b>Status</b></td>";
 
-                        while($user_data = mysqli_fetch_array($ver_livro)){
-                            $livro = $user_data['nome_livro'];
-                            $datadev = $user_data['data_devolucao'];
-                            $autor = $user_data['autor_livro'];
-                            $status = $user_data['statuss'];
+                                    while($user_data = mysqli_fetch_array($ver_livro)){
+                                        $livro = $user_data['nome_livro'];
+                                        $datadev = $user_data['data_devolucao'];
+                                        $autor = $user_data['autor_livro'];
+                                        $status = $user_data['statuss'];
 
-                            echo "<p id='livro_info'>".$user_data['data_emprestimo']."</p><br>";
-                            echo "<p class='detalhe'>Nome do livro:</p>";
-                            echo "<p class='autorName'>Autor:</p>";
-                            echo "<p class='dataDev'>Data de devolução:</p>";
-                            echo "<p class='status'>Status:</p>";
+                    
 
+                                        echo "<tr>";
+                                        echo "<td class='livro_info'>".$user_data['data_emprestimo']."</td><br>";
+                                        echo "</tr>";
 
-                            echo "<tr class='info'>";
-                            echo "<td ><p class='infoName'>$livro</p></td>";
-                            echo "<td ><p class='autor'>$autor</p></td>";
-                            echo "<p class='devolucao'>$datadev</p>";
-                            echo "<p class='statuss'>$status</p>";
-                            echo "</tr>";
-                        }
-                ?>
-                
+                                        echo "<tr class='info'>";
+                                        echo "<td ><p class='dado1'>$livro</p></td>";
+                                        echo "<td ><p class='dado2'>$autor</p></td>";
+                                        echo "<td class='dado1'>$datadev</td>";
+
+                                        echo "<form action='' method='POST'>";
+                                        if($status == 'Pendente'){
+                                            echo "<td ><input type='submit' name='status' class='statusPendente' value='$status'></td>";
+                                        }else{
+                                            echo "<td ><input type='submit' name='status' class='statusDevolvido' value='$status'></td>";
+                                        }
+                                        echo "</form>";
+
+                                        echo "</tr>";
+                                    }
+                                    echo "</tr>";
+                            ?>
+                        </table>
+                    </div>
+                </section>
+
         </section>
 
         <!-- <footer>
