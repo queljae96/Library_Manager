@@ -47,22 +47,42 @@
                         if(isset($_POST['livro'])){
                             if(!empty($_POST['livro']))  { 
                                 
-                                    $result = array_map(null, $_POST['livro'], $_POST['autor']);
-
+                                    $result = $_POST['livro'];
+                                    //$data=date("Y-m-d");
                                     foreach($result as $value) {
-                                        $data=date("Y-m-d");
-                                        $autor = $value[1];
-                                        
-                                        if($value[0] != ""){
-                                            //$data_devolucao = date('Y-m-d', strtotime($value[1]));
-                                            $add = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$value[0]','$autor','$data','2004/01/12','Pendente')");
-                                            //$delete1 = mysqli_query($conexao,"DELETE FROM emprestar_livro WHERE nome_livro='' ");
-                                        }
+                                        //$data_devolucao = date('Y-m-d', strtotime($value[1]));
+                                        if($value != ""){
+                                            echo "$value - caiu no certo<br>";
+
+                                            // //if (is_array($value)) {
+                                            //     $data_devolucao = date('Y-m-d', strtotime($value[1]));
+
+                                            //     // if($data_devolucao < $data){
+                                            //     //     unset($value[0]);
+                                            //     //     unset($value[1]);
+                                            //     // }
+                                            //     // if($value[0] != "")
+                                            //     // {
+                                                        echo "--------------------------<br>";
+                                                        $ver_livro = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND nome ='$value'");
+
+                                                        while($valor = mysqli_fetch_array($ver_livro)){
+                                                            $id = $valor['id'];
+
+                                                            $idLivro = array($id);
+                                                            header("Location: emprestar_livro.php?id=$idLivro");
+                                                        
+                                                        }
+                                            //         //$delete1 = mysqli_query($conexao,"DELETE FROM emprestar_livro WHERE nome_livro='' ");
+                                            //     //}
+                                            //     //}
+                                            }
+                                            
                                     }
                             }           
                             
-                            echo "valores adicionados ";
-                            header("Location: visualizar.php?nome=$nome&turma=$turma");        
+                            // echo "valores adicionados ";
+                            // header("Location: visualizar.php?nome=$nome&turma=$turma");        
                         } 
                 ?>    
                 
@@ -76,21 +96,12 @@
                             $autor = $valorivro['autor'];
 
                             echo "<tr class='info'>";
-
-                            echo "<td>";
                             echo "<input class='check' type='checkbox' name='livro[]' value='$valor' readonly>";
-                            echo "</td>";
                             echo "<label class='nome'>$valor</label>";
 
                             echo "<td>";
-                            echo "<input type='checkbox' name='autor[]' value='$autor' class='autor' checked readonly>";
                             echo "</td>";
                             echo "<label class='nome'>$autor</label>";
-
-
-                            echo "<td>";
-                            echo "<input type='date' name='datadev[]' value='' class='date'>";
-                            echo "</td>";
 
                             echo "</tr>";
                             echo "<br>";

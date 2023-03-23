@@ -130,13 +130,13 @@
                                         $status = $user_data['statuss'];
 
                                         echo "<tr>";
-                                        echo "<td class='livro_info'>".$user_data['data_emprestimo']."</td><br>";
+                                        echo "<td class='livro_info'>".date('d/m/Y', strtotime($user_data['data_emprestimo']))."</td><br>";
                                         echo "</tr>";
 
                                         echo "<tr class='info'>";
                                         echo "<td ><p class='dado1'>$livro</p></td>";
                                         echo "<td ><p class='dado2'>$autor</p></td>";
-                                        echo "<td class='dado1'>$datadev</td>";
+                                        echo "<td class='dado1'>".date('d/m/Y', strtotime($datadev))."</td>";
 
                                         echo "<form action='' method='POST'>";
                                         if($status == 'Pendente'){
