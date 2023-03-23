@@ -15,11 +15,11 @@
     if(!empty($_GET['search']))
     {
         $data = $_GET['search'];
-        $sql = "SELECT autor,nome,estoque FROM livros WHERE autor LIKE '%$data%' or nome LIKE '%$data%'  ORDER BY id DESC";
+        $sql = "SELECT * FROM livros WHERE autor LIKE '%$data%' or nome LIKE '%$data%'  ORDER BY id DESC";
     }
     else
     {
-        $sql = "SELECT nome,autor,estoque FROM livros ORDER BY id DESC";
+        $sql = "SELECT * FROM livros ORDER BY id DESC";
     }
     $result=$conexao->query($sql);
 
@@ -34,7 +34,7 @@
     <title>Library manager</title>
     <link rel="stylesheet" href="livro.css">
     <link rel="icon" type="image/png" href="img/library (1).png">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 </head>
 <body>
     <header>
@@ -61,11 +61,12 @@
                         echo "<td class='autor'><b>Autor</b></td>";
                         echo "<td class='estoque'><b>Estoque</b></td>";
                                 while ($user_data = mysqli_fetch_assoc ($result)) {
+                                    $id = $user_data['id'];
                                     echo "<tr>";
                                     echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
                                     echo "<td class='dado2'>" . $user_data['autor'] . "</td>";
                                     echo "<td class='dado3'>" . $user_data['estoque'] . "</td>";
-                                    echo "<td><button type='submit' name='submit' class='excluir'><img src='img/lixeira (1).png'</button></td>";
+                                    echo "<td class='lixeira'><a href='verificar_exclusao.php?id=$id'><i class='fa-sharp fa fa-trash' style='font-size:20px;'></i></a></td>";
                                     echo "</tr>";
                                 }
                         echo "</tr>";

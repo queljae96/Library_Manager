@@ -229,7 +229,7 @@ td{
     color: white;
 }
 
-.dado1,.dado2,.statusPendente,.statusDevolvido{
+.dado1,.dado2,.statusPendente ,.statusDevolvido {
     border-bottom: 13px solid white;
     background-color: rgb(237, 234, 234);
 }
@@ -258,18 +258,29 @@ td{
     background-color:#d3d3d3;
 }
 
-.statusPendente{
+.statusPendente,.statusDevolvido{
+    background-color:white;
+}
+
+.statusPendente a{
     padding-left:3.0vw;
     padding-right:3.0vw;  
     padding-top:8px;
     padding-bottom:8px;
-    background-color:#b27979;
+    background-color:#ea3636;
     border: none;
     border-bottom: 13px solid white;
-    width: 5vw;
+    width: 7vw;
+    border-bottom: 13px solid white;
+    color: white;
+    text-decoration: none;
 }
 
-.statusDevolvido{
+.statusDevolvido a,.statusPendente a{
+    cursor: pointer;
+}
+
+.statusDevolvido a{
     padding-left:3.0vw;
     padding-right:3.0vw;  
     padding-top:8px;
@@ -278,7 +289,12 @@ td{
     width: 5vw;
     border: none;
     border-bottom: 13px solid white;
+    text-decoration: none;
 
+}
+
+.statusPendente a,.statusDevolvido a{
+    margin-left:1vw;
 }
 
 

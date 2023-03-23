@@ -29,6 +29,21 @@
             margin-left:15px;
         }
 
+        .lixeira i{
+            border-bottom: 13px solid white;
+            margin-left: 1.5vw;
+            padding-top: 0.5vw;
+            padding-bottom: 0.5vw;
+            padding-left: 0.8vw;
+            padding-right: 0.8vw;
+            color:red;
+        }
+
+        .lixeira i:hover{
+            color: white;
+            background-color:#fa2424;
+        }
+
         .volt{
             cursor: pointer;
             margin-left: 5vw;
