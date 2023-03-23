@@ -31,35 +31,6 @@
 
 ?>
 
-<!-- <?php
-    // if(isset($_POST['status'])){
-    //     while($user = mysqli_fetch_array($ver_livro)){
-    //     $verStatus = $user['statuss'];
-    //     $idStatus = $user['id'];
-?>
-
-            <script>
-
-                var confirmacao = confirm("Tem certeza que deseja excluir esse usuário?");
-
-                if (confirmacao == true) {
-                    <?php
-                        
-                        // if($verStatus == 'Pendente'){
-                        //     $update_status =  mysqli_query($conexao,"UPDATE emprestar_livro SET statuss = 'Devolvido' WHERE email='$logado' AND id='$idStatus' ");
-                        // }else{
-                        //     $update_status2 =  mysqli_query($conexao,"UPDATE emprestar_livro SET statuss = 'Pendente' WHERE email='$logado' AND id='$idStatus' ");
-                        // }
-                    ?>
-                }
-                                                    
-            </script>
-                    
-<?php
-    //   }
-    // }
-?> -->
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -158,8 +129,6 @@
                                         $autor = $user_data['autor_livro'];
                                         $status = $user_data['statuss'];
 
-                    
-
                                         echo "<tr>";
                                         echo "<td class='livro_info'>".$user_data['data_emprestimo']."</td><br>";
                                         echo "</tr>";
@@ -171,9 +140,9 @@
 
                                         echo "<form action='' method='POST'>";
                                         if($status == 'Pendente'){
-                                            echo "<td ><input type='submit' name='status' class='statusPendente' value='$status'></td>";
+                                            echo "<td class='statusPendente' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status'><b>$status</b></a></td>";
                                         }else{
-                                            echo "<td ><input type='submit' name='status' class='statusDevolvido' value='$status'></td>";
+                                            echo "<td class='statusDevolvido' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status'><b>$status</b></a></td>";
                                         }
                                         echo "</form>";
 

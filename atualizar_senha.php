@@ -43,7 +43,6 @@
                                     $link = 'NULL';
                                     $result = mysqli_query($conexao,"UPDATE cadastro_de_usuario SET senha='$senha',recuperar_senha='$link' WHERE recuperar_senha = '$chave' LIMIT 1");
                                     header('Location: fazer_login.php');
-
                                 }
                             }
                         } 
