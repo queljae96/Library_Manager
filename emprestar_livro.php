@@ -30,12 +30,12 @@
             <h2>Emprestar livro</h2>
                 
                 <?php
-                    $idLivro = array($id);
+                    //$idLivro = array($id);
                     // $data=date("Y-m-d");
-                 foreach($idLivro as $value) {
+                //  foreach($id as $value) {
                     //     //$data_devolucao = date('Y-m-d', strtotime($value[1));
                         
-                    echo "$value";}
+                    echo "$id";
                     //     $ver_livro = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND id ='$value'");
 
                     //     while($valor = mysqli_fetch_array($ver_livro)){

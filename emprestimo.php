@@ -51,8 +51,8 @@
                                     //$data=date("Y-m-d");
                                     foreach($result as $value) {
                                         //$data_devolucao = date('Y-m-d', strtotime($value[1]));
-                                        if($value != ""){
-                                            echo "$value - caiu no certo<br>";
+                                            if($value != ""){
+                                                echo "$value - caiu no certo<br>";
 
                                             // //if (is_array($value)) {
                                             //     $data_devolucao = date('Y-m-d', strtotime($value[1]));
@@ -63,27 +63,69 @@
                                             //     // }
                                             //     // if($value[0] != "")
                                             //     // {
-                                                        echo "--------------------------<br>";
-                                                        $ver_livro = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND nome ='$value'");
+                                                echo "--------------------------<br>";
+                                                $ver_livro = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND nome ='$value'");
 
-                                                        while($valor = mysqli_fetch_array($ver_livro)){
-                                                            $id = $valor['id'];
+                                            //while($valor = mysqli_fetch_array($ver_livro)){
 
-                                                            $idLivro = array($id);
-                                                            header("Location: emprestar_livro.php?id=$idLivro");
-                                                        
-                                                        }
+                                                $id = $value;
+                                                $arr1 = array();
+                                                array_push($arr1,$id); 
+
+                                            if ($value === end($result)) {
+                                                echo "ola"; 
+                                           }
+
+                                            // $query_string = http_build_query(array('my_array' => $arr));
+                                                            //     $url = "emprestar_livro.php?id=" .http_build_query(array($arr));
+                                                            //     echo "$url - $query_string<br>";
+                                                                 
+
+                                                         //}
+                                                          
+                                                         
+                                                        // $parametro_url = serialize($arr);
+                                                        // $url = "emprestar_livro.php?id=" . urlencode($parametro_url);
+                                                        // header("Location: " . $url);
+                                                                // Aqui você pode colocar o comando que deseja executar quando chegar ao último elemento do array.
+                                                            
+
+                                                                    
+                                                                
                                             //         //$delete1 = mysqli_query($conexao,"DELETE FROM emprestar_livro WHERE nome_livro='' ");
                                             //     //}
                                             //     //}
                                             }
-                                            
+
+                                            echo "<div id='modal' class='modal'>";
+                                            echo "     <div class='modal-conteudo'>";
+                                            echo "            <span class='modal-fechar' onclick='fecharModal()'>&times;</span>";
+
+                                            foreach($result as $value){
+                                                echo "<p>$value</p>";  
+                                                echo "<input type='date'>";
+                                            }
+
+                                            echo "     </div>";
+                                            echo "</div>"; 
+                                    
                                     }
-                            }           
+                                    
+                                    
+                                    
+                            }        
                             
                             // echo "valores adicionados ";
                             // header("Location: visualizar.php?nome=$nome&turma=$turma");        
                         } 
+
+                        
+                        // foreach($arr1 as $value)
+                        // {
+                        //     echo "$value<br>";
+
+                        // } 
+
                 ?>    
                 
                 <form action="" method="POST">
@@ -114,4 +156,18 @@
 
 
 </body>
+
+<script>
+    // function abrirModal() {
+    // var modal = document.getElementById("modal");
+    // modal.style.display = "block";
+    // }
+
+    function fecharModal() {
+    var modal = document.getElementById("modal");
+        modal.style.display = "none";
+    }
+
+</script>
+
 </html>
