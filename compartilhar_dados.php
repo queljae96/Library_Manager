@@ -13,7 +13,30 @@
         include_once('config.php');
 ?>
 
+<?php
+    if(isset($_POST['cancelar'])){
+                //sleep(5);
+?>
 
+                <script>
+                    var confirmacao = confirm("Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?");
+                    if (confirmacao == true) {
+
+                        <?php
+                            //sleep(5);
+                            $delete_registro = mysqli_query($conexao,"DELETE FROM solicitar_compartilhamento WHERE id_email = '$logado' ");
+                            //sleep(5);
+                            //header("Location: pagprinc(1).php");
+                        ?>
+                        alert("Solicitação cancelada com sucesso!");
+                        window.location = 'perfil_de_compartilhamento.php';
+                    } else {
+                    }
+                </script>
+                    
+            <?php
+                }
+            ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,9 +51,9 @@
 </head>
 <body>
     <header>
-        <a href="inicio (1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
+        <a href="perfil_de_compartilhamento.php"><img class="logo" src="img/2 (1).png" alt=""></a>
     </header>
-    <a class="volt" href="pagprinc(1).php"><img src="img/de-volta (1).png"></a>
+    <a class="volt" href="perfil_de_compartilhamento.php"><img src="img/de-volta (1).png"></a>
 
     <main>
 
@@ -80,7 +103,7 @@
                     <input type="text" name="email" placeholder="E-mail">
 
                     <button type="submit" name="submit" id="submit" class="compartilhar" >Solicitar compartilhamento </button>
-                    <a class="recuperar" href="login.php"><b>Fazer login</b></a>
+                    <button class="recuperar" name="cancelar" ><b>Cancelar solicitação de compartilhamento</b></button>
 
                 </form>
 

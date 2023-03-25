@@ -17,7 +17,7 @@
     if(!empty($nome and $turma)){
 
     }
-
+   
 ?>
 
 <!DOCTYPE html>
@@ -38,134 +38,149 @@
     </header>
 
     <main>
-        <section>
+        <section >
             <h2>Emprestar livro</h2>
                 
                 <?php
-
+                                      
+                    
                     // verifica se os inputs estao marcados e os exibe na tela
-                        if(isset($_POST['livro'])){
+                       
+
                             if(!empty($_POST['livro']))  { 
-                                
-                                    $result = $_POST['livro'];
-                                    //$data=date("Y-m-d");
-                                    foreach($result as $value) {
-                                        //$data_devolucao = date('Y-m-d', strtotime($value[1]));
-                                            if($value != ""){
-                                                echo "$value - caiu no certo<br>";
 
-                                            // //if (is_array($value)) {
-                                            //     $data_devolucao = date('Y-m-d', strtotime($value[1]));
+                                $result = $_POST['livro'];
+                               //global $result;
 
-                                            //     // if($data_devolucao < $data){
-                                            //     //     unset($value[0]);
-                                            //     //     unset($value[1]);
-                                            //     // }
-                                            //     // if($value[0] != "")
-                                            //     // {
-                                                echo "--------------------------<br>";
-                                                $ver_livro = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND nome ='$value'");
+                                echo '<script>
+                                window.onload = function(){ abrirModal(); };
+                                </script>';
 
-                                            //while($valor = mysqli_fetch_array($ver_livro)){
-
-                                                $id = $value;
-                                                $arr1 = array();
-                                                array_push($arr1,$id); 
-
-                                            if ($value === end($result)) {
-                                                echo "ola"; 
-                                           }
-
-                                            // $query_string = http_build_query(array('my_array' => $arr));
-                                                            //     $url = "emprestar_livro.php?id=" .http_build_query(array($arr));
-                                                            //     echo "$url - $query_string<br>";
-                                                                 
-
-                                                         //}
-                                                          
-                                                         
-                                                        // $parametro_url = serialize($arr);
-                                                        // $url = "emprestar_livro.php?id=" . urlencode($parametro_url);
-                                                        // header("Location: " . $url);
-                                                                // Aqui você pode colocar o comando que deseja executar quando chegar ao último elemento do array.
-                                                            
-
-                                                                    
-                                                                
-                                            //         //$delete1 = mysqli_query($conexao,"DELETE FROM emprestar_livro WHERE nome_livro='' ");
-                                            //     //}
-                                            //     //}
-                                            }
-
-                                            echo "<div id='modal' class='modal'>";
-                                            echo "     <div class='modal-conteudo'>";
-                                            echo "            <span class='modal-fechar' onclick='fecharModal()'>&times;</span>";
-
-                                            foreach($result as $value){
-                                                echo "<p>$value</p>";  
-                                                echo "<input type='date'>";
-                                            }
-
-                                            echo "     </div>";
-                                            echo "</div>"; 
+  
                                     
-                                    }
+                                   
                                     
-                                    
-                                    
-                            }        
-                            
-                            // echo "valores adicionados ";
-                            // header("Location: visualizar.php?nome=$nome&turma=$turma");        
+                            //}          
                         } 
 
-                        
-                        // foreach($arr1 as $value)
-                        // {
-                        //     echo "$value<br>";
+                        if(isset($_POST['livro'])){
+                            $sv = $_POST['livro'];
+                            if(!empty($sv)){
+                                $dataDevolucao = array ($_POST['dataDev']);
+                                echo "kk34444kkk";
+                            }}
+                        //    }else{
+                        //     // $sv = $_POST['livro'];
+                        //     //     if(!empty($sv)){
+                        //     //         $dataDevolucao = array ($_POST['dataDev']);
+                        //     //         echo "kk34444kkk";
+                        //     //     }
+                        //    }
 
-                        // } 
+                        //function m(){
+                            if(isset($_POST['enviarr'])){
+                                $dataDevolucao = array ($_POST['dataDev']);
+    
+                            //     $data=date("Y-m-d");
+    
+                                 //$rr = array_map(null,$dataDevolucao, $result );
+                                //foreach($rr as $cc){
+                                    //if (!empty($r)){
+                                        // foreach ($result as $valor) {
+                                            if(isset($_POST['livro'])){
+                                                echo "p";
+                                           }
+                                         //}
 
+                                        
+                                   //}
+                                    // foreach($result as $livro){
+                                    //     // $ver_livro = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND nome ='$livro'");
+                                    //     // while($user = mysqli_fetch_array($ver_livro)){
+                                    //     //     $autor = $user['autor'];
+                                    //     //     $resultado = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$livro','$autor','$data','$valorDevolucao','Pendenet')");
+                                    //     header("Location: visualizar.php?nome=$nome&turma=$turma&d=$livro");        
+                                    // }
+                                //}
+                                        
+                                }
+                            //}
+                        //}
+                    
                 ?>    
                 
-                <form action="" method="POST">
-                        <!-- código para visualizar os livros cadastrados no banco de dados -->
-                    <?php
-        
-                        echo "<button type='submit' value='Enviar' name='enviar'>Adicionar livro</button> ";                          
-                        while($valorivro = mysqli_fetch_array($visualizar_livros)){
-                            $valor = $valorivro['nome'];
-                            $autor = $valorivro['autor'];
+                    <form action="" method="POST">
+                            <!-- código para visualizar os livros cadastrados no banco de dados -->
+                        <?php
+                            echo "<div id='corpo'>" ;                    
+                                echo "<button type='submit' value='Enviar' name='enviar'>Enviar</button> ";     
+                                while($valorivro = mysqli_fetch_array($visualizar_livros)){
+                                    $valor = $valorivro['nome'];
+                                    $autor = $valorivro['autor'];
 
-                            echo "<tr class='info'>";
-                            echo "<input class='check' type='checkbox' name='livro[]' value='$valor' readonly>";
-                            echo "<label class='nome'>$valor</label>";
+                                    echo "<tr class='info'>";
+                                    echo "<input class='check' type='checkbox' name='livro[]' value='$valor' readonly>";
+                                    echo "<label class='nome'>$valor</label>";
 
-                            echo "<td>";
-                            echo "</td>";
-                            echo "<label class='nome'>$autor</label>";
+                                    echo "<td>";
+                                    echo "</td>";
+                                    echo "<label class='nome'>$autor</label>";
 
-                            echo "</tr>";
-                            echo "<br>";
-                        }
-                    ?>
-                </form>
+                                    echo "</tr>";
+                                    echo "<br>";
+                                }
+                            echo "</div>";
+                        ?>
+                    </form>
+
         </section>
 
+        <?php
+        
+        echo "<div id='modal' class='modal' >";
+        echo "     <div class='modal-content'>";
+        echo "            <span class='fechar' >&times;</span>";
+        echo "            <h2>Emprestar livro</h2>";
+        echo "            <h4>Digite a data de devolução que deseja devolver cada livro</h4>";
+        echo "<form action='' method='POST'>";
+        echo "<button type='submit' value='Enviar' name='enviarr'>Enviar</button> ";     
+        echo "<table>";
+        echo "<tr>";
+        echo "<td class='livroName'><b>Livro</b></td>";
+        echo "<td class='autorName'><b>Autor</b></td>";
+        echo "<td class='dataDev'><b>Data de devolução</b></td>";
+        foreach($result as $value){
+            $ver_livro = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND nome ='$value'");
+            while($user_data = mysqli_fetch_array($ver_livro)){
+                echo "<tr class='info'>";
+                echo "<td><p class='dado1'>$value</p></td>"; 
+                echo "<td><p class='dado2'>".$user_data['autor']."</p></td>";
+                echo "<td><input class='dado3' type='date' name='dataDev[]' required></td>";
+                echo "</tr>";
+            } 
+        }
+        echo "</tr>";
+        echo "</table>";
+        echo "</form>";
+        echo "     </div>";
+        echo "</div>";
+        
+        ?>
+
     </main>
-
-
 </body>
 
 <script>
-    // function abrirModal() {
-    // var modal = document.getElementById("modal");
-    // modal.style.display = "block";
-    // }
+    function abrirModal() {
+        var modal = document.getElementById("modal");
+        var secao = document.getElementById("corpo");
 
-    function fecharModal() {
-    var modal = document.getElementById("modal");
-        modal.style.display = "none";
+        modal.style.display = "block";
+    }
+
+    var botaoFechar = document.getElementsByClassName("fechar")[0];
+        botaoFechar.onclick = function() {
+        modal.style.display = "none"; /* esconde a janela modal */
     }
 
 </script>

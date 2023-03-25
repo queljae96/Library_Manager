@@ -75,7 +75,7 @@
                     <a href="usuario_cadastro.php">Adicionar novo usuário</a>
                     <a href="livro.php">Livros</a>
                     <a href="">Solicitar relatório</a>
-                    <a href="perfil_de_compartilhamento.php">dados compartilhados</a>
+                    <a href="perfil_de_compartilhamento.php">Dados compartilhados</a>
                     <a href="sair.php">Sair</a>
                 </nav>
             </div>
