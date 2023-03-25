@@ -77,6 +77,8 @@ main{
 
 table{
     margin-bottom: 3.0vw;
+    margin-top:-7vw;
+
 }
 
 
@@ -306,6 +308,7 @@ td{
 .statusPendente a,.statusDevolvido a{
     margin-left:1vw;
 }
+
 
 
 

@@ -24,15 +24,20 @@
         $codChave = $user_data['chave_compartilhada'];
                              
         try {
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-            $mail->isSMTP();
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            // $mail->isSMTP();
+            $mail= new PHPMailer;
+            $mail->IsSMTP();        // Ativar SMTP
+            $mail->SMTPDebug = false;       // Debugar: 1 = erros e mensagens, 2 = mensagens apenas
+            $mail->SMTPAuth = true;     // Autenticação ativada
+            $mail->SMTPSecure = 'ssl'; 
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'suportelibrarymanager@gmail.com';
-            $mail->Password = 'uvqaucmvrkcbxdct';
-            $mail->Port = 587;
+            $mail->Username = '0000872073@senaimgaluno.com.br';
+            $mail->Password = 'hntyjrllaivkaapv';
+            $mail->Port = 995;
 
-            $mail->setFrom('suportelibrarymanager@gmail.com');
+            $mail->setFrom('0000872073@senaimgaluno.com.br');
             $mail->addAddress($email_destino);
             // $mail->addAddress('quel03102004@gmail.com');
 

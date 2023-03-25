@@ -10,7 +10,7 @@ body{
 
 header{
     display:flex;
-    background-color: #25569f;
+    background-color: #284f82;
     margin-bottom: 3vw;
     
 }
@@ -116,125 +116,11 @@ button{
 }
 
 .date{
-    /* background-color: #e7f4f9; */
     display: inline-block;
     width: 20%;
     font-size:17px;
     margin-top:0.6vw;
     border: 1px solid black;
-}
-
-/* janela modal */
-
-
-.modal {
-  display: none; /* esconde a janela modal por padrão */
-  position: fixed; /* posição fixa */
-  z-index: 1; /* coloca a janela modal na frente de outros elementos da página */
-  left: 0;
-  top: 0;
-  width: 100%; /* cobre toda a largura da página */
-  height: 100%; /* cobre toda a altura da página */
-  overflow: auto; /* adiciona scroll caso o conteúdo seja muito grande */
-  background-color:#f2efef;
-}
-
-.modal-content {
-  background-color: white;
-  margin: auto;
-  margin-top:3vw;
-  padding: 20px;
-  width: 80%;
-  height:80%; /* define a largura da janela modal */
-}
-
-.fechar {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.fechar:hover,
-.fechar:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* dados do modal */
-
-table{
-    margin-top: 1.5vw;
-}
-
-.livroName{
-    padding-left:7.0vw;
-    padding-right:10.0vw;  
-    padding-top:5px;
-    padding-bottom:5px;
-    text-align: center;
-    color: white;
-    background-color: #284f82;
-    font-size: 20px;
-}
-
-.autorName{
-    padding-left:5.0vw;
-    padding-right:5.0vw;  
-    padding-top:5px;
-    padding-bottom:5px;
-    background-color: #284f82;
-    text-align: center;
-    font-size: 20px;
-    color: white;
-}
-
-.dataDev{
-    padding-left:2.0vw;
-    padding-right:2.0vw;  
-    padding-top:5px;
-    padding-bottom:5px;
-    background-color: #284f82;
-    text-align: center;
-    font-size: 20px;
-    color: white;
-}
-
-.dado1,.dado2,.dado3{
-    border-bottom: 13px solid white;
-    background-color: rgb(237, 234, 234);
-}
-.dado1{
-    width: 22.0vw;
-    padding-left:4.7vw;
-    padding-right:4.7vw;  
-    padding-top:8px;
-    padding-bottom:8px;
-    display: inline-flex;
-
-}
-
-.dado2{
-    padding-left:3.0vw;
-    padding-right:3.0vw;  
-    padding-top:8px;
-    padding-bottom:8px;
-    background-color:#d3d3d3;
-    display: inline-flex;
-    width: 22.0vw;
-}
-
-.dado3{
-    width: 13.0vw;
-    padding-left:1vw;
-    padding-right:1vw;  
-    padding-top:8px;
-    padding-bottom:8px;
-    display: inline-flex;
-    border: none;
-    border-bottom: 13px solid white;
-
 }
 
 
