@@ -11,6 +11,7 @@
         }
         $logado = $_SESSION['email'];
         include_once('config.php');
+        $statusC = $_GET['statusC'];
 ?>
 
 <?php
@@ -21,15 +22,12 @@
                 <script>
                     var confirmacao = confirm("Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?");
                     if (confirmacao == true) {
-
+                        var statusC = <?php echo "$statusC"; ?>
                         <?php
-                            //sleep(5);
                             $delete_registro = mysqli_query($conexao,"DELETE FROM solicitar_compartilhamento WHERE id_email = '$logado' ");
-                            //sleep(5);
-                            //header("Location: pagprinc(1).php");
                         ?>
                         alert("Solicitação cancelada com sucesso!");
-                        window.location = 'perfil_de_compartilhamento.php';
+                        window.location = 'perfil_de_compartilhamento.php?statusC=s'+statusC;
                     } else {
                     }
                 </script>

@@ -34,7 +34,7 @@
         <section>
 
             <h1>Perfil de compartilhamento</h1>
-            <a href="compartilhar_dados.php" class="solicitar">solicitar compartilhamento</a>
+            <?php echo "<a href='compartilhar_dados.php?statusC=$statusC' class='solicitar'>solicitar compartilhamento</a>";?>
 
             <h3>Dados compartilhados comigo</h3>
 

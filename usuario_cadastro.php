@@ -67,8 +67,6 @@
 
                     <input type="submit" name="submit" class="btn" src="google.com"></input>
                 </form>
-                <a class="recuperar" href="pagprinc(1).php"><b>Home</b></a>
-
             </section>
 
     </main>

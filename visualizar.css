@@ -75,28 +75,26 @@ main{
 }
 
 
-table{
+.livro{
     margin-bottom: 3.0vw;
-    margin-top:-7vw;
-
 }
 
+.dados_usuario{
+    width: 70%;
+}
 
-.dado{
+.info1{
     font-size:20px;
-    margin-top: 1.0vw;
-    display: inline-flex;
+    display: block;
+    text-align: left;
+    margin-top: 0.3vw;
+    margin-bottom: 0.3vw;
+    text-decoration: none;
 }
 
-.dado p{
-    font-size:23px;
+.info1 b{
     color: #284f82;
-    margin-right: 0.5vw;
-}
-
-td{
-    width: 100%;
-
+    margin-right: 0.3vw;
 }
 
 .h2{
@@ -122,7 +120,7 @@ td{
     padding-top:0.5vw;
     padding-bottom: 0.5vw;
     margin: 1.0vw;
-    width: 10vw;
+    width: 12vw;
 }
 
 .informacoes{
@@ -131,7 +129,6 @@ td{
 }
 
 .botoes{
-    display: inline-flex;
     float: right;
 }
 
@@ -149,7 +146,7 @@ td{
     padding-top:0.5vw;
     padding-bottom: 0.5vw;
     margin: 1.0vw;
-    width: 10vw;
+    width: 12vw;
 }
 
 .delete{
@@ -165,7 +162,7 @@ td{
     margin-top: 0;
     cursor: pointer;
     background-color: white;
-    width: 13.4vw;
+    width: 15.4vw;
 }
 
 .botao:hover{
@@ -185,11 +182,12 @@ td{
 
 .emprestimo{
     display: block;
+    margin-top: 3vw;
 }
 
 .livroName{
-    padding-left:7.0vw;
-    padding-right:10.0vw;  
+    padding-left:3.0vw;
+    padding-right:3.0vw;  
     padding-top:5px;
     padding-bottom:5px;
     text-align: center;
@@ -199,8 +197,8 @@ td{
 }
 
 .autor{
-    padding-left:7.0vw;
-    padding-right:10.0vw;  
+    padding-left:3.0vw;
+    padding-right:3.0vw;  
     padding-top:5px;
     padding-bottom:5px;
     background-color: #284f82;
@@ -210,8 +208,8 @@ td{
 }
 
 .dataDev{
-    padding-left:5.0vw;
-    padding-right:5.0vw;  
+    padding-left:3.0vw;
+    padding-right:3.0vw;  
     padding-top:5px;
     padding-bottom:5px;
     background-color: #284f82;
@@ -221,8 +219,8 @@ td{
 }
 
 .statuss{
-    padding-left:4.0vw;
-    padding-right:4.0vw;  
+    padding-left:3.0vw;
+    padding-right:3.0vw;  
     padding-top:5px;
     padding-bottom:5px;
     background-color: #284f82;
@@ -231,7 +229,7 @@ td{
     color: white;
 }
 
-.dado1,.dado2,.statusPendente ,.statusDevolvido {
+.dado1,.dado2,.dado3,.statusPendente ,.statusDevolvido {
     border-bottom: 13px solid white;
     background-color: rgb(237, 234, 234);
 }
@@ -245,19 +243,25 @@ td{
 }
 
 .dado1{
-    width: 22.0vw;
-    padding-left:4.7vw;
-    padding-right:4.7vw;  
+    padding-left:1vw;
+    padding-right:1vw;  
     padding-top:8px;
     padding-bottom:8px;
 }
 
 .dado2{
-    padding-left:3.0vw;
-    padding-right:3.0vw;  
+    padding-left:1.0vw;
+    padding-right:1.0vw;  
     padding-top:8px;
     padding-bottom:8px;
     background-color:#d3d3d3;
+}
+
+.dado3{
+    padding-left:1vw;
+    padding-right:1vw;  
+    padding-top:8px;
+    padding-bottom:8px;
 }
 
 .statusPendente,.statusDevolvido{

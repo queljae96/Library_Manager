@@ -45,8 +45,10 @@
 </head>
 <body>
     <header>
-        <a href="inicio (1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
+       <?php echo "<a href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC'><img class='logo' src='img/2 (1).png' ></a>" ?>
     </header>
+
+    <?php echo "<a class='volt' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC'><img src='img/de-volta (1).png' ></a>" ?>
 
     <main>
         <section>                

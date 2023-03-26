@@ -78,14 +78,16 @@
             margin-left: 25vw;
         }
 
+        table{
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         form{
             margin:0px;
         }
 
-        tr{
-            margin:30px;
-        }
-
+        
         section{
             margin-left: 15.8vw;
             margin-top: 3.0vw;
@@ -147,9 +149,8 @@
         }
 
         .nome{
-            width: 15.0vw;
-            padding-left:1.7vw;
-            padding-right:4.7vw;  
+            padding-left:3.7vw;
+            padding-right:3.7vw;  
             padding-top:10px;
             padding-bottom:10px;
             text-align: center;
@@ -159,8 +160,8 @@
         }
     
         .turma{
-            padding-left:7.0vw;
-            padding-right:10.0vw;  
+            padding-left:3.0vw;
+            padding-right:3.0vw;  
             padding-top:8px;
             padding-bottom:8px;
             background-color: #284f82;
@@ -186,20 +187,20 @@
      
 
         .dado1{
-            width: 15.0vw;
-            padding-left:4.7vw;
-            padding-right:4.7vw;  
+            padding-left:1.7vw;
+            padding-right:1.7vw;  
             padding-top:8px;
             padding-bottom:8px;
            
         }
     
         .dado2{
-            padding-left:3.0vw;
-            padding-right:3.0vw;  
+            padding-left:1.0vw;
+            padding-right:1.0vw;  
             padding-top:8px;
             padding-bottom:8px;
             background-color:#d3d3d3;
+            text-align: center;
         }
 
         .visualizar{
@@ -263,7 +264,7 @@
             cursor: pointer;
             background-color: #284f82;
             border: none;
-            margin-left: 24vw;
+            margin-left: 20vw;
         }
 
         .openModal img{
@@ -275,8 +276,8 @@
 			position: fixed;
 			z-index: 1;
 			left: 55vw;
-			top: 5vw;
-			width: 60%;
+			top: 6.5vw;
+			width: 59.5%;
 			height: 100%;
 			overflow: auto;
 		}
@@ -311,7 +312,7 @@
 		}
 		.modal-close:hover,
 		.modal-close:focus {
-			color: black;
+			color: rgb(210, 23, 23);
 			text-decoration: none;
 			cursor: pointer;
 		}

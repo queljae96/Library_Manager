@@ -21,6 +21,11 @@ header{
     margin-top: 5px;
 }
 
+.volt{
+    cursor: pointer;
+    margin-left: 5vw;
+}
+
 h4{
     margin-left: 1vw;
     padding-top:3vw;

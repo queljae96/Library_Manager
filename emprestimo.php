@@ -9,7 +9,7 @@
         header('Location: inicio (1).php');
     }
     $logado = $_SESSION['email'];
-    $visualizar_livros = mysqli_query($conexao,"SELECT nome,autor FROM livros WHERE id_email='$logado' ");
+    $visualizar_livros = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' ");
     
     $statusC = $_GET["statusC"];
     $nome=$_GET["nome"];
@@ -38,13 +38,13 @@
         <a href="inicio (1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
     </header>
 
+    <?php echo "<a class='volt' href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC'><img src='img/de-volta (1).png'></a>"?>
+
     <main>
         <section >
             <h2>Emprestar livro</h2>
-                
+            <h4>Selecione os livros que deseja emprestar</h4>
                 <?php        
-                    
-                    
                         if(!empty($_POST['livro']))  { 
 
                             $result = $_POST['livro'];
@@ -56,55 +56,39 @@
                             header ("Location: $link");
 
                         }
-                        
-                        
-                        
-                    //$resultado = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$livro','$autor','$data','$valorDevolucao','Pendenet')");
-                    //     header("Location: visualizar.php?nome=$nome&turma=$turma&d=$livro");        
-                    
                 ?>  
-                
+
                     <form action="" method="POST">
                             <!-- código para visualizar os livros cadastrados no banco de dados -->
                         <?php
-                            echo "<div id='corpo'>" ;                    
-                                echo "<button type='submit' value='Enviar' name='enviar'>Enviar</button> ";     
+                                echo "<button type='submit' value='Enviar' name='enviar'>Enviar</button> ";
+                                echo "<table>";
+                                echo "<tr>";
+                                echo "<td class='nome'><b>Nome</b></td>";
+                                echo "<td class='autor'><b>Autor</b></td>";   
+                                echo "<td class='estoque'><b>Estoque</b></td>"; 
+
                                 while($valorivro = mysqli_fetch_array($visualizar_livros)){
                                     $valor = $valorivro['nome'];
                                     $autor = $valorivro['autor'];
+                                    $estoque = $valorivro['estoque'];
 
                                     echo "<tr class='info'>";
-                                    echo "<input class='check' type='checkbox' name='livro[]' value='$valor' readonly>";
-                                    echo "<label class='nome'>$valor</label>";
 
-                                    echo "<td>";
-                                    echo "</td>";
-                                    echo "<label class='nome'>$autor</label>";
+                                    echo "<td class='dado1'><input class='check' type='checkbox' name='livro[]' value='$valor' readonly>$valor</td>";
+                                    echo "<td class='dado2'>$autor</td>";
+                                    echo "<td class='dado3'>$estoque</td>";
 
                                     echo "</tr>";
                                     echo "<br>";
                                 }
-                            echo "</div>";
+                                echo "</table>";
+                                echo "</tr>";
                         ?>
                     </form>
 
         </section>
     </main>
 </body>
-
-<script>
-    function abrirModal() {
-        var modal = document.getElementById("modal");
-        var secao = document.getElementById("corpo");
-
-        modal.style.display = "block";
-    }
-
-    var botaoFechar = document.getElementsByClassName("fechar")[0];
-        botaoFechar.onclick = function() {
-        modal.style.display = "none"; /* esconde a janela modal */
-    }
-
-</script>
 
 </html>

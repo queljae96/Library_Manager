@@ -35,11 +35,11 @@
     if(!empty($_GET['search']))
     {
         $data = $_GET['search'];
-        $sql = "SELECT nome,turma FROM usuarios WHERE  id_email = '$logado' AND id LIKE '%$data%' or nome LIKE '%$data%' or email LIKE '%$data%' ORDER BY id DESC";
+        $sql = "SELECT id,nome,turma FROM usuarios WHERE  id_email = '$logado' AND id LIKE '%$data%' or nome LIKE '%$data%' or email LIKE '%$data%' ORDER BY id DESC";
     }
     else
     {
-        $sql = "SELECT nome,turma FROM usuarios WHERE id_email = '$logado' ORDER BY id DESC";
+        $sql = "SELECT id,nome,turma FROM usuarios WHERE id_email = '$logado' ORDER BY id DESC";
     }
 
     $result=$conexao->query($sql);
@@ -53,28 +53,13 @@
             $verificarC = mysqli_query($conexao,"SELECT * FROM cadastro_de_usuario WHERE id = '$idC' ");
             while ($user = mysqli_fetch_assoc ($verificarC)) {
                 $emailC = $user['email'];
-                $dadoC = mysqli_query($conexao,"SELECT nome,turma FROM usuarios WHERE id_email = '$emailC'");
+                $dadoC = mysqli_query($conexao,"SELECT id,nome,turma FROM usuarios WHERE id_email = '$emailC'");
             }
         }
 
     }else{
         $dadosCompartilhados = "false";
     }
-    // echo "$dadosCompartilhados";
-    
-    // if(isset($_POST ['submit']))
-    // {
-    //     //print_r($_POST['nome']);
-    //     include_once('config.php');
-    //     $nome = $_POST ['nome'];
-    //     $turma = $_POST ['turma'];
-    //     $email = $_POST ['email'];
-    //     $telefone = $_POST ['telefone'];
-
-    //     $result = mysqli_query($conexao,"INSERT INTO usuarios (id_email,nome,turma,email,telefone) VALUES ('$logado','$nome','$turma','$email','$telefone')");
-    // }
-
-    
 ?>
 
 <!DOCTYPE html>
@@ -126,7 +111,7 @@
                                     echo "<tr>";
                                     echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
                                     echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
-                                    echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados'><img src='img/visualizar (1).png'></td>";
+                                    echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados&id=$user_data[id]'><img src='img/visualizar (1).png'></td>";
                                     echo "</tr>";
                                 }
 
@@ -135,7 +120,7 @@
                                         echo "<tr>";
                                         echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
                                         echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
-                                        echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados'><img src='img/visualizar (1).png'></td>";
+                                        echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados&id=$user_data[id]'><img src='img/visualizar (1).png'></td>";
                                         echo "</tr>";
                                     }
                                 }
