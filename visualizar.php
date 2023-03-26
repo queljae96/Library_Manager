@@ -8,25 +8,48 @@
 
     $nome=$_GET["nome"];
     $turma=$_GET["turma"];
+    $statusC = $_GET["statusC"];
+
+    if($statusC == "true"){
+        $verificar_compartilhamento = mysqli_query($conexao,"SELECT compartilhamento_de_dados,id_compartilhamento FROM cadastro_de_usuario WHERE email='$logado' AND compartilhamento_de_dados='ativo' LIMIT 1 ");
+        while ($user_data = mysqli_fetch_assoc ($verificar_compartilhamento)) {
+            $idC = $user_data['id_compartilhamento'];
+            $verificarC = mysqli_query($conexao,"SELECT * FROM cadastro_de_usuario WHERE id = '$idC' ");
+            while ($user = mysqli_fetch_assoc ($verificarC)) {
+                $emailC = $user['email'];
+                //$dadoC = "SELECT * FROM emprestar_livro  WHERE id_email = '$emailC'";
+            }
+        }
+    }
 
     if(!empty($_GET['search']))
     {
         $data = $_GET['search'];
-        $sql = mysqli_query($conexao,"SELECT * FROM emprestar_livro WHERE id_email='$logado' AND nome_pessoa='$nome' AND turma_pessoa='$turma' ORDER BY id DESC");
+
+        $sql = ("SELECT * FROM emprestar_livro WHERE id_email='$logado' AND nome_pessoa='$nome' AND turma_pessoa='$turma' ORDER BY id DESC");
     }
     else
     {
-        $sql = mysqli_query($conexao,"SELECT * FROM emprestar_livro WHERE id_email='$logado' AND nome_pessoa='$nome' AND turma_pessoa='$turma' ORDER BY id DESC");
+        $sql = ("SELECT * FROM emprestar_livro WHERE id_email='$logado' AND nome_pessoa='$nome' AND turma_pessoa='$turma' ORDER BY id DESC");
     }
+    
+    $result=$conexao->query($sql);
 
     if(!empty($nome and $turma)){
         
-        $usuario = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
-        $contato = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
+        if($statusC == "false"){
+            $usuario = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
+            $contato = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
 
-        //print_r($result);
-        $ver_livro = mysqli_query($conexao,"SELECT * FROM emprestar_livro WHERE id_email='$logado' AND nome_pessoa='$nome' AND turma_pessoa='$turma' ORDER BY id DESC");
+            //print_r($result);
+            $ver_livro = mysqli_query($conexao,"SELECT * FROM emprestar_livro WHERE id_email='$logado' AND nome_pessoa='$nome' AND turma_pessoa='$turma' ORDER BY id DESC");
+        }else{
+            $usuario = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$emailC' OR id_email = '$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
+            $contato = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$emailC' OR id_email = '$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
 
+            //print_r($result);
+            $ver_livro = mysqli_query($conexao,"SELECT * FROM emprestar_livro WHERE nome_pessoa='$nome' AND turma_pessoa='$turma' ORDER BY id DESC");
+        }
     }
 
 ?>
@@ -49,7 +72,7 @@
         <input type="search" class="form-control" placeholder="Pesquisar" id="pesquisar"></input>
         <button class="lupa" onclick="searchData()">
             <img src="img/lupa (4).png">
-        </button> 
+        </button>
     </header>
 
     <div class="voltar">
@@ -88,8 +111,9 @@
 
                                  var nome = "<?php echo "$nome"; ?>";
                                  var turma = "<?php echo "$turma"; ?>";
+                                 var statusC = "<?php echo "$statusC"; ?>";
 
-                                 var link = "excluir_user.php?nome="+nome+"&turma="+encodeURIComponent(turma);
+                                 var link = "excluir_user.php?nome="+nome+"&turma="+encodeURIComponent(turma)+"&statusC="+encodeURIComponent(statusC);
                                  window.location.href = link;
 
                             }
@@ -103,7 +127,7 @@
                 <div class="botoes">
                     <?php
                             echo"<form action='' method='POST'>";
-                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma'>+ Livro</a>";
+                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC'>+ Livro</a>";
                             while($usuario = mysqli_fetch_array($contato)){
                                 $email = $usuario['email'];
                                 echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email'>Entrar em contato</a>";
@@ -130,19 +154,19 @@
                                         $status = $user_data['statuss'];
 
                                         echo "<tr>";
-                                        echo "<td class='livro_info'>".$user_data['data_emprestimo']."</td><br>";
+                                        echo "<td class='livro_info'>".date('d/m/Y', strtotime($user_data['data_emprestimo']))."</td><br>";
                                         echo "</tr>";
 
                                         echo "<tr class='info'>";
                                         echo "<td ><p class='dado1'>$livro</p></td>";
                                         echo "<td ><p class='dado2'>$autor</p></td>";
-                                        echo "<td class='dado1'>$datadev</td>";
+                                        echo "<td class='dado1'>".date('d/m/Y', strtotime($datadev))."</td>";
 
                                         echo "<form action='' method='POST'>";
                                         if($status == 'Pendente'){
-                                            echo "<td class='statusPendente' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status'><b>$status</b></a></td>";
+                                            echo "<td class='statusPendente' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC'><b>$status</b></a></td>";
                                         }else{
-                                            echo "<td class='statusDevolvido' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status'><b>$status</b></a></td>";
+                                            echo "<td class='statusDevolvido' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC'><b>$status</b></a></td>";
                                         }
                                         echo "</form>";
 

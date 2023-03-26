@@ -59,9 +59,11 @@ h1,h2{
     color: #284f82;
 }
 
-p{
-    margin: 30px;
+h4{
+    margin-left: 2vw;
 }
+
+
 
 button{
     padding: 10px;
@@ -114,10 +116,11 @@ button{
 }
 
 .date{
-    /* background-color: #e7f4f9; */
     display: inline-block;
     width: 20%;
     font-size:17px;
     margin-top:0.6vw;
     border: 1px solid black;
 }
+
+

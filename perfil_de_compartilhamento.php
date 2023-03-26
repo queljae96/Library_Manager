@@ -9,7 +9,7 @@
         header('Location: inicio (1).php');
     }
     $logado = $_SESSION['email'];
-    
+    $statusC = $_GET['statusC'];
 ?>
 
 <!DOCTYPE html>
@@ -39,13 +39,9 @@
             <h3>Dados compartilhados comigo</h3>
 
             <?php
-                // while($user_data = mysqli_fetch_array($usuario)){
-                //     echo "<tr>";
-                //     echo "<td class='dado'><p> Nome: </p>". $user_data['nome'] . "</td>";
-                //     echo "<td class='dado'><p> Turma: </p>" . $user_data['turma'] . "</td>";
-                //     echo "<td class='dado'><p> E-mail: </p>" . $user_data['email'] . "</td>";
-                //     echo "</tr>";
-                // }
+                if($statusC == true){
+                    echo "<p class='mensagemC'>Você ainda não tem acesso a nenhum dado compartilhado, solicite o ompartilhamento para ter acesso aos dados de outra conta</p>";
+                }
             ?>
 
             <h3>Quem tem acesso aos meus dados?</h3>

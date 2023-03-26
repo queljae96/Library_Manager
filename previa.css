@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color:#f2efef;
+}
+
+header{
+    display:flex;
+    background-color: #284f82;
+    margin-bottom: 3vw;
+    
+}
+
+.logo{
+    width: 80px;
+    margin-left: 25px;
+    margin-top: 5px;
+}
+
+h4{
+    margin-left: 1vw;
+    padding-top:3vw;
+    font-size: 22px;
+    color: #284f82;
+}
+
+section{
+    background-color:white;
+    width: 80%;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}
+
+table{
+    margin: auto;
+    margin-top: 2vw;
+}
+
+button{
+    padding: 10px;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    background-color: #284f82;
+    border: 0;
+    width: 120px;
+    margin-top: 2.0vw;
+    text-align: center;
+    display: block;
+    margin-left:1vw;
+    margin-bottom:2vw;
+    cursor: pointer;
+}
+
+.livroName{
+    padding-left:1.0vw;
+    padding-right:1.0vw;  
+    padding-top:5px;
+    padding-bottom:5px;
+    text-align: center;
+    color: white;
+    background-color: #284f82;
+    font-size: 20px;
+}
+
+.autorName{
+    padding-left:1.0vw;
+    padding-right:1.0vw;  
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color: #284f82;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    width: 20vw;
+}
+
+.dataDev{
+    padding-left:2.0vw;
+    padding-right:2.0vw;  
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color: #284f82;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    width: 15vw;
+}
+
+.dado1,.dado2,.dado3{
+    border-bottom: 13px solid white;
+    background-color: rgb(237, 234, 234);
+}
+.dado1{
+    width: 22.0vw;
+    padding-left:1.7vw;
+    padding-right:1.7vw;  
+    padding-top:8px;
+    padding-bottom:8px;
+    display: inline-flex;
+
+}
+
+.dado2{
+    padding-left:1.0vw;
+    padding-right:1.0vw;  
+    padding-top:8px;
+    padding-bottom:8px;
+    background-color:#d3d3d3;
+    display: inline-flex;
+    width: 22.0vw;
+}
+
+.dado3{
+    width: 18.0vw;
+    padding-left:1vw;
+    padding-right:1vw;  
+    padding-top:8px;
+    padding-bottom:8px;
+    display: inline-flex;
+    border: none;
+    border-bottom: 13px solid white;
+}
+
+

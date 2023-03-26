@@ -77,6 +77,8 @@ main{
 
 table{
     margin-bottom: 3.0vw;
+    margin-top:-7vw;
+
 }
 
 
@@ -290,12 +292,23 @@ td{
     border: none;
     border-bottom: 13px solid white;
     text-decoration: none;
+}
 
+.statusDevolvido a:hover{
+    background-color:white;
+    border: 2px solid #55d479;
+}
+
+.statusPendente a:hover{
+    background-color:white;
+    border: 2px solid red;
+    color:red;
 }
 
 .statusPendente a,.statusDevolvido a{
     margin-left:1vw;
 }
+
 
 
 

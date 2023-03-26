@@ -2,8 +2,27 @@
 
     session_start();
     include_once('config.php');
-    //print_r($_SESSION['email']);
+    // print_r($_SESSION['email']);
     $logado = $_SESSION['email'];
+
+
+    // foreach($r as $valu){
+    //         echo "$valu";
+    // }
+
+    // $v  = explode(',', $_GET['r']);
+    // echo "$v";
+
+    
+
+    if (isset($_GET['r'])) {
+        $categorias = explode(',', $_GET['r']);
+        
+        // Loop para exibir as categorias
+        foreach ($categorias as $categoria) {
+            echo $categoria . '<br>';
+        }
+    }
 
     $verificar_status = mysqli_query($conexao,"SELECT email,statuss FROM status_login WHERE email='$logado' AND statuss='ativo' LIMIT 1");
 
@@ -16,29 +35,44 @@
     if(!empty($_GET['search']))
     {
         $data = $_GET['search'];
-        $sql = "SELECT nome,turma FROM usuarios WHERE id LIKE '%$data%' or nome LIKE '%$data%' or email LIKE '%$data%' ORDER BY id DESC";
+        $sql = "SELECT nome,turma FROM usuarios WHERE  id_email = '$logado' AND id LIKE '%$data%' or nome LIKE '%$data%' or email LIKE '%$data%' ORDER BY id DESC";
     }
     else
     {
-        $sql = "SELECT nome,turma FROM usuarios ORDER BY id DESC";
+        $sql = "SELECT nome,turma FROM usuarios WHERE id_email = '$logado' ORDER BY id DESC";
     }
 
     $result=$conexao->query($sql);
     //print_r($result);
 
-    $verificar_compartilhamento = mysqli_query($conexao,"SELECT compartilhamento_de_dados FROM cadastro_de_usuario WHERE email='$logado' AND compartilhamento_de_dados='ativo' LIMIT 1 ");
-    
-    if(isset($_POST ['submit']))
-    {
-        //print_r($_POST['nome']);
-        include_once('config.php');
-        $nome = $_POST ['nome'];
-        $turma = $_POST ['turma'];
-        $email = $_POST ['email'];
-        $telefone = $_POST ['telefone'];
+    $verificar_compartilhamento = mysqli_query($conexao,"SELECT compartilhamento_de_dados,id_compartilhamento FROM cadastro_de_usuario WHERE email='$logado' AND compartilhamento_de_dados='ativo' LIMIT 1 ");
+    if(mysqli_num_rows($verificar_compartilhamento)>=1){
+        $dadosCompartilhados = "true";
+        while ($user_data = mysqli_fetch_assoc ($verificar_compartilhamento)) {
+            $idC = $user_data['id_compartilhamento'];
+            $verificarC = mysqli_query($conexao,"SELECT * FROM cadastro_de_usuario WHERE id = '$idC' ");
+            while ($user = mysqli_fetch_assoc ($verificarC)) {
+                $emailC = $user['email'];
+                $dadoC = mysqli_query($conexao,"SELECT nome,turma FROM usuarios WHERE id_email = '$emailC'");
+            }
+        }
 
-        $result = mysqli_query($conexao,"INSERT INTO usuarios (id_email,nome,turma,email,telefone) VALUES ('$logado','$nome','$turma','$email','$telefone')");
+    }else{
+        $dadosCompartilhados = "false";
     }
+    // echo "$dadosCompartilhados";
+    
+    // if(isset($_POST ['submit']))
+    // {
+    //     //print_r($_POST['nome']);
+    //     include_once('config.php');
+    //     $nome = $_POST ['nome'];
+    //     $turma = $_POST ['turma'];
+    //     $email = $_POST ['email'];
+    //     $telefone = $_POST ['telefone'];
+
+    //     $result = mysqli_query($conexao,"INSERT INTO usuarios (id_email,nome,turma,email,telefone) VALUES ('$logado','$nome','$turma','$email','$telefone')");
+    // }
 
     
 ?>
@@ -75,7 +109,7 @@
                     <a href="usuario_cadastro.php">Adicionar novo usuário</a>
                     <a href="livro.php">Livros</a>
                     <a href="">Solicitar relatório</a>
-                    <a href="perfil_de_compartilhamento.php">dados compartilhados</a>
+                    <?php echo "<a href='perfil_de_compartilhamento.php?statusC=$dadosCompartilhados'>Dados compartilhados</a>";?>
                     <a href="sair.php">Sair</a>
                 </nav>
             </div>
@@ -92,8 +126,18 @@
                                     echo "<tr>";
                                     echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
                                     echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
-                                    echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]'><img src='img/visualizar (1).png'></td>";
+                                    echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados'><img src='img/visualizar (1).png'></td>";
                                     echo "</tr>";
+                                }
+
+                                if($dadosCompartilhados == "true"){
+                                    while ($user_data = mysqli_fetch_assoc($dadoC)) {
+                                        echo "<tr>";
+                                        echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
+                                        echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
+                                        echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados'><img src='img/visualizar (1).png'></td>";
+                                        echo "</tr>";
+                                    }
                                 }
                             echo "</tr>";
                         ?>

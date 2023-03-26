@@ -10,14 +10,15 @@
     }
     $logado = $_SESSION['email'];
     $visualizar_livros = mysqli_query($conexao,"SELECT nome,autor FROM livros WHERE id_email='$logado' ");
-
+    
+    $statusC = $_GET["statusC"];
     $nome=$_GET["nome"];
     $turma=$_GET["turma"];
 
     if(!empty($nome and $turma)){
 
     }
-
+   
 ?>
 
 <!DOCTYPE html>
@@ -38,69 +39,72 @@
     </header>
 
     <main>
-        <section>
+        <section >
             <h2>Emprestar livro</h2>
                 
-                <?php
+                <?php        
+                    
+                    
+                        if(!empty($_POST['livro']))  { 
 
-                    // verifica se os inputs estao marcados e os exibe na tela
-                        if(isset($_POST['livro'])){
-                            if(!empty($_POST['livro']))  { 
-                                
-                                    $result = array_map(null, $_POST['livro'], $_POST['autor']);
+                            $result = $_POST['livro'];
 
-                                    foreach($result as $value) {
-                                        $data=date("Y-m-d");
-                                        $autor = $value[1];
-                                        
-                                        if($value[0] != ""){
-                                            //$data_devolucao = date('Y-m-d', strtotime($value[1]));
-                                            $add = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$value[0]','$autor','$data','2004/01/12','Pendente')");
-                                            //$delete1 = mysqli_query($conexao,"DELETE FROM emprestar_livro WHERE nome_livro='' ");
-                                        }
-                                    }
-                            }           
-                            
-                            echo "valores adicionados ";
-                            header("Location: visualizar.php?nome=$nome&turma=$turma");        
-                        } 
-                ?>    
-                
-                <form action="" method="POST">
-                        <!-- código para visualizar os livros cadastrados no banco de dados -->
-                    <?php
-        
-                        echo "<button type='submit' value='Enviar' name='enviar'>Adicionar livro</button> ";                          
-                        while($valorivro = mysqli_fetch_array($visualizar_livros)){
-                            $valor = $valorivro['nome'];
-                            $autor = $valorivro['autor'];
+                            $livros = implode(',', $result);
 
-                            echo "<tr class='info'>";
+                            // Adiciona o valor ao link
+                            $link = 'previa_de_livros.php?nome='.$nome.'&turma='.$turma.'&livros='. urlencode($livros).'&statusC='.$statusC;
+                            header ("Location: $link");
 
-                            echo "<td>";
-                            echo "<input class='check' type='checkbox' name='livro[]' value='$valor' readonly>";
-                            echo "</td>";
-                            echo "<label class='nome'>$valor</label>";
-
-                            echo "<td>";
-                            echo "<input type='checkbox' name='autor[]' value='$autor' class='autor' checked readonly>";
-                            echo "</td>";
-                            echo "<label class='nome'>$autor</label>";
-
-
-                            echo "<td>";
-                            echo "<input type='date' name='datadev[]' value='' class='date'>";
-                            echo "</td>";
-
-                            echo "</tr>";
-                            echo "<br>";
                         }
-                    ?>
-                </form>
+                        
+                        
+                        
+                    //$resultado = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$livro','$autor','$data','$valorDevolucao','Pendenet')");
+                    //     header("Location: visualizar.php?nome=$nome&turma=$turma&d=$livro");        
+                    
+                ?>  
+                
+                    <form action="" method="POST">
+                            <!-- código para visualizar os livros cadastrados no banco de dados -->
+                        <?php
+                            echo "<div id='corpo'>" ;                    
+                                echo "<button type='submit' value='Enviar' name='enviar'>Enviar</button> ";     
+                                while($valorivro = mysqli_fetch_array($visualizar_livros)){
+                                    $valor = $valorivro['nome'];
+                                    $autor = $valorivro['autor'];
+
+                                    echo "<tr class='info'>";
+                                    echo "<input class='check' type='checkbox' name='livro[]' value='$valor' readonly>";
+                                    echo "<label class='nome'>$valor</label>";
+
+                                    echo "<td>";
+                                    echo "</td>";
+                                    echo "<label class='nome'>$autor</label>";
+
+                                    echo "</tr>";
+                                    echo "<br>";
+                                }
+                            echo "</div>";
+                        ?>
+                    </form>
+
         </section>
-
     </main>
-
-
 </body>
+
+<script>
+    function abrirModal() {
+        var modal = document.getElementById("modal");
+        var secao = document.getElementById("corpo");
+
+        modal.style.display = "block";
+    }
+
+    var botaoFechar = document.getElementsByClassName("fechar")[0];
+        botaoFechar.onclick = function() {
+        modal.style.display = "none"; /* esconde a janela modal */
+    }
+
+</script>
+
 </html>
