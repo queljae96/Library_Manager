@@ -11,20 +11,17 @@
     $statusC = $_GET['statusC'];
 
         echo "<script>
-            var confirmacao = confirm('Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?');                        
+            var confirmacao = confirm('Tem certeza que excluir esse registro?');                        
         </script>";
 
         $c = "<script>document.write(confirmacao)</script>";
 
         if($c == true){
-            if($status == "Devolvido" ){
-                $atualizarStatus = mysqli_query($conexao,"UPDATE emprestar_livro SET statuss='Pendente' WHERE id = '$idLivro' ");
-            }else{
-                $atualizarStatus2 = mysqli_query($conexao,"UPDATE emprestar_livro SET statuss='Devolvido' WHERE id = '$idLivro' ");
-            }
+                $atualizarStatus = mysqli_query($conexao,"DELETE FROM emprestar_livro WHERE id = '$idLivro' ");
         }
 
         echo "<script>
+                alert('Registro deletado com sucesso');                        
                 window.location = 'visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id';
             </script>";
 ?>

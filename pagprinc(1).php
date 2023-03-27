@@ -5,16 +5,6 @@
     // print_r($_SESSION['email']);
     $logado = $_SESSION['email'];
 
-
-    // foreach($r as $valu){
-    //         echo "$valu";
-    // }
-
-    // $v  = explode(',', $_GET['r']);
-    // echo "$v";
-
-    
-
     if (isset($_GET['r'])) {
         $categorias = explode(',', $_GET['r']);
         
@@ -56,7 +46,6 @@
                 $dadoC = mysqli_query($conexao,"SELECT id,nome,turma FROM usuarios WHERE id_email = '$emailC'");
             }
         }
-
     }else{
         $dadosCompartilhados = "false";
     }
@@ -93,7 +82,7 @@
                 <nav>
                     <a href="usuario_cadastro.php">Adicionar novo usuário</a>
                     <a href="livro.php">Livros</a>
-                    <a href="">Solicitar relatório</a>
+                    <?php echo"<a href='relatorio.php?statusC=$dadosCompartilhados'>Solicitar relatório</a>"; ?>
                     <?php echo "<a href='perfil_de_compartilhamento.php?statusC=$dadosCompartilhados'>Dados compartilhados</a>";?>
                     <a href="sair.php">Sair</a>
                 </nav>
@@ -116,6 +105,7 @@
                                 }
 
                                 if($dadosCompartilhados == "true"){
+                                    echo "<td>Conta compartilhada</td>";
                                     while ($user_data = mysqli_fetch_assoc($dadoC)) {
                                         echo "<tr>";
                                         echo "<td class='dado1'>" . $user_data['nome'] . "</td>";

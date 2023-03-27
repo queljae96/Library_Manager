@@ -10,7 +10,6 @@
             header('Location: inicio (1).php');
         }
         $logado = $_SESSION['email'];
-        include_once('config.php');
         $statusC = $_GET['statusC'];
 ?>
 
@@ -24,11 +23,16 @@
                     $c = "<script>document.write(confirmacao)</script>";
 
                     if($c == true){
+                        $result = mysqli_query($conexao,"UPDATE cadastro_de_usuario SET compartilhamento_de_dados='null', id_compartilhamento = '0' WHERE email='$logado'");
                         $delete_registro = mysqli_query($conexao,"DELETE FROM solicitar_compartilhamento WHERE id_email = '$logado' ");
                         echo "<script>
                             var alert = alert('Solicitação de compartilhamento cancelada com sucesso');                        
                         </script>";
                     }
+
+                    echo "<script>
+                            window.location = 'perfil_de_compartilhamento.php?statusC=false';
+                    </script>";
                 }
             ?>
 
@@ -66,30 +70,26 @@
                     $email_destino = $_POST['email'];
 
                     $verificar = mysqli_query($conexao,"SELECT nome,email FROM cadastro_de_usuario WHERE email = '$email_destino' ");
-                    $verificar_chave = mysqli_query($conexao,"SELECT chave_compartilhada FROM solicitar_compartilhamento WHERE id_email='$logado'");
+                    $verificar_chave = mysqli_query($conexao,"SELECT compartilhamento_de_dados FROM cadastro_de_usuario WHERE email='$logado' AND compartilhamento_de_dados = 'null' LIMIT 1 ");
                     //print_r($verificar); 
 
                     if(mysqli_num_rows($verificar) != 1){ //adiciona os dados no banco de dados
                          echo "<p class='erro'><b><font color=\"#d78700\"> Erro: Este usuário não está cadastrado.</font></b></p>";
-
-                        //print_r(mysqli_num_rows($verificar));
                     }
 
                     while ($user_data = mysqli_fetch_assoc ($verificar)) {
                         $nome=$user_data['nome'];
                         
-                        if(mysqli_num_rows($verificar_chave) == 1){
-                            echo "<p class='erro'><b><font color=\"#d78700\"> Erro: Você não pode solicitar o compartilhamento de dados pois você já está utilizando essa função. </font></b></p>";
-                        }else{
-                            //print_r(mysqli_num_rows($verificar));
+                        }if(mysqli_num_rows($verificar_chave) == 1){
                             $result = mysqli_query($conexao,"INSERT INTO solicitar_compartilhamento (id_email,email_dado_compartilhado,chave_compartilhada) VALUES ('$logado','$email_destino','$numero')");
-                            $link = "email_cod_compartilhar.php?nome=$nome&email_destino=$email_destino&email_solicitador=$logado";
+                            $link = "email_cod_compartilhar.php?email_destino=$email_destino&email_solicitador=$logado&statusC=$statusC&chaveC=$numero";
                             header("Location: $link");
                        
                             echo "<p class='erro'><b><font color=\"#008000\"> Usuário cadastrado com sucesso! </font></b></p>";
+                        }else{
+                            echo "<p class='erro'><b><font color=\"#d78700\"> Erro: Você não pode solicitar o compartilhamento de dados pois você já está utilizando essa função. </font></b></p>";
                         }
                     }
-                }
             ?>
 
 

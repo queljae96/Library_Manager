@@ -68,6 +68,10 @@ button{
     cursor: pointer;
 }
 
+button:hover{
+    opacity: 0.8;
+}
+
 .check{
     margin-left: 3vw;
     margin-right: 0.4vw;

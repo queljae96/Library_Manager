@@ -84,11 +84,12 @@ input:focus,textarea:focus{
     justify-content: center;
     text-decoration: none;
     color: white;
-    background-color: #284f82;
+    background-color: #164582;
     border: 0;
     width: 120px;
     margin-top: 2.0vw;
     text-align: center;
+    cursor: pointer;
 }
 
 .compartilhar{
@@ -103,18 +104,8 @@ input:focus,textarea:focus{
     text-align: center;
 }
 
-/* .termos{
-    color:#284f82;
-    text-decoration: none;
-} */
-
-/* .termos:hover{
-    text-decoration: underline;
-} */
-
 .btn,.compartilhar:hover{
     opacity: 0.8;
-    cursor: pointer;
 }
 
 input,textarea{

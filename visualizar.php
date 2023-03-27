@@ -64,7 +64,7 @@
     <title>Emprestar livro</title>
     <link rel="stylesheet" href="visualizar.css">
     <link rel="icon" type="image/png" href="img/Library (1).png">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
 </head>
 <body>
@@ -125,14 +125,14 @@
                 <?php
                     }
                 ?>
-                
+
                 <div class="botoes">
                     <?php
                             echo"<form action='' method='POST'>";
                             echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'>+ Livro</a>";
                             while($usuario = mysqli_fetch_array($contato)){
                                 $email = $usuario['email'];
-                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email'>Entrar em contato</a>";
+                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email&id=$id'>Entrar em contato</a>";
                             }
                             echo "<input type='submit' name='excluir' class='delete' value='Excluir usuário'></input>";
                             echo "</form>";
@@ -154,6 +154,7 @@
                                         $datadev = $user_data['data_devolucao'];
                                         $autor = $user_data['autor_livro'];
                                         $status = $user_data['statuss'];
+                                        $idLivro = $user_data['id'];
 
                                         echo "<tr>";
                                         echo "<td class='livro_info'>".date('d/m/Y', strtotime($user_data['data_emprestimo']))."</td><br>";
@@ -166,12 +167,12 @@
 
                                         echo "<form action='' method='POST'>";
                                         if($status == 'Pendente'){
-                                            echo "<td class='statusPendente' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC&id=$id'><b>$status</b></a></td>";
+                                            echo "<td class='statusPendente' ><a href='mudar_status.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><b>$status</b></a></td>";
                                         }else{
-                                            echo "<td class='statusDevolvido' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC&id=$id'><b>$status</b></a></td>";
+                                            echo "<td class='statusDevolvido'><a href='mudar_status.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><b>$status</b></a></td>";
                                         }
                                         echo "</form>";
-
+                                        echo "<td class='lixo'><a href='excluir_registro.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><i class='fa-sharp fa fa-trash'></i></a></td>";
                                         echo "</tr>";
                                     }
                                     echo "</tr>";

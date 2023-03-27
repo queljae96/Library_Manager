@@ -129,7 +129,7 @@ main{
 }
 
 .botoes{
-    float: right;
+    display: inline-flex;
 }
 
 .botoes a{
@@ -182,7 +182,6 @@ main{
 
 .emprestimo{
     display: block;
-    margin-top: 3vw;
 }
 
 .livroName{
@@ -313,6 +312,20 @@ main{
     margin-left:1vw;
 }
 
+.lixo i{
+    border-bottom: 13px solid white;
+    margin-left: 1.5vw;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    padding-left: 0.8vw;
+    padding-right: 0.8vw;
+    color:#284f82;
+    cursor: pointer;
+    font-size: 20px;
+}
 
+.lixo i:hover{
+    color: red;
+}
 
 

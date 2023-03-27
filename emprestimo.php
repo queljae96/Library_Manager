@@ -14,6 +14,8 @@
     $statusC = $_GET["statusC"];
     $nome=$_GET["nome"];
     $turma=$_GET["turma"];
+    $id=$_GET["id"];
+
 
     if(!empty($nome and $turma)){
 
@@ -52,7 +54,7 @@
                             $livros = implode(',', $result);
 
                             // Adiciona o valor ao link
-                            $link = 'previa_de_livros.php?nome='.$nome.'&turma='.$turma.'&livros='. urlencode($livros).'&statusC='.$statusC;
+                            $link = 'previa_de_livros.php?nome='.$nome.'&turma='.$turma.'&livros='. urlencode($livros).'&statusC='.$statusC.'&id='.$id;
                             header ("Location: $link");
 
                         }
