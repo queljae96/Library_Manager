@@ -9,6 +9,7 @@
     $turma=$_GET["turma"];
     $date = date('Y-m-d');
     $statusC = $_GET["statusC"];
+    $id = $_GET["id"];
 
     $livros = explode(',', $_GET['livros']);
 
@@ -23,11 +24,14 @@
                 
                 while($user = mysqli_fetch_array($visualizar_autor)){
                     $autor = $user['autor'];
+                    $estoque = $user['estoque'] - 1;
                     $emprestar_livro = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$livro','$autor','$date','$valorDevolucao','Pendente')");
+                    $result = mysqli_query($conexao,"UPDATE livros SET estoque='$estoque' WHERE nome = '$livro' AND id_email='$logado' ");
+
                 }
             
         }
-       header("Location: visualizar.php?nome=$nome&turma=$turma&d=$livro&statusC=$statusC");           
+       header("Location: visualizar.php?nome=$nome&turma=$turma&d=$livro&statusC=$statusC&id=$id");           
     }
 ?>
 
@@ -45,8 +49,10 @@
 </head>
 <body>
     <header>
-        <a href="inicio (1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
+       <?php echo "<a href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC'><img class='logo' src='img/2 (1).png' ></a>" ?>
     </header>
+
+    <?php echo "<a class='volt' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC'><img src='img/de-volta (1).png' ></a>" ?>
 
     <main>
         <section>                

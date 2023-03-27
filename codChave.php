@@ -10,8 +10,8 @@
         header('Location: inicio (1).php');
     }
     $logado = $_SESSION['email'];
-    //echo "$logado";
-    $emailCompartilhado = $_GET['emailDeDadosCompartilhados'];
+    $statusC = $_GET['statusC'];
+    $emailC = $_GET['emailC'];
 ?>
 
 
@@ -43,45 +43,43 @@
                 if(isset($_POST ['submit']))
                 {
                     $codigo = $_POST['chave'];
-                    //$verificarChave = mysqli_query($conexao,"SELECT nome,email FROM cadastro_de_usuario WHERE email = '$email_destino' ");
+                    $verificarIdC = mysqli_query($conexao,"SELECT id FROM cadastro_de_usuario WHERE email = '$emailC' ");
                     $verificar_chave = mysqli_query($conexao,"SELECT chave_compartilhada FROM solicitar_compartilhamento WHERE id_email='$logado' AND chave_compartilhada='$codigo' ");
-                    //print_r($verificar); 
 
                     if(mysqli_num_rows($verificar_chave) != 1){ //adiciona os dados no banco de dados
                         echo "<p class='erro'><b><font color=\"#d78700\"> Erro: Chave inválida.</font></b></p>";
-                        //print_r(mysqli_num_rows($verificar));
-                    }else{ //adiciona}
+                    }else{ 
                         $atualizar_chave = mysqli_query($conexao,"UPDATE solicitar_compartilhamento SET chave_compartilhada = 'null' WHERE id_email = '$logado' ");
-                        $ativar_compatilhamento_de_dados = mysqli_query($conexao,"UPDATE cadastro_de_usuario SET compartilhamento_de_dados = 'ativo' WHERE email='$emailCompartilhado' ");
-                        $ativar_compatilhamento_de_dados2 = mysqli_query($conexao,"UPDATE cadastro_de_usuario SET compartilhamento_de_dados = 'ativo' WHERE email='$logado' ");
+                        while ($user_data = mysqli_fetch_assoc ($verificarIdC)){
+                            $idC = $user_data['id'];
 
-                        header ("Location: perfil_de_compartilhamento.php");
+                            $ativar_compatilhamento_de_dados2 = mysqli_query($conexao,"UPDATE cadastro_de_usuario SET compartilhamento_de_dados = 'ativo',id_compartilhamento = '$idC' WHERE email='$logado' ");
+                        }
+                        header ("Location: perfil_de_compartilhamento.php?statusC=true");
                     }
                 }
             ?>
 
             <?php
                 if(isset($_POST['cancelar'])){
-                //sleep(5);
-            ?>
 
-                <script>
-                    var confirmacao = confirm("Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?");
-                    if (confirmacao == true) {
+                    echo "<script>
+                        var confirmacao = confirm('Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?');                        
+                    </script>";
 
-                        <?php
-                            //sleep(5);
-                            $delete_registro = mysqli_query($conexao,"DELETE FROM solicitar_compartilhamento WHERE id_email = '$logado' ");
-                            //sleep(5);
-                            //header("Location: pagprinc(1).php");
-                        ?>
-                        alert("Solicitação cancelada com sucesso!");
-                        window.location = 'perfil_de_compartilhamento.php';
-                    } else {
+                    $c = "<script>document.write(confirmacao)</script>";
+
+                    if($c == true){
+                        $result = mysqli_query($conexao,"UPDATE cadastro_de_usuario SET compartilhamento_de_dados='null', id_compartilhamento = '0' WHERE email='$logado'");
+                        $delete_registro = mysqli_query($conexao,"DELETE FROM solicitar_compartilhamento WHERE id_email = '$logado' ");
+                        echo "<script>
+                            var alert = alert('Solicitação de compartilhamento cancelada com sucesso');                        
+                        </script>";
                     }
-                </script>
-                    
-            <?php
+
+                    echo "<script>
+                            window.location = 'perfil_de_compartilhamento.php?statusC=false';
+                    </script>";
                 }
             ?>
                 <form action="" method="POST" >

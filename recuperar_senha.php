@@ -64,7 +64,7 @@
                             $select=mysqli_query($conexao,"SELECT recuperar_senha FROM cadastro_de_usuario WHERE email='$email' LIMIT 1");
                             if(mysqli_num_rows($select)!=0){
                                 while ($user_data = mysqli_fetch_assoc ($verificar_email)) {
-                                    $link = "http://localhost:8888/bibliotech(1)/email.php?chavePD=$chave&nome=$user_data[nome]&email=$_POST[email]";
+                                    $link = "email.php?chavePD=$chave&nome=$user_data[nome]&email=$_POST[email]";
                                     header("Location: $link");
                                 }
                             }

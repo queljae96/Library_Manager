@@ -19,10 +19,10 @@
 
 <body>
     <header>
-        <a href="fazer_login.php"><img class="logo" src="img/2 (1).png" alt=""></a>
+        <a href="inicio (1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
     </header>
     
-    <a class="volt" href="cadastro.php"><img src="img/de-volta (1).png"></a>
+    <a class="volt" href="inicio (1).php"><img src="img/de-volta (1).png"></a>
 
     <main>
 
@@ -31,6 +31,7 @@
                 <h1>Recuperar senha</h1>
                 <p>Enviamos um e-mail com instruções para a redefinição da sua senha. Caso o e-mail não apareça na tela principal verifique sua caixa de span.<br><br> Atenciosamente, equipe Library Manager</p>
                 
+                <a class="recuperar" href="fazer_login.php"><b>Voltar</b></a>
 
         </section>
 

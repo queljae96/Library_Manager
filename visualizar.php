@@ -9,6 +9,7 @@
     $nome=$_GET["nome"];
     $turma=$_GET["turma"];
     $statusC = $_GET["statusC"];
+    $id = $_GET["id"];
 
     if($statusC == "true"){
         $verificar_compartilhamento = mysqli_query($conexao,"SELECT compartilhamento_de_dados,id_compartilhamento FROM cadastro_de_usuario WHERE email='$logado' AND compartilhamento_de_dados='ativo' LIMIT 1 ");
@@ -38,14 +39,14 @@
     if(!empty($nome and $turma)){
         
         if($statusC == "false"){
-            $usuario = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
-            $contato = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
+            $usuario = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id = '$id' LIMIT 1");
+            $contato = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id = '$id' LIMIT 1");
 
             //print_r($result);
             $ver_livro = mysqli_query($conexao,"SELECT * FROM emprestar_livro WHERE id_email='$logado' AND nome_pessoa='$nome' AND turma_pessoa='$turma' ORDER BY id DESC");
         }else{
-            $usuario = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$emailC' OR id_email = '$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
-            $contato = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email='$emailC' OR id_email = '$logado' AND nome='$nome' AND turma='$turma' LIMIT 1");
+            $usuario = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id = '$id' LIMIT 1");
+            $contato = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id = '$id' LIMIT 1");
 
             //print_r($result);
             $ver_livro = mysqli_query($conexao,"SELECT * FROM emprestar_livro WHERE nome_pessoa='$nome' AND turma_pessoa='$turma' ORDER BY id DESC");
@@ -63,7 +64,7 @@
     <title>Emprestar livro</title>
     <link rel="stylesheet" href="visualizar.css">
     <link rel="icon" type="image/png" href="img/Library (1).png">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
 </head>
 <body>
@@ -83,15 +84,15 @@
         <section class="princ">
                 
                 <div class="informacoes">
-                    <table>
+                    <table class="dados_usuario">
                             <!-- exibe os dados do usuario cadastrado -->
                             <?php
                                 while($user_data = mysqli_fetch_array($usuario)){
                                     echo "<tr>";
-                                    echo "<td class='dado'><p> Nome: </p>". $user_data['nome'] . "</td>";
-                                    echo "<td class='dado'><p> Turma: </p>" . $user_data['turma'] . "</td>";
-                                    echo "<td class='dado'><p> E-mail: </p>" . $user_data['email'] . "</td>";
-                                    echo "<td class='dado'><p> Telefone: </p>" . $user_data['telefone'] . "</td>";
+                                    echo "<th class='info1'><b>Nome:</b>". $user_data['nome'] . "</th><br>";
+                                    echo "<th class='info1'><b>Turma:</b>" . $user_data['turma'] . "</th><br>";
+                                    echo "<th class='info1'> <b>E-mail:</b>" . $user_data['email'] . "</th><br>";
+                                    echo "<th class='info1'><b>Telefone:</b>" . $user_data['telefone'] . "</th>";
                                     echo "</tr>";
                                 }
                             ?>
@@ -112,8 +113,9 @@
                                  var nome = "<?php echo "$nome"; ?>";
                                  var turma = "<?php echo "$turma"; ?>";
                                  var statusC = "<?php echo "$statusC"; ?>";
+                                 var id = "<?php echo "$id"; ?>";
 
-                                 var link = "excluir_user.php?nome="+nome+"&turma="+encodeURIComponent(turma)+"&statusC="+encodeURIComponent(statusC);
+                                 var link = "excluir_user.php?nome="+nome+"&turma="+encodeURIComponent(turma)+"&statusC="+encodeURIComponent(statusC)+"&id="+encodeURIComponent(id);
                                  window.location.href = link;
 
                             }
@@ -123,14 +125,14 @@
                 <?php
                     }
                 ?>
-                
+
                 <div class="botoes">
                     <?php
                             echo"<form action='' method='POST'>";
-                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC'>+ Livro</a>";
+                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'>+ Livro</a>";
                             while($usuario = mysqli_fetch_array($contato)){
                                 $email = $usuario['email'];
-                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email'>Entrar em contato</a>";
+                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email&id=$id'>Entrar em contato</a>";
                             }
                             echo "<input type='submit' name='excluir' class='delete' value='Excluir usuário'></input>";
                             echo "</form>";
@@ -139,7 +141,7 @@
 
                 <section class="emprestimo">
                     <div>
-                        <table>
+                        <table class="livro">
                             <?php
                                     echo "<tr>";
                                     echo "<td class='livroName'><b>Livro</b></td>";
@@ -152,6 +154,7 @@
                                         $datadev = $user_data['data_devolucao'];
                                         $autor = $user_data['autor_livro'];
                                         $status = $user_data['statuss'];
+                                        $idLivro = $user_data['id'];
 
                                         echo "<tr>";
                                         echo "<td class='livro_info'>".date('d/m/Y', strtotime($user_data['data_emprestimo']))."</td><br>";
@@ -160,16 +163,16 @@
                                         echo "<tr class='info'>";
                                         echo "<td ><p class='dado1'>$livro</p></td>";
                                         echo "<td ><p class='dado2'>$autor</p></td>";
-                                        echo "<td class='dado1'>".date('d/m/Y', strtotime($datadev))."</td>";
+                                        echo "<td class='dado3'>".date('d/m/Y', strtotime($datadev))."</td>";
 
                                         echo "<form action='' method='POST'>";
                                         if($status == 'Pendente'){
-                                            echo "<td class='statusPendente' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC'><b>$status</b></a></td>";
+                                            echo "<td class='statusPendente' ><a href='mudar_status.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><b>$status</b></a></td>";
                                         }else{
-                                            echo "<td class='statusDevolvido' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC'><b>$status</b></a></td>";
+                                            echo "<td class='statusDevolvido'><a href='mudar_status.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><b>$status</b></a></td>";
                                         }
                                         echo "</form>";
-
+                                        echo "<td class='lixo'><a href='excluir_registro.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><i class='fa-sharp fa fa-trash'></i></a></td>";
                                         echo "</tr>";
                                     }
                                     echo "</tr>";
