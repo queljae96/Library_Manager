@@ -8,6 +8,7 @@
     $turma = $_GET['turma'];
     $status = $_GET['status'];
     $statusC = $_GET['statusC'];
+    $id = $_GET['id'];
 
 ?>
 
@@ -22,9 +23,9 @@
         var confirmacao = confirm("Tem certeza que deseja alterar o status desse usuário?");
  
         if(confirmacao == true){
-            window.location = "mudar_status.php?nome="+nome+"&turma="+turma+"&id="+id+"&status="+status+"&statusC="+statusC;
+            window.location = "mudar_status.php?nome="+nome+"&turma="+turma+"&id="+id+"&status="+status+"&statusC="+statusC+"&id="+id;
         }else{
-            window.location = "visualizar.php?nome="+nome+"&turma="+turma+"&statusC="+statusC;
+            window.location = "visualizar.php?nome="+nome+"&turma="+turma+"&statusC="+statusC+"&id="+id;
         }
         
                                                   

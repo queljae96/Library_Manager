@@ -14,25 +14,21 @@
         $statusC = $_GET['statusC'];
 ?>
 
-<?php
-    if(isset($_POST['cancelar'])){
-                //sleep(5);
-?>
-
-                <script>
-                    var confirmacao = confirm("Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?");
-                    if (confirmacao == true) {
-                        var statusC = <?php echo "$statusC"; ?>
-                        <?php
-                            $delete_registro = mysqli_query($conexao,"DELETE FROM solicitar_compartilhamento WHERE id_email = '$logado' ");
-                        ?>
-                        alert("Solicitação cancelada com sucesso!");
-                        window.location = 'perfil_de_compartilhamento.php?statusC=s'+statusC;
-                    } else {
-                    }
-                </script>
-                    
             <?php
+                if(isset($_POST['cancelar'])){
+
+                    echo "<script>
+                        var confirmacao = confirm('Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?');                        
+                    </script>";
+
+                    $c = "<script>document.write(confirmacao)</script>";
+
+                    if($c == true){
+                        $delete_registro = mysqli_query($conexao,"DELETE FROM solicitar_compartilhamento WHERE id_email = '$logado' ");
+                        echo "<script>
+                            var alert = alert('Solicitação de compartilhamento cancelada com sucesso');                        
+                        </script>";
+                    }
                 }
             ?>
 
@@ -87,7 +83,7 @@
                         }else{
                             //print_r(mysqli_num_rows($verificar));
                             $result = mysqli_query($conexao,"INSERT INTO solicitar_compartilhamento (id_email,email_dado_compartilhado,chave_compartilhada) VALUES ('$logado','$email_destino','$numero')");
-                            $link = "http://localhost:8888/bibliotech(1)/email_cod_compartilhar.php?nome=$nome&email_destino=$email_destino&email_solicitador=$logado";
+                            $link = "email_cod_compartilhar.php?nome=$nome&email_destino=$email_destino&email_solicitador=$logado";
                             header("Location: $link");
                        
                             echo "<p class='erro'><b><font color=\"#008000\"> Usuário cadastrado com sucesso! </font></b></p>";

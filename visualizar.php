@@ -113,8 +113,9 @@
                                  var nome = "<?php echo "$nome"; ?>";
                                  var turma = "<?php echo "$turma"; ?>";
                                  var statusC = "<?php echo "$statusC"; ?>";
+                                 var id = "<?php echo "$id"; ?>";
 
-                                 var link = "excluir_user.php?nome="+nome+"&turma="+encodeURIComponent(turma)+"&statusC="+encodeURIComponent(statusC);
+                                 var link = "excluir_user.php?nome="+nome+"&turma="+encodeURIComponent(turma)+"&statusC="+encodeURIComponent(statusC)+"&id="+encodeURIComponent(id);
                                  window.location.href = link;
 
                             }
@@ -128,7 +129,7 @@
                 <div class="botoes">
                     <?php
                             echo"<form action='' method='POST'>";
-                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC'>+ Livro</a>";
+                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'>+ Livro</a>";
                             while($usuario = mysqli_fetch_array($contato)){
                                 $email = $usuario['email'];
                                 echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email'>Entrar em contato</a>";
@@ -165,9 +166,9 @@
 
                                         echo "<form action='' method='POST'>";
                                         if($status == 'Pendente'){
-                                            echo "<td class='statusPendente' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC'><b>$status</b></a></td>";
+                                            echo "<td class='statusPendente' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC&id=$id'><b>$status</b></a></td>";
                                         }else{
-                                            echo "<td class='statusDevolvido' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC'><b>$status</b></a></td>";
+                                            echo "<td class='statusDevolvido' ><a  href='verificar_opcao.php?id=$user_data[id]&nome=$nome&turma=$turma&status=$status&statusC=$statusC&id=$id'><b>$status</b></a></td>";
                                         }
                                         echo "</form>";
 

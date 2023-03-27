@@ -14,5 +14,5 @@ if($status == "Devolvido" ){
     }else{
         $atualizarStatus = mysqli_query($conexao,"UPDATE emprestar_livro SET statuss='Devolvido' WHERE  id='$id' ");
     }
-    header("Location: visualizar.php?nome=$nome&turma=$turma&statusC=$statusC");
+    header("Location: visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id");
 ?>
