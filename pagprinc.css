@@ -23,6 +23,19 @@
             margin: 10px;
             margin-left:15px;
         }
+
+        .bv{
+            font-size:20px;
+        }
+
+        .bv a{
+            color: #284f82;
+            text-decoration: none;
+        }
+
+        .bv b:hover{
+            text-decoration: underline;
+        }
     
         .form-control{
             margin-top:25px;

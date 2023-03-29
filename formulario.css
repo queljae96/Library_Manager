@@ -43,7 +43,11 @@ section{
 }
 
 .campo_mail{
-    padding-bottom: 19vw;
+    padding-bottom: 12vw;
+}
+
+.ctt b{
+    color: #164582;
 }
 
 .logo{
@@ -148,4 +152,18 @@ input,textarea{
 
 hj{
     background-color: #284f82;
+}
+
+.desc{
+    display: block;
+    text-align: left;
+    font-size: 19px;
+    margin-left:1vw;
+    margin-top: 2vw;
+}
+
+.selDat{
+    display: inline-flex;
+    width: 40%;
+    margin: 1vw;
 }

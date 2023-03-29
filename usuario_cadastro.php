@@ -53,7 +53,8 @@
                             }elseif(mysqli_num_rows($verificar)!=0){ //verificar se o email já está cadastrado
                                 echo "<p class='erro'><b><font color=\"#FF0000\"> Erro: Este usuário já está cadastrado</font></b></p>";
                             }else{
-                                $result = mysqli_query($conexao,"INSERT INTO usuarios (id_email,nome,turma,email,telefone) VALUES ('$logado','$nome','$turma','$email','$telefone')");
+                                $date = date("Y-m-d");
+                                $result = mysqli_query($conexao,"INSERT INTO usuarios (id_email,nome,turma,email,telefone,data_add) VALUES ('$logado','$nome','$turma','$email','$telefone','$date')");
                                 header('Location: pagprinc(1).php');
                             }
                     }

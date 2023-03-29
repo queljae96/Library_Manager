@@ -62,7 +62,7 @@
 
             <?php
                 if($statusC == "false"){
-                    echo "<p class='mensagemC'>Você ainda não tem acesso a nenhum dado compartilhado, solicite o ompartilhamento para ter acesso aos dados de outra conta</p>";
+                    echo "<p class='mensagemC'>Você ainda não tem acesso a nenhum dado compartilhado, solicite o compartilhamento para ter acesso aos dados de outra conta</p>";
                 }
                 
                 if($statusC == "true"){
@@ -120,6 +120,7 @@
                             echo "<td class='dado1'>$nomeAcesso</td>";
                             echo "<td class='dado2'>$emailAcesso</td>";
                             echo "<td><a class='lixeira' href='cancelarAcesso.php?email=$emailAcesso&statusC=$statusC' ><i class='fa-sharp fa fa-trash'></i></a></td>";
+                            echo "<td><a class='visualizar' href='verAcesso.php?id=$idAcesso&statusC=$statusC' ><img src='img/visualizar (1).png'></img></a></td>";
                             echo "</tr>";
     
                         }

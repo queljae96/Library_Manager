@@ -132,7 +132,7 @@
                             echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'>+ Livro</a>";
                             while($usuario = mysqli_fetch_array($contato)){
                                 $email = $usuario['email'];
-                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email&id=$id'>Entrar em contato</a>";
+                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email&id=$id&statusC=$statusC'>Entrar em contato</a>";
                             }
                             echo "<input type='submit' name='excluir' class='delete' value='Excluir usuário'></input>";
                             echo "</form>";
@@ -141,8 +141,11 @@
 
                 <section class="emprestimo">
                     <div>
-                        <table class="livro">
-                            <?php
+                        <?php 
+                                if(mysqli_num_rows($ver_livro) == 0){
+                                    echo "<p class='bv'><b>Este usuário ainda não pegou nenhum livro emprestado</b></p>";
+                                }else{
+                                    echo "<table class='livro'>";
                                     echo "<tr>";
                                     echo "<td class='livroName'><b>Livro</b></td>";
                                     echo "<td class='autor'><b>Autor</b></td>";
@@ -176,8 +179,9 @@
                                         echo "</tr>";
                                     }
                                     echo "</tr>";
+                                    echo "</table>";
+                                }     
                             ?>
-                        </table>
                     </div>
                 </section>
 

@@ -63,29 +63,33 @@
                     <form action="" method="POST">
                             <!-- código para visualizar os livros cadastrados no banco de dados -->
                         <?php
-                                echo "<button type='submit' value='Enviar' name='enviar'>Enviar</button> ";
-                                echo "<table>";
-                                echo "<tr>";
-                                echo "<td class='nome'><b>Nome</b></td>";
-                                echo "<td class='autor'><b>Autor</b></td>";   
-                                echo "<td class='estoque'><b>Estoque</b></td>"; 
+                               if(mysqli_num_rows($visualizar_livros) == 0){
+                                    echo "<p class='bv'>Ops você ainda não tem nenhum livro cadastrado no sitema...<br><a href='new_livro.php'><b>clique aqui</b></a> e cadastre um livro</p>";
+                                }else{
+                                    echo "<button type='submit' value='Enviar' name='enviar'>Enviar</button> ";
+                                    echo "<table>";
+                                    echo "<tr>";
+                                    echo "<td class='nome'><b>Nome</b></td>";
+                                    echo "<td class='autor'><b>Autor</b></td>";   
+                                    echo "<td class='estoque'><b>Estoque</b></td>"; 
 
-                                while($valorivro = mysqli_fetch_array($visualizar_livros)){
-                                    $valor = $valorivro['nome'];
-                                    $autor = $valorivro['autor'];
-                                    $estoque = $valorivro['estoque'];
+                                    while($valorivro = mysqli_fetch_array($visualizar_livros)){
+                                        $valor = $valorivro['nome'];
+                                        $autor = $valorivro['autor'];
+                                        $estoque = $valorivro['estoque'];
 
-                                    echo "<tr class='info'>";
+                                        echo "<tr class='info'>";
 
-                                    echo "<td class='dado1'><input class='check' type='checkbox' name='livro[]' value='$valor' readonly>$valor</td>";
-                                    echo "<td class='dado2'>$autor</td>";
-                                    echo "<td class='dado3'>$estoque</td>";
+                                        echo "<td class='dado1'><input class='check' type='checkbox' name='livro[]' value='$valor' readonly>$valor</td>";
+                                        echo "<td class='dado2'>$autor</td>";
+                                        echo "<td class='dado3'>$estoque</td>";
 
+                                        echo "</tr>";
+                                        echo "<br>";
+                                    }
+                                    echo "</table>";
                                     echo "</tr>";
-                                    echo "<br>";
-                                }
-                                echo "</table>";
-                                echo "</tr>";
+                               }
                         ?>
                     </form>
 

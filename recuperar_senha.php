@@ -80,7 +80,7 @@
                     <input class="dados" type="text" name="email" placeholder="Email">
                     <input class="btn" type="submit" name="submit" value="Enviar">
                 </form>
-                <a class="recuperar" href="cadastro (1).php"><b>Cadastre-se</b></a>
+                <a class="recuperar" href="cadastro.php"><b>Cadastre-se</b></a>
 
 
         </section>

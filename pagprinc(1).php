@@ -91,32 +91,38 @@
 
     <main>
             <section>
-                <table>
-                        <?php
-                            echo "<tr>";
-                            echo "<td class='nome'><b>Nome</b></td>";
-                            echo "<td class='turma'><b>Turma</b></td>";
-                                while ($user_data = mysqli_fetch_assoc ($result)) {
-                                    echo "<tr>";
-                                    echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
-                                    echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
-                                    echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados&id=$user_data[id]'><img src='img/visualizar (1).png'></td>";
-                                    echo "</tr>";
-                                }
-
-                                if($dadosCompartilhados == "true"){
-                                    echo "<td>Conta compartilhada</td>";
-                                    while ($user_data = mysqli_fetch_assoc($dadoC)) {
+                
+                <?php
+                
+                    if(mysqli_num_rows($result)==0){
+                        echo "<p class='bv'>Ops você ainda não tem nenhum usuário cadastrado no sitema...<br><a href='usuario_cadastro.php'><b>clique aqui</b></a> e cadastre um usuário</p>";
+                    }else{
+                                echo "<table>";
+                                echo "<tr>";
+                                echo "<td class='nome'><b>Nome</b></td>";
+                                echo "<td class='turma'><b>Turma</b></td>";
+                                    while ($user_data = mysqli_fetch_assoc ($result)) {
                                         echo "<tr>";
                                         echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
                                         echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
                                         echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados&id=$user_data[id]'><img src='img/visualizar (1).png'></td>";
                                         echo "</tr>";
                                     }
-                                }
-                            echo "</tr>";
-                        ?>
-                </table>
+
+                                    if($dadosCompartilhados == "true"){
+                                        echo "<td>Conta compartilhada</td>";
+                                        while ($user_data = mysqli_fetch_assoc($dadoC)) {
+                                            echo "<tr>";
+                                            echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
+                                            echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
+                                            echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados&id=$user_data[id]'><img src='img/visualizar (1).png'></td>";
+                                            echo "</tr>";
+                                        }
+                                    }
+                                echo "</tr>";
+                                echo "</table>";
+                    }       
+                ?>
             </section>
 
         

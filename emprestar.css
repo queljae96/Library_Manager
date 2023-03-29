@@ -143,3 +143,18 @@ button:hover{
     padding-bottom:8px;
     text-align: center;
 }
+
+.bv{
+    font-size:15px;
+    margin-top: 2vw;
+    text-align: center;
+}
+
+.bv a{
+    color: #284f82;
+    text-decoration: none;
+}
+
+.bv b:hover{
+    text-decoration: underline;
+}
