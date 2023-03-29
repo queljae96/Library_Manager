@@ -9,7 +9,7 @@
         header('Location: inicio (1).php');
     }
     $logado = $_SESSION['email'];
-    $visualizar_livros = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' ");
+    $visualizar_livros = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND estoque > 1 ");
     
     $statusC = $_GET["statusC"];
     $nome=$_GET["nome"];
@@ -37,10 +37,10 @@
 </head>
 <body>
     <header>
-        <a href="inicio (1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
+        <a href="pagprinc(1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
     </header>
 
-    <?php echo "<a class='volt' href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC'><img src='img/de-volta (1).png'></a>"?>
+    <?php echo "<a class='volt' href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'><img src='img/de-volta (1).png'></a>"?>
 
     <main>
         <section >
@@ -64,7 +64,7 @@
                             <!-- código para visualizar os livros cadastrados no banco de dados -->
                         <?php
                                if(mysqli_num_rows($visualizar_livros) == 0){
-                                    echo "<p class='bv'>Ops você ainda não tem nenhum livro cadastrado no sitema...<br><a href='new_livro.php'><b>clique aqui</b></a> e cadastre um livro</p>";
+                                    echo "<p class='bv'>Ops você ainda não tem nenhum livro cadastrado no sitema ou os seus livros ficaram sem estoque...<br><a href='new_livro.php'><b>clique aqui</b></a> e cadastre um livro</p>";
                                 }else{
                                     echo "<button type='submit' value='Enviar' name='enviar'>Enviar</button> ";
                                     echo "<table>";

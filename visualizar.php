@@ -157,7 +157,9 @@
                                         $datadev = $user_data['data_devolucao'];
                                         $autor = $user_data['autor_livro'];
                                         $status = $user_data['statuss'];
-                                        $idLivro = $user_data['id'];
+                                        $idEmprestimo = $user_data['id'];
+                                        $idLivro = $user_data['id_livro'];
+
 
                                         echo "<tr>";
                                         echo "<td class='livro_info'>".date('d/m/Y', strtotime($user_data['data_emprestimo']))."</td><br>";
@@ -170,9 +172,9 @@
 
                                         echo "<form action='' method='POST'>";
                                         if($status == 'Pendente'){
-                                            echo "<td class='statusPendente' ><a href='mudar_status.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><b>$status</b></a></td>";
+                                            echo "<td class='statusPendente' ><a href='mudar_status.php?idEmprestimo=$idEmprestimo&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&id_livro=$idLivro'><b>$status</b></a></td>";
                                         }else{
-                                            echo "<td class='statusDevolvido'><a href='mudar_status.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><b>$status</b></a></td>";
+                                            echo "<td class='statusDevolvido'><a href='mudar_status.php?idEmprestimo=$idEmprestimo&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&id_livro=$idLivro'><b>$status</b></a></td>";
                                         }
                                         echo "</form>";
                                         echo "<td class='lixo'><a href='excluir_registro.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><i class='fa-sharp fa fa-trash'></i></a></td>";

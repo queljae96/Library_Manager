@@ -9,8 +9,8 @@
 
         $livroDataMin = $_POST['livroDataMin'];
         $livroDataMax = $_POST['livroDataMax'];
-        $usuarioDataMin = $_POST['usuarioDataMin'];
-        $usuarioDataMax = $_POST['usuarioDataMax'];
+        $usuarioDataMin = $_POST['userDataMin'];
+        $usuarioDataMax = $_POST['userDataMax'];
 
         header ("Location: solicitar_relatorio.php?livroDataMin=$livroDataMin&livroDataMax=$livroDataMax&usuarioDataMin=$usuarioDataMin&usuarioDataMax=$usuarioDataMax");
     }
@@ -43,13 +43,16 @@
         <h1>Solicitar relatório</h1>
 
             <form action="" method="POST">
+
+                <?php  $date = date('Y-m-d'); ?>
+
                 <label class="desc"><b>Usuários cadastrados:</b> </label>
-                <input class="selDat" type="date" name="userDataMin" >
-                <input class="selDat" type="date" name="userDataMax" >
+                <input class="selDat" type="date" name="userDataMin" required max="<?php echo "$date";?>">
+                <input class="selDat" type="date" name="userDataMax" required max="<?php echo "$date";?>">
 
                 <label class="desc"><b>Livros emprestados:</b> </label>
-                <input class="selDat" type="date" name="livroDataMin" >
-                <input class="selDat" type="date" name="livroDataMax" >
+                <input class="selDat" type="date" name="livroDataMin" required max="<?php echo "$date";?>">
+                <input class="selDat" type="date" name="livroDataMax" required max="<?php echo "$date";?>">
                 <input class="btn" type="submit" name="submit" value="Enviar">
             </form>
     

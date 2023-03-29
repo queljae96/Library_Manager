@@ -23,11 +23,11 @@
                 $visualizar_autor = mysqli_query($conexao,"SELECT * FROM livros WHERE nome = '$livro' AND id_email='$logado'  ");
                 
                 while($user = mysqli_fetch_array($visualizar_autor)){
+                    $idL = $user['id'];
                     $autor = $user['autor'];
                     $estoque = $user['estoque'] - 1;
-                    $emprestar_livro = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss) VALUES ('$logado','$nome','$turma','$livro','$autor','$date','$valorDevolucao','Pendente')");
+                    $emprestar_livro = mysqli_query($conexao,"INSERT INTO emprestar_livro (id_email,nome_pessoa,turma_pessoa,nome_livro,autor_livro,data_emprestimo,data_devolucao,statuss,id_num,id_livro) VALUES ('$logado','$nome','$turma','$livro','$autor','$date','$valorDevolucao','Pendente','$id','$idL')");
                     $result = mysqli_query($conexao,"UPDATE livros SET estoque='$estoque' WHERE nome = '$livro' AND id_email='$logado' ");
-
                 }
             
         }
