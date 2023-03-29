@@ -120,7 +120,7 @@
                             echo "<td class='dado1'>$nomeAcesso</td>";
                             echo "<td class='dado2'>$emailAcesso</td>";
                             echo "<td><a class='lixeira' href='cancelarAcesso.php?email=$emailAcesso&statusC=$statusC' ><i class='fa-sharp fa fa-trash'></i></a></td>";
-                            echo "<td><a class='visualizar' href='verAcesso.php?id=$idAcesso&statusC=$statusC' ><img src='img/visualizar (1).png'></img></a></td>";
+                            echo "<td><a class='visualizar' href='verAcesso.php?id=$idAcesso&statusC=$statusC&nome=$nomeAcesso&email=$emailAcesso&meuId=$meuId' ><img src='img/visualizar (1).png'></img></a></td>";
                             echo "</tr>";
     
                         }

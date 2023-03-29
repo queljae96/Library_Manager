@@ -8,28 +8,12 @@
         unset ($_SESSION['senha']);
         header('Location: inicio (1).php');
     }
+
     $logado = $_SESSION['email'];
     $statusC = $_GET['statusC'];
-
-    if(isset($_POST['cancelar'])){
-        echo "<script>
-            var confirmacao = confirm('Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?');                        
-        </script>";
-
-        $c = "<script>document.write(confirmacao)</script>";
-
-        if($c == true){
-            $result = mysqli_query($conexao,"UPDATE cadastro_de_usuario SET compartilhamento_de_dados='null', id_compartilhamento = '0' WHERE email='$logado'");
-            $delete_registro = mysqli_query($conexao,"DELETE FROM solicitar_compartilhamento WHERE id_email = '$logado' ");
-            echo "<script>
-                var alert = alert('Solicitação de compartilhamento cancelada com sucesso');                        
-            </script>";
-        }
-
-        echo "<script>
-                window.location = 'perfil_de_compartilhamento.php?statusC=$statusC';
-        </script>";
-    }
+    $nomeAcesso = $_GET['nome'];
+    $idAcesso = $_GET['id'];
+    $emailAcesso = $_GET['email'];
 
 ?>
 
@@ -50,77 +34,109 @@
         <a href="pagprinc(1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
     </header>
 
-    <a class="volt" href="pagprinc(1).php"><img src="img/de-volta (1).png"></a>
+    <?php echo " <a class='volt' href='perfil_de_compartilhamento.php?statusC=$statusC.php'><img src='img/de-volta (1).png'></a>"; ?>
 
     <main>
         <section>
 
             <h1>Acesso aos meus dados</h1>
 
-            <?php
-            
-                    $verIdC = mysqli_query($conexao,"SELECT id_compartilhamento FROM cadastro_de_usuario WHERE email = '$logado' ");
-                    while ($user_data = mysqli_fetch_assoc ($verIdC)){
-                        $idC = $user_data['id_compartilhamento'];
-                        $verEmailC = mysqli_query($conexao,"SELECT email,nome FROM cadastro_de_usuario WHERE id = '$idC' ");
-                        while ($user_data = mysqli_fetch_assoc ($verEmailC)){
-                            $emailC = $user_data['email'];
-                            $nomeC = $user_data['nome'];
-                            
-                            echo "<tr>";
-                            echo "<td class='dado1'>$nomeC</td>";
-                            echo "<td class='dado2'>$emailC</td>";
-                            echo "<form  method='POST' >";
-                            echo "<td class='t'><button type='submit' name='cancelar' class='lixeira'><i class='fa-sharp fa fa-trash'></i></button></td>";
-                            echo "</form>";
-                            echo "</tr>";
-                        }
-                    }
-                    echo "</tr>";
-                    echo "</table>";
-            ?>
-
-            <h3>Quem tem acesso aos meus dados?</h3>
+            <h3>Dados da conta</h3>
 
             <?php
-                
-                $verMeuId = mysqli_query($conexao,"SELECT id FROM cadastro_de_usuario WHERE email = '$logado' ");
-                while ($user_data = mysqli_fetch_assoc ($verMeuId)){
-
-                    $meuId = $user_data['id'];
-                    $verAcesso = mysqli_query($conexao,"SELECT id,email,nome FROM cadastro_de_usuario WHERE id_compartilhamento = '$meuId' ");
-
-                    if(mysqli_num_rows($verAcesso)<1){
-                        echo "<p class='mensagemC'>Ninguém está tendo acesso aos dados da sua conta</p>";
-                    }else{
+                   
                         echo "<table>";
                         echo "<table>";
                         echo "<tr>";
                         echo "<td class='nome'><b>Nome</b></td>";
                         echo "<td class='email'><b>Email</b></td>";
+                        echo "<td class='email'><b>Status</b></td>";
 
-                        while ($user_data = mysqli_fetch_assoc ($verAcesso)){
-                            $emailAcesso = $user_data['email'];
-                            $nomeAcesso = $user_data['nome'];
-                            $idAcesso = $user_data['id'];
-    
-                            echo "<tr>";
-                            echo "<td class='dado1'>$nomeAcesso</td>";
-                            echo "<td class='dado2'>$emailAcesso</td>";
-                            echo "<td><a class='lixeira' href='cancelarAcesso.php?email=$emailAcesso&statusC=$statusC' ><i class='fa-sharp fa fa-trash'></i></a></td>";
-                            echo "<td><a class='visualizar' href='verAcesso.php?id=$idAcesso&statusC=$statusC' ><img src='img/visualizar (1).png'></img></a></td>";
-                            echo "</tr>";
-    
-                        }
+                                $ver_status = mysqli_query($conexao,"SELECT statuss FROM status_login WHERE email = '$emailAcesso' ");
+                                
+                                while ($user_data3 = mysqli_fetch_assoc ($ver_status)){
 
+                                    $status = $user_data3['statuss'];
+            
+                                    echo "<tr>";
+                                    echo "<td class='dado1'>$nomeAcesso</td>";
+                                    echo "<td class='dado2'>$emailAcesso</td>";
+
+                                    if($status == 'ativo'){
+                                        echo "<td class='statusA'><b>$status</b></td>";
+                                    }else{
+                                        echo "<td class='statusI'><b>$status</b></td>";
+                                    }
+
+                                    echo "<td><a class='lixeira' href='cancelarAcesso.php?email=$emailAcesso&statusC=$statusC' ><i class='fa-sharp fa fa-trash'></i></a></td>";
+                                    echo "</tr>";
+                                }
+            
                         echo "</tr>";
                         echo "</table>";
+               
+            ?>
 
-                    }
+            <h3>Permissões</h3>
+
+            <?php 
+            
+                echo "<table>";
+                echo "<table>";
+                echo "<tr>";
+                echo "<td class='nome'><b>Excluir usuário</b></td>";
+                echo "<td class='email'><b>Excluir livros</b></td>";
+                echo "<td class='email'><b>Adicionar livros</b></td>";
+                echo "<td class='email'><b>Fazer empréstimos</b></td>";
 
                     
-                }
-               
+                        $ver_permissao = mysqli_query($conexao,"SELECT * FROM permissoes WHERE idAcesso = '$emailAcesso' ");
+                        
+                        while ($user_data3 = mysqli_fetch_assoc ($ver_permissao)){
+
+                            $p1 = $user_data3['deleteLivro'];
+                            $p2 = $user_data3['deleteUser'];
+                            $p3 = $user_data3['addLivro'];
+                            $p4 = $user_data3['emprestar'];
+
+                            echo "<tr class='bottom'>";
+
+                            if($p1 == 'negado'){
+
+                                echo "<td class='pNegado'><a href='mudarPermissao.php?tipo=p1&sttAtual=$p1&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p1</b></a></td>";
+                            }else{
+                                echo "<td class='pAceito'><a href='mudarPermissao.php?tipo=p1&sttAtual=$p1&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p1</b></a></td>";
+                            }
+                            
+                            if($p2 == 'negado'){
+
+                                echo "<td class='pNegado'><a href='mudarPermissao.php?tipo=p2&sttAtual=$p2&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p2</b></a></td>";
+                            }else{
+                                echo "<td class='pAceito'><a href='mudarPermissao.php?tipo=p2&sttAtual=$p2&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p2</b></a></td>";
+                            }
+
+                            if($p3 == 'negado'){
+
+
+                                echo "<td class='pNegado'><a href='mudarPermissao.php?tipo=p3&sttAtual=$p3&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p3</b></a></td>";
+                            }else{
+                                echo "<td class='pAceito'><a href='mudarPermissao.php?tipo=p3&sttAtual=$p3&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p3</b></a></td>";
+                            }
+
+                            if($p4 == 'negado'){
+
+
+                                echo "<td class='pNegado'><a href='mudarPermissao.php?tipo=p4&sttAtual=$p4&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p4</b></a></td>";
+                            }else{
+                                echo "<td class='pAceito'><a href='mudarPermissao.php?tipo=p4&sttAtual=$p4&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p4</b></a></td>";
+                            }
+
+                            echo "</tr>";
+                        }
+
+                echo "</tr>";
+                echo "</table>";
+            
             ?>
 
         </section>

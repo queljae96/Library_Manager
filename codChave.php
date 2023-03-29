@@ -54,6 +54,8 @@
                             $idC = $user_data['id'];
 
                             $ativar_compatilhamento_de_dados2 = mysqli_query($conexao,"UPDATE cadastro_de_usuario SET compartilhamento_de_dados = 'ativo',id_compartilhamento = '$idC' WHERE email='$logado' ");
+                            $ver_permissoes = mysqli_query($conexao,"INSERT INTO permissoes (idAcesso, deleteLivro, deleteUser, addLivro, emprestar) VALUES ('$logado','negado','negado','negado','negado') ");
+
                         }
                         header ("Location: perfil_de_compartilhamento.php?statusC=true");
                     }
