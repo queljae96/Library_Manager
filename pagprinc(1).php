@@ -22,19 +22,6 @@
         header('Location: sair.php');
     }
 
-    if(!empty($_GET['search']))
-    {
-        $data = $_GET['search'];
-        $sql = "SELECT id,nome,turma FROM usuarios WHERE  id_email = '$logado' AND id LIKE '%$data%' or nome LIKE '%$data%' or email LIKE '%$data%' ORDER BY id DESC";
-    }
-    else
-    {
-        $sql = "SELECT id,nome,turma FROM usuarios WHERE id_email = '$logado' ORDER BY id DESC";
-    }
-
-    $result=$conexao->query($sql);
-    //print_r($result);
-
     $verificar_compartilhamento = mysqli_query($conexao,"SELECT compartilhamento_de_dados,id_compartilhamento FROM cadastro_de_usuario WHERE email='$logado' AND compartilhamento_de_dados='ativo' LIMIT 1 ");
     if(mysqli_num_rows($verificar_compartilhamento)>=1){
         $dadosCompartilhados = "true";
@@ -49,6 +36,27 @@
     }else{
         $dadosCompartilhados = "false";
     }
+
+    if($dadosCompartilhados == "true"){
+        $tipoDado = "compartilhado";
+    }else{
+        $tipoDado = "meuDado";
+    }
+
+
+    if(!empty($_GET['search']))
+    {       $d = $emailC;
+
+            $data = $_GET['search'];
+            $sql = "SELECT id,nome,turma FROM usuarios WHERE  id_email = '$logado' and id_email = '$emailC' AND id LIKE '%$data%' or nome LIKE '%$data%' or email LIKE '%$data%' ORDER BY id DESC";        
+    }
+    else
+    {
+        $sql = "SELECT id,nome,turma FROM usuarios WHERE id_email = '$logado' ORDER BY id DESC";
+    }
+
+    $result=$conexao->query($sql);
+    //print_r($result);  
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +89,7 @@
                 <br>
                 <nav>
                     <a href="usuario_cadastro.php">Adicionar novo usuário</a>
-                    <a href="livro.php">Livros</a>
+                    <?php echo "<a href='livro.php?tipoDado=$tipoDado&statusC=$dadosCompartilhados'>Livros</a>";?>
                     <?php echo"<a href='relatorio.php?statusC=$dadosCompartilhados'>Solicitar relatório</a>"; ?>
                     <?php echo "<a href='perfil_de_compartilhamento.php?statusC=$dadosCompartilhados'>Dados compartilhados</a>";?>
                     <a href="sair.php">Sair</a>
@@ -91,39 +99,56 @@
 
     <main>
             <section>
-                <table>
-                        <?php
+                
+                <?php
+                    
+                    if(mysqli_num_rows($result)==0 && $dadosCompartilhados == "false"){
+                        echo "<p class='bv'>Ops você ainda não tem nenhum usuário cadastrado no sitema...<br><a href='usuario_cadastro.php'><b>clique aqui</b></a> e cadastre um usuário</p>";
+                    }else{
+                        // if(mysqli_num_rows($result)>1 || $dadosCompartilhados == "true"){
+                            echo "<table>";
                             echo "<tr>";
                             echo "<td class='nome'><b>Nome</b></td>";
                             echo "<td class='turma'><b>Turma</b></td>";
-                                while ($user_data = mysqli_fetch_assoc ($result)) {
-                                    echo "<tr>";
-                                    echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
-                                    echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
-                                    echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados&id=$user_data[id]'><img src='img/visualizar (1).png'></td>";
-                                    echo "</tr>";
-                                }
+                        //}
+                    }
 
-                                if($dadosCompartilhados == "true"){
-                                    echo "<td>Conta compartilhada</td>";
-                                    while ($user_data = mysqli_fetch_assoc($dadoC)) {
-                                        echo "<tr>";
-                                        echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
-                                        echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
-                                        echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados&id=$user_data[id]'><img src='img/visualizar (1).png'></td>";
-                                        echo "</tr>";
-                                    }
-                                }
+                    
+                    
+                    if(mysqli_num_rows($result)!=0 ){
+                        while ($user_data = mysqli_fetch_assoc ($result)) {
+                            echo "<tr>";
+                            echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
+                            echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
+                            echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados&id=$user_data[id]&tipoDado=meuDado'><img src='img/visualizar (1).png'></td>";
                             echo "</tr>";
-                        ?>
-                </table>
+                        }
+                    }
+                        
+                    if($dadosCompartilhados == "true"){
+                        echo "<tr class='cCompartilhada'><td>Conta compartilhada</td></tr>";
+                        while ($user_data = mysqli_fetch_assoc($dadoC)) {
+                        echo "<tr>";
+                        echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
+                        echo "<td class='dado2'>" . $user_data['turma'] . "</td>";
+                        echo "<td class='visualizar'><a  href='visualizar.php?nome=$user_data[nome]&turma=$user_data[turma]&statusC=$dadosCompartilhados&id=$user_data[id]&tipoDado=compartilhado'><img src='img/visualizar (1).png'></td>";
+                        echo "</tr>";
+                        }
+                    }
+                    echo "</tr>";
+                    echo "</table>";
+                ?>
             </section>
 
         
 
     </main>
     <footer>
-        <div> <a class="bt" href="suporte (1).php">Suporte</a> </div>
+        <div>
+            <a class="bt" href="suporte (1).php">Suporte</a>
+            <a class="bt" href="termos_de_uso.php" target="_blank">Termos de uso</a>
+            <a class="bt" href="doacao.php" >Ajude o site</a>
+        </div>
     </footer>
 </body>
 

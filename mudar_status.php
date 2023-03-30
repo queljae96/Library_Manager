@@ -4,11 +4,18 @@
     include_once('config.php');
 
     $id = $_GET['id'];
-    $idLivro = $_GET['idLivro'];
+    $idEmprestimo = $_GET['idEmprestimo'];
     $nome = $_GET['nome'];
     $turma = $_GET['turma'];
     $status = $_GET['status'];
     $statusC = $_GET['statusC'];
+    $idLivro = $_GET['id_livro'];
+    $dado = $_GET['tipoDado'];
+    $autor = $_GET['autor'];
+    $nomeL = $_GET['nomeL'];
+
+
+    echo "$idLivro - $id ";
 
         echo "<script>
             var confirmacao = confirm('Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?');                        
@@ -18,14 +25,19 @@
 
         if($c == true){
             if($status == "Devolvido" ){
-                $atualizarStatus = mysqli_query($conexao,"UPDATE emprestar_livro SET statuss='Pendente' WHERE id = '$idLivro' ");
+                $atualizarStatus = mysqli_query($conexao,"UPDATE emprestar_livro SET statuss='Pendente' WHERE id = '$idEmprestimo' ");
+                $atualizarEstoque = mysqli_query($conexao,"UPDATE livros SET estoque = estoque - 1 WHERE nome = '$nomeL' AND autor = '$autor' ");
+
             }else{
-                $atualizarStatus2 = mysqli_query($conexao,"UPDATE emprestar_livro SET statuss='Devolvido' WHERE id = '$idLivro' ");
+                $atualizarStatus2 = mysqli_query($conexao,"UPDATE emprestar_livro SET statuss='Devolvido' WHERE id = '$idEmprestimo' ");
+                $atualizarEstoque = mysqli_query($conexao,"UPDATE livros SET estoque = estoque + 1 WHERE nome = '$nomeL' AND autor = '$autor' ");
             }
+
+            echo "<script>
+                window.location = 'visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado';
+            </script>";
         }
 
-        echo "<script>
-                window.location = 'visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id';
-            </script>";
+        
 ?>
         

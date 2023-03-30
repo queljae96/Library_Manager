@@ -43,7 +43,8 @@
                                     }elseif(mysqli_num_rows($verificar)!=0){ //verificar se o email já está cadastrado
                                         echo "<p class='erro'><b><font color=\"#FF0000\"> Erro: Este usuário já está cadastrado. Realize o login para acessar o sistema </font></b></p>";
                                     }else { //adiciona os dados no banco de dados
-                                        $addUser = mysqli_query($conexao,"INSERT INTO cadastro_de_usuario (nome,email,senha,recuperar_senha,compartilhamento_de_dados,id_compartilhamento) VALUES ('$nome','$email','$senha','null','null','$numero_de_compartilhamento')");
+                                        $date = date("Y-m-d");
+                                        $addUser = mysqli_query($conexao,"INSERT INTO cadastro_de_usuario (nome,email,senha,recuperar_senha,compartilhamento_de_dados,id_compartilhamento,data_criacao) VALUES ('$nome','$email','$senha','null','null','$numero_de_compartilhamento','$date')");
                                         $status_user = mysqli_query($conexao,"INSERT INTO status_login (email,statuss) VALUES ('$email','inativo') ");
                                         header('Location: fazer_login.php');
                                         echo "<p class='erro'><b><font color=\"#008000\"> Usuário cadastrado com sucesso! </font></b></p>";

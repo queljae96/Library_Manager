@@ -10,6 +10,7 @@
     $turma=$_GET["turma"];
     $statusC = $_GET["statusC"];
     $id = $_GET["id"];
+    $dado = $_GET["tipoDado"];
 
     if($statusC == "true"){
         $verificar_compartilhamento = mysqli_query($conexao,"SELECT compartilhamento_de_dados,id_compartilhamento FROM cadastro_de_usuario WHERE email='$logado' AND compartilhamento_de_dados='ativo' LIMIT 1 ");
@@ -129,20 +130,42 @@
                 <div class="botoes">
                     <?php
                             echo"<form action='' method='POST'>";
-                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'>+ Livro</a>";
+                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado'>+ Livro</a>";
                             while($usuario = mysqli_fetch_array($contato)){
                                 $email = $usuario['email'];
-                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email&id=$id'>Entrar em contato</a>";
+                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email&id=$id&statusC=$statusC'>Entrar em contato</a>";
                             }
-                            echo "<input type='submit' name='excluir' class='delete' value='Excluir usuário'></input>";
+
+                            if($dado == "compartilhado"){
+                                if($statusC == "true"){
+                                    $usuarioAcesso = mysqli_query($conexao,"SELECT * FROM permissoes WHERE idAcesso = '$logado' AND deleteUser = 'permitido' LIMIT 1");
+    
+                                    $contAcesso = mysqli_fetch_array($usuarioAcesso);
+    
+                                    if($contAcesso == 0){
+                                        
+                                    }else{
+                                        echo "<input type='submit' name='excluir' class='delete' value='Excluir usuário'></input>";
+                                    }
+    
+                                }else{
+                                    echo "<input type='submit' name='excluir' class='delete' value='Excluir usuário'></input>";
+                                }
+                            }else{
+                                echo "<input type='submit' name='excluir' class='delete' value='Excluir usuário'></input>";
+                            }
+
                             echo "</form>";
                     ?>
                 </div>
 
                 <section class="emprestimo">
                     <div>
-                        <table class="livro">
-                            <?php
+                        <?php 
+                                if(mysqli_num_rows($ver_livro) == 0){
+                                    echo "<p class='bv'><b>Este usuário ainda não pegou nenhum livro emprestado</b></p>";
+                                }else{
+                                    echo "<table class='livro'>";
                                     echo "<tr>";
                                     echo "<td class='livroName'><b>Livro</b></td>";
                                     echo "<td class='autor'><b>Autor</b></td>";
@@ -154,7 +177,9 @@
                                         $datadev = $user_data['data_devolucao'];
                                         $autor = $user_data['autor_livro'];
                                         $status = $user_data['statuss'];
+                                        $idEmprestimo = $user_data['id'];
                                         $idLivro = $user_data['id'];
+
 
                                         echo "<tr>";
                                         echo "<td class='livro_info'>".date('d/m/Y', strtotime($user_data['data_emprestimo']))."</td><br>";
@@ -167,17 +192,18 @@
 
                                         echo "<form action='' method='POST'>";
                                         if($status == 'Pendente'){
-                                            echo "<td class='statusPendente' ><a href='mudar_status.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><b>$status</b></a></td>";
+                                            echo "<td class='statusPendente' ><a href='mudar_status.php?idEmprestimo=$idEmprestimo&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&id_livro=$idLivro&tipoDado=$dado&nomeL=$livro&autor=$autor'><b>$status</b></a></td>";
                                         }else{
-                                            echo "<td class='statusDevolvido'><a href='mudar_status.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><b>$status</b></a></td>";
+                                            echo "<td class='statusDevolvido'><a href='mudar_status.php?idEmprestimo=$idEmprestimo&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&id_livro=$idLivro&tipoDado=$dado&nomeL=$livro&autor=$autor'><b>$status</b></a></td>";
                                         }
                                         echo "</form>";
-                                        echo "<td class='lixo'><a href='excluir_registro.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><i class='fa-sharp fa fa-trash'></i></a></td>";
+                                        echo "<td class='lixo'><a href='excluir_registro.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&tipoDado=$dado'><i class='fa-sharp fa fa-trash'></i></a></td>";
                                         echo "</tr>";
                                     }
                                     echo "</tr>";
+                                    echo "</table>";
+                                }     
                             ?>
-                        </table>
                     </div>
                 </section>
 

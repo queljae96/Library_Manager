@@ -24,14 +24,12 @@
            
 
             <form action="https://api.staticforms.xyz/submit" method="POST">
-
-
                 <input type="text" name="name" placeholder="Digite seu nome" autocomplete="off" required>
                 <input type="email" name="email" placeholder="Digite seu email" autocomplete="off" required>
                 <textarea name="message"  placeholder="Escreva em detalhes sobre o problema que tem de ser solucionado" required></textarea>
-                <button type="submit" class="btn">Enviar</button>
+                <button type="submit" class="btn" name="enviar">Enviar</button>
                 <input type="hidden" name="accessKey" value="f4093e4d-aa25-433b-9832-55b299bfd40b">
-                <input type="hidden" name="redirectTo" value="http://localhost/bibliotech(1)/suporteMensagem%20(1).html">
+                <input type="hidden" name="redirectTo" value="http://localhost:8888/GITHUB/Library_Manager/suporte (1).php">
             </form>
             <a class="recuperar" href="pagprinc(1).php"><b>Home</b></a>
 

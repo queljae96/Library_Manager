@@ -1,16 +1,14 @@
 <?php
     session_start();
     include_once('config.php');
-    // //print_r($_SESSION['email']);
-    // if((!isset($_SESSION)== true)){
-    //     unset( $_SESSION['email']);
-    //     unset ($_SESSION['senha']);
-    //     header('Location: inicio (1).php');
-    // }
     $logado = $_SESSION['email'];
 
 	$nome = $_GET["nome"];
+    $turma = $_GET["turma"];
+	$statusC = $_GET["statusC"];
 	$email = $_GET["email"];
+    $id = $_GET["id"];
+    $dado = $_GET["tipoDado"];
 
     require_once('./src/PHPMailer.php');
     require_once('./src/SMTP.php');
@@ -33,24 +31,29 @@
     <title>Entrar em contato</title>
 </head>
 
-<body>
-    <header>
-        <a href="visualizar.php"><img class="logo" src="img/2 (1).png" alt=""></a>
-    </header>
 
+
+<body>
+    <?php
+       echo " <header>
+                <a href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'><img class='logo' src='img/2 (1).png' alt=''></a>
+            </header>
+
+            <div class='voltar'>
+                <a class='volt' href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'><img src='img/de-volta (1).png'></a>
+            </div>";
+    ?>
     <main>
         
     <section>
         <h1>Entrar em contato</h1>
 
         <?php
-            if(isset($_POST['submit']))
-            {   echo "botão foi clicado"."<br/>";
+            if(isset($_POST['submit'])){
+            //    echo "botão foi clicado"."<br/>";
+            //     echo  "Texto digitado: ".$texto_digitado;
+                
                 $texto_digitado = $_POST["email"];
-                echo  "Texto digitado: ".$texto_digitado;
-
-                
-                
                 $mail = new PHPMailer(true);
                 
                 try {
@@ -59,7 +62,7 @@
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'suportelibrarymanager@gmail.com';
-                    $mail->Password = 'uvqaucmvrkcbxdct';
+                    $mail->Password = 'kylypphjcbdslvbo';
                     $mail->Port = 587;
                 
                     $mail->setFrom('suportelibrarymanager@gmail.com');
@@ -71,7 +74,7 @@
                     $mail->Body = $texto_digitado;
                     // $mail->AltBody = '';
                     if($mail->send()) {
-                        header("Location: visualizar.php?nome=$nome&turma=$turma&email=$logado");   
+                        header("Location: visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado");   
                      }
                 } catch (Exception $e) {
                     echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
@@ -81,12 +84,12 @@
 
         <?php
         
-            echo "<p>Entrar em contato com: $nome</p>"
+            echo "<p class='ctt'><b>Entrar em contato com:</b> $nome</p>"
 
         ?>
             
             <form action="" method="POST">
-                <textarea type="text" name="email" class="campo_mail"></textarea>
+                <textarea type="text" name="email" class="campo_mail" placeholder="Digite a mensagem que deseja enviar a esse usuário"></textarea>
                 <input class="btn" type="submit" name="submit" value="Enviar" href="email_contato.php">
             </form>
 

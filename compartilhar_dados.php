@@ -49,9 +49,10 @@
 </head>
 <body>
     <header>
-        <a href="perfil_de_compartilhamento.php"><img class="logo" src="img/2 (1).png" alt=""></a>
+        <?php echo "<a href='perfil_de_compartilhamento.php?statusC=$statusC'><img class='logo' src='img/2 (1).png' ></a>"; ?>
     </header>
-    <a class="volt" href="perfil_de_compartilhamento.php"><img src="img/de-volta (1).png"></a>
+
+    <?php echo "<a class='volt' href='perfil_de_compartilhamento.php?statusC=$statusC'><img src='img/de-volta (1).png' ></a>"; ?>
 
     <main>
 
@@ -71,25 +72,30 @@
 
                     $verificar = mysqli_query($conexao,"SELECT nome,email FROM cadastro_de_usuario WHERE email = '$email_destino' ");
                     $verificar_chave = mysqli_query($conexao,"SELECT compartilhamento_de_dados FROM cadastro_de_usuario WHERE email='$logado' AND compartilhamento_de_dados = 'null' LIMIT 1 ");
-                    //print_r($verificar); 
-
+                    $ver_nome2 = mysqli_query($conexao,"SELECT nome,email FROM cadastro_de_usuario WHERE email = '$logado' ");
+                
                     if(mysqli_num_rows($verificar) != 1){ //adiciona os dados no banco de dados
                          echo "<p class='erro'><b><font color=\"#d78700\"> Erro: Este usuário não está cadastrado.</font></b></p>";
-                    }
+                    }else if(mysqli_num_rows($verificar_chave) == 1){
 
-                    while ($user_data = mysqli_fetch_assoc ($verificar)) {
-                        $nome=$user_data['nome'];
+                            while ($user1 = mysqli_fetch_assoc ($verificar)) {
+                                while ($user2 = mysqli_fetch_assoc ($ver_nome2)) {
+                                    
+                                    $nome1=$user1['nome'];
+                                    $nome2=$user2['nome'];
+
+                                    $result = mysqli_query($conexao,"INSERT INTO solicitar_compartilhamento (id_email,email_dado_compartilhado,chave_compartilhada) VALUES ('$logado','$email_destino','$numero')");
+                                    $link = "email_cod_compartilhar.php?email_destino=$email_destino&email_solicitador=$logado&statusC=$statusC&chaveC=$numero&nome1=$nome1&nome2=$nome2";
+                                    header("Location: $link");
                         
-                        }if(mysqli_num_rows($verificar_chave) == 1){
-                            $result = mysqli_query($conexao,"INSERT INTO solicitar_compartilhamento (id_email,email_dado_compartilhado,chave_compartilhada) VALUES ('$logado','$email_destino','$numero')");
-                            $link = "email_cod_compartilhar.php?email_destino=$email_destino&email_solicitador=$logado&statusC=$statusC&chaveC=$numero";
-                            header("Location: $link");
-                       
-                            echo "<p class='erro'><b><font color=\"#008000\"> Usuário cadastrado com sucesso! </font></b></p>";
-                        }else{
+                                    echo "<p class='erro'><b><font color=\"#008000\"> Usuário cadastrado com sucesso! </font></b></p>";
+                            
+                                }
+                            }
+                    }else{
                             echo "<p class='erro'><b><font color=\"#d78700\"> Erro: Você não pode solicitar o compartilhamento de dados pois você já está utilizando essa função. </font></b></p>";
-                        }
                     }
+                }
             ?>
 
 
@@ -104,7 +110,5 @@
         </section>
 
     </main>
-
-
 </body>
 </html>
