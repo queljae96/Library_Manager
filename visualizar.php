@@ -138,7 +138,7 @@
 
                             if($dado == "compartilhado"){
                                 if($statusC == "true"){
-                                    $usuarioAcesso = mysqli_query($conexao,"SELECT * FROM permissoes WHERE idAcesso = '$logado' AND deleteLivro = 'permitido' LIMIT 1");
+                                    $usuarioAcesso = mysqli_query($conexao,"SELECT * FROM permissoes WHERE idAcesso = '$logado' AND deleteUser = 'permitido' LIMIT 1");
     
                                     $contAcesso = mysqli_fetch_array($usuarioAcesso);
     

@@ -89,7 +89,7 @@
                 <br>
                 <nav>
                     <a href="usuario_cadastro.php">Adicionar novo usuário</a>
-                    <?php echo "<a href='livro.php?tipoDado=$tipoDado?statusC=$dadosCompartilhados'>Livros</a>";?>
+                    <?php echo "<a href='livro.php?tipoDado=$tipoDado&statusC=$dadosCompartilhados'>Livros</a>";?>
                     <?php echo"<a href='relatorio.php?statusC=$dadosCompartilhados'>Solicitar relatório</a>"; ?>
                     <?php echo "<a href='perfil_de_compartilhamento.php?statusC=$dadosCompartilhados'>Dados compartilhados</a>";?>
                     <a href="sair.php">Sair</a>
@@ -144,7 +144,10 @@
 
     </main>
     <footer>
-        <div> <a class="bt" href="suporte (1).php">Suporte</a> </div>
+        <div>
+            <a class="bt" href="suporte (1).php">Suporte</a>
+            <a class="bt" href="termos_de_uso.php" target="_blank">Termos de uso</a>
+        </div>
     </footer>
 </body>
 

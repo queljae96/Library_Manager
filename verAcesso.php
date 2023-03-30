@@ -84,8 +84,8 @@
                 echo "<table>";
                 echo "<table>";
                 echo "<tr>";
-                echo "<td class='nome'><b>Excluir usuário</b></td>";
-                echo "<td class='email'><b>Excluir livros</b></td>";
+                echo "<td class='nome'><b>Excluir livro</b></td>";
+                echo "<td class='email'><b>Excluir usuário</b></td>";
                 echo "<td class='email'><b>Adicionar livros</b></td>";
                 echo "<td class='email'><b>Fazer empréstimos</b></td>";
 

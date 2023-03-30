@@ -8,7 +8,9 @@
 <html>
     <script>
         var id = "<?php echo "$id"; ?>";
-        
+        var statusC = "<?php echo "$_GET['tipoDado']"; ?>";
+        var id = "<?php echo "$id"; ?>";
+
         var confirmacao = confirm("Tem certeza que deseja excluir este livro?");
  
         if(confirmacao == true){
