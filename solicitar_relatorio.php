@@ -36,6 +36,11 @@
         $qtdEmprestimo = mysqli_num_rows($qtdPEmprestimo);
         $qtdPendente = mysqli_num_rows($qtdPendente);
         $qtdTotalE = mysqli_num_rows($qtdTotalE);
+
+        $d1 = date('d/m/Y', strtotime($usuarioDataMin));
+        $d2 = date('d/m/Y', strtotime($usuarioDataMax));
+        $d3 = date('d/m/Y', strtotime($livroDataMin));
+        $d4 = date('d/m/Y', strtotime($livroDataMax));
         
         while ($user_data = mysqli_fetch_assoc ($verNome)){
 
@@ -56,24 +61,35 @@
 
                             <h3>Livros:</h3>
 
-                            <h5>No período de $usuarioDataMin até $usuarioDataMax: </h5>
+                            <h5>No período de $d1 até $d2: </h5>
 
-                            <p>Houveram  $qtdUsuario usuários cadastrados na conta.</p>
+                            <p>Houveram  $qtdUsuario usuário(s) cadastrado(s) na conta.</p>
 
-                            <h5>No período de $livroDataMin até $livroDataMax: </h5>
+                            <h5>No período de $d3 até $d4: </h5>
 
-                            <p>Houveram $qtdEmprestimo usuários que pegaram livros emprestados, no total são $qtdTotalE empréstimos de livros para os alunos cadastrados e $qtdPendente alunos continuam com o livro pendente a ser entregue </p>
+                            <p>Houveram $qtdEmprestimo usuário(s) que pegaram livros emprestados, no total são $qtdTotalE empréstimo(s) de livro(s) para os aluno(s) cadastrado(s) e $qtdPendente aluno(s) continua(m) com o livro pendente a ser entregue </p>
 
                         </main>
                         
                         <style>
+
+                            body{
+                                font-family:arial;
+                            }
+
+                            h1{
+                                text-alighn:center;
+                            }
+
+                            h5{
+                                color: #284f82;
+                            }
+
                             header{
                                 background-color: #284f82;
                             }
 
-                            .logo{
-                                width:50px;
-                            }
+                            
                         </style>
                     
                     </body>

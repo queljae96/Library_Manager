@@ -3,23 +3,36 @@
     session_start();
     include_once('config.php');
     //print_r($_SESSION['email']);
-    if((!isset($_SESSION['email'])== true) and (!isset($_SESSION['senha'])== true)){
-        unset( $_SESSION['email']);
-        unset ($_SESSION['senha']);
-        header('Location: inicio (1).php');
-    }
+    // if((!isset($_SESSION['email'])== true) and (!isset($_SESSION['senha'])== true)){
+    //     unset( $_SESSION['email']);
+    //     unset ($_SESSION['senha']);
+    //     header('Location: inicio (1).php');
+    // }
     $logado = $_SESSION['email'];
     $sql = "SELECT * FROM livros WHERE id_email = '$logado' ORDER BY id DESC";
     $result=$conexao->query($sql);
 
+    $statusC = $_GET['statusC'];
+
+    if($statusC == "true"){
+        while ($user_data = mysqli_fetch_assoc ($verificar_compartilhamento)) {
+            $idC = $user_data['id_compartilhamento'];
+            $verificarC = mysqli_query($conexao,"SELECT * FROM cadastro_de_usuario WHERE id = '$idC' ");
+            while ($user = mysqli_fetch_assoc ($verificarC)) {
+                $emailC = $user['email'];
+                $dadoC = mysqli_query($conexao,"SELECT id,nome,turma FROM usuarios WHERE id_email = '$emailC'");
+            }
+        }
+    }
+
     if(!empty($_GET['search']))
     {
         $data = $_GET['search'];
-        $sql = "SELECT * FROM livros WHERE autor LIKE '%$data%' or nome LIKE '%$data%'  ORDER BY id DESC";
+        $sql = "SELECT * FROM livros WHERE id_email = '$logado' AND autor LIKE '%$data%' or nome LIKE '%$data%'  ORDER BY id DESC";
     }
     else
     {
-        $sql = "SELECT * FROM livros ORDER BY id DESC";
+        $sql = "SELECT * FROM livros WHERE id_email = '$logado' ORDER BY id DESC";
     }
     $result=$conexao->query($sql);
 

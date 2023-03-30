@@ -12,7 +12,7 @@
     echo "$tipo - $sttAtual - $statusC - $nomeAcesso - $idAcesso - $emailAcesso";
 
     echo "<script>
-            var confirmacao = confirm('Tem certeza que deseja cancelar a solicitação de compartilhamento de dados?');                        
+            var confirmacao = confirm('Tem certeza que deseja mudar a permissao de acesso dessa conta?');                        
         </script>";
 
     $c = "<script>document.write(confirmacao)</script>";

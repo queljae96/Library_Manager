@@ -330,3 +330,7 @@
 			cursor: pointer;
 		}
 
+        .cCompartilhada td{
+            padding-top: 0.3vw;
+            padding-bottom: 0.3vw;
+        }

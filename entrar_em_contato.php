@@ -73,7 +73,7 @@
                     $mail->Body = $texto_digitado;
                     // $mail->AltBody = '';
                     if($mail->send()) {
-                        header("Location: visualizar.php?nome=$nome&turma=$turma&statusC=$statusC");   
+                        header("Location: visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id");   
                      }
                 } catch (Exception $e) {
                     echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
