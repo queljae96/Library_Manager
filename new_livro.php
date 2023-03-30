@@ -8,7 +8,8 @@
         header('Location: livro.php');
     }
     $logado = $_SESSION['email'];
-
+    $statusC = $_GET['statusC'];
+    $dado = $_GET['tipoDado'];
 
 ?>
 
@@ -52,7 +53,7 @@
                         }else { //adiciona os dados no banco de dados
                             $result = mysqli_query($conexao,"INSERT INTO livros (id_email,nome,autor,estoque) VALUES ('$logado','$nome','$autor','$estoque')");
                             //echo "<p class='erro'><b><font color=\"#008000\"> Livro cadastrado com sucesso! </font></b></p>";
-                            header("Location: livro.php");
+                            header("Location: livro.php?statusC=$statusC&tipoDado=$dado");
                         }
                         
                     }
@@ -65,7 +66,7 @@
             <input type="number" name="estoque" placeholder="Estoque">
             <input type="submit" name="submit" id="submit"class="btn" ></input>
         </form>
-        <a class="recuperar" href="livro.php"><b>Voltar</b></a>
+        <?php echo "<a class='recuperar' href='livro.php?statusC=$statusC&tipoDado=$dado'><b>Voltar</b></a>"; ?>
 
     </main>
 

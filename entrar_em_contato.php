@@ -8,6 +8,7 @@
 	$statusC = $_GET["statusC"];
 	$email = $_GET["email"];
     $id = $_GET["id"];
+    $dado = $_GET["tipoDado"];
 
     require_once('./src/PHPMailer.php');
     require_once('./src/SMTP.php');
@@ -73,7 +74,7 @@
                     $mail->Body = $texto_digitado;
                     // $mail->AltBody = '';
                     if($mail->send()) {
-                        header("Location: visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id");   
+                        header("Location: visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado");   
                      }
                 } catch (Exception $e) {
                     echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";

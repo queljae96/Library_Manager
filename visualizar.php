@@ -130,7 +130,7 @@
                 <div class="botoes">
                     <?php
                             echo"<form action='' method='POST'>";
-                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'>+ Livro</a>";
+                            echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado'>+ Livro</a>";
                             while($usuario = mysqli_fetch_array($contato)){
                                 $email = $usuario['email'];
                                 echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email&id=$id&statusC=$statusC'>Entrar em contato</a>";
@@ -178,7 +178,7 @@
                                         $autor = $user_data['autor_livro'];
                                         $status = $user_data['statuss'];
                                         $idEmprestimo = $user_data['id'];
-                                        $idLivro = $user_data['id_livro'];
+                                        $idLivro = $user_data['id'];
 
 
                                         echo "<tr>";
@@ -192,12 +192,12 @@
 
                                         echo "<form action='' method='POST'>";
                                         if($status == 'Pendente'){
-                                            echo "<td class='statusPendente' ><a href='mudar_status.php?idEmprestimo=$idEmprestimo&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&id_livro=$idLivro'><b>$status</b></a></td>";
+                                            echo "<td class='statusPendente' ><a href='mudar_status.php?idEmprestimo=$idEmprestimo&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&id_livro=$idLivro&tipoDado=$dado&nomeL=$livro&autor=$autor'><b>$status</b></a></td>";
                                         }else{
-                                            echo "<td class='statusDevolvido'><a href='mudar_status.php?idEmprestimo=$idEmprestimo&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&id_livro=$idLivro'><b>$status</b></a></td>";
+                                            echo "<td class='statusDevolvido'><a href='mudar_status.php?idEmprestimo=$idEmprestimo&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&id_livro=$idLivro&tipoDado=$dado&nomeL=$livro&autor=$autor'><b>$status</b></a></td>";
                                         }
                                         echo "</form>";
-                                        echo "<td class='lixo'><a href='excluir_registro.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status'><i class='fa-sharp fa fa-trash'></i></a></td>";
+                                        echo "<td class='lixo'><a href='excluir_registro.php?idLivro=$idLivro&nome=$nome&turma=$turma&statusC=$statusC&id=$id&status=$status&tipoDado=$dado'><i class='fa-sharp fa fa-trash'></i></a></td>";
                                         echo "</tr>";
                                     }
                                     echo "</tr>";

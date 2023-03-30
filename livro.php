@@ -64,15 +64,15 @@
         <a class="volt" href="pagprinc(1).php"><img src="img/de-volta (1).png"></a>
 
         <div class="container">
-            <a class="new_user" href="new_livro.php">Adicionar novo livro</a>
+            <?php echo "<a class='new_user' href='new_livro.php?statusC=$statusC&tipoDado=$dado'>Adicionar novo livro</a>"; ?>
         </div>
 
         <div class="info">
             <table>
                     <?php
 
-                        if(mysqli_num_rows($result)==0 && $dadosCompartilhados == "false"){
-                            echo "<p class='bv'>Ops você ainda não tem nenhum livro cadastrado no sitema...<br><a href='new_livro.php'><b>clique aqui</b></a> e cadastre um livro</p>";
+                        if(mysqli_num_rows($result)==0 && $statusC == "false" ){
+                            echo "<p class='bv'>Ops você ainda não tem nenhum livro cadastrado no sitema...<br><a href='new_livro.php?statusC=$statusC&tipoDado=$dado'><b>clique aqui</b></a> e cadastre um livro</p>";
                         }else{
                             // if(mysqli_num_rows($result)>1 || $dadosCompartilhados == "true"){
                                 echo "<table>";
@@ -90,7 +90,7 @@
                                     echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
                                     echo "<td class='dado2'>" . $user_data['autor'] . "</td>";
                                     echo "<td class='dado3'>" . $user_data['estoque'] . "</td>";
-                                    echo "<td class='lixeira'><a href='verificar_exclusao.php?id=$id&statusC=$statusC&tipoDado=$tipoDado''><i class='fa-sharp fa fa-trash' style='font-size:20px;'></i></a></td>";
+                                    echo "<td class='lixeira'><a href='verificar_exclusao.php?id=$id&statusC=$statusC&tipoDado=$dado''><i class='fa-sharp fa fa-trash' style='font-size:20px;'></i></a></td>";
                                     echo "</tr>";
                                 }
                         }
@@ -99,6 +99,9 @@
 
                             echo "<tr class='cCompartilhada'><td>Conta compartilhada</td></tr>";
                             while ($user_data = mysqli_fetch_assoc($dadoC)) {
+
+                            $id = $user_data['id'];    
+                            
                             echo "<tr>";
                             echo "<td class='dado1'>" . $user_data['nome'] . "</td>";
                             echo "<td class='dado2'>" . $user_data['autor'] . "</td>";
@@ -112,7 +115,7 @@
                                     if($contAcesso == 0){
                                         
                                     }else{
-                                        echo "<td class='lixeira'><a href='verificar_exclusao.php?id=$id&statusC=$statusC&tipoDado=$tipoDado'><i class='fa-sharp fa fa-trash' style='font-size:20px;'></i></a></td>";
+                                        echo "<td class='lixeira'><a href='verificar_exclusao.php?statusC=$statusC&tipoDado=$dado&id=$id'><i class='fa-sharp fa fa-trash' style='font-size:20px;'></i></a></td>";
                                     }
                             }
                             echo "</tr>";

@@ -17,6 +17,10 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
+    use Dompdf\Dompdf;
+
+    require_once 'dompdf/autoload.inc.php';
+
     $qtdUser = mysqli_query($conexao,"SELECT * FROM usuarios WHERE id_email = '$logado' AND data_add BETWEEN '$usuarioDataMin' AND '$usuarioDataMax'  ");
     $qtdTotalE = mysqli_query($conexao,"SELECT DISTINCT id FROM emprestar_livro  WHERE id_email = '$logado' AND data_emprestimo BETWEEN '$livroDataMin' AND '$livroDataMax'  ");
     $qtdPEmprestimo = mysqli_query($conexao,"SELECT DISTINCT id_num FROM emprestar_livro WHERE id_email = '$logado' AND data_emprestimo BETWEEN '$livroDataMin' AND '$livroDataMax' ");
@@ -24,12 +28,6 @@
 
     $verNome = mysqli_query($conexao,"SELECT nome FROM cadastro_de_usuario WHERE email = '$logado' ");
 
-
-    use Dompdf\Dompdf;
-
-    require_once 'dompdf/autoload.inc.php';
-
-    $dompdf = new Dompdf();
 
         
         $qtdUsuario = mysqli_num_rows($qtdUser);
@@ -44,8 +42,9 @@
         
         while ($user_data = mysqli_fetch_assoc ($verNome)){
 
-        $nome = $user_data['nome'];
-
+            $nome = $user_data['nome'];
+        
+            $dompdf = new Dompdf();
             $dompdf->loadHtml("
 
             
@@ -63,13 +62,20 @@
 
                             <h5>No período de $d1 até $d2: </h5>
 
-                            <p>Houveram  $qtdUsuario usuário(s) cadastrado(s) na conta.</p>
+                            <p>Houveram  $qtdUsuario novo(s) usuário(s) cadastrado(s) na conta -------------------------</p>
+
+                            <p>-----------------------------------------------------------------------------------------</p>
 
                             <h5>No período de $d3 até $d4: </h5>
 
-                            <p>Houveram $qtdEmprestimo usuário(s) que pegaram livros emprestados, no total são $qtdTotalE empréstimo(s) de livro(s) para os aluno(s) cadastrado(s) e $qtdPendente aluno(s) continua(m) com o livro pendente a ser entregue </p>
+                            <p>Houveram $qtdEmprestimo usuário(s) que pegaram livros emprestados ------------------------<br>
+                            <br>No total são $qtdTotalE empréstimo(s) de livro(s) ---------------------------------------------<br> 
+                            <br>$qtdPendente aluno(s) continua(m) com o livro pendente a ser entregue -----------------------</p>
 
                         </main>
+
+                        <footer class='h'></footer>
+
                         
                         <style>
 
@@ -85,7 +91,7 @@
                                 color: #284f82;
                             }
 
-                            header{
+                            header,footer{
                                 background-color: #284f82;
                             }
 
@@ -105,46 +111,45 @@
 
             $dompdf->render();
 
-            $dompdf->stream('pdf');
+            $dompdf->stream();
 
 
-            // $pdf_data = $dompdf->output();
+            $pdf_data = $dompdf->output();
 
-            // $pdf_encoded = chunk_split(base64_encode($pdf_data));
+            $pdf_encoded = chunk_split(base64_encode($pdf_data));
 
-            // $mail = new PHPMailer(true);
+        
+            $mail = new PHPMailer(true);
 
-            // try {
+            try {
                 
-            //     $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-            //     $mail->isSMTP();
-            //     $mail->Host = 'smtp.gmail.com';
-            //     $mail->SMTPAuth = true;
-            //     $mail->Username = 'suportelibrarymanager@gmail.com';
-            //     $mail->Password = 'kylypphjcbdslvbo';
-            //     $mail->Port = 587;
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'suportelibrarymanager@gmail.com';
+                $mail->Password = 'kylypphjcbdslvbo';
+                $mail->Port = 587;
 
-            //     $mail->setFrom('suportelibrarymanager@gmail.com');
-            //     $mail->addAddress($logado);
-            //     // $mail->addAddress('quel03102004@gmail.com');
+                $mail->setFrom('suportelibrarymanager@gmail.com');
+                $mail->addAddress($logado);
+                // $mail->addAddress('quel03102004@gmail.com');
 
-            //     $mail->isHTML(true);
-            //     $mail->CharSet = 'UTF-8'; 
-            //     $mail->Subject = 'Relatório - Library Manager';
-            //     $mail->Body = 'Olá, '.$nome.' <br><br>PDF do relatório que foi solicitado na sua conta library, agradecemos a preferencia <br>atenciosamente, equipe Library Manager. <br>'.$dompdf->stream().'';
-            //     // $mail->AltBody = '';
-            //     $mail->addStringAttachment($pdf_data, 'arquivo.pdf', 'base64', 'application/pdf');
+                $mail->isHTML(true);
+                $mail->CharSet = 'UTF-8'; 
+                $mail->Subject = 'Relatório - Library Manager';
+                $mail->Body = 'Olá, '.$nome.' <br><br>PDF do relatório que foi solicitado na sua conta library, agradecemos a preferencia <br>atenciosamente, equipe Library Manager. <br>';
+                // $mail->AltBody = '';
+                $mail->addStringAttachment($pdf_data, 'arquivo.pdf', 'base64', 'application/pdf');
 
-            //     if($mail->send()) {
-            //         header("Location: msg.php");
-            //     }
-            //     } catch (Exception $e) {
-            //         echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
-            //     }
-
-    }
-
-    echo "$qtdEmprestimo";
+                if($mail->send()) {
+                    header("Location: msg.php");
+                }
+                } catch (Exception $e) {
+                    //echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
+                }
+            }
+                header("Location: msg.php");
 
 ?>
 

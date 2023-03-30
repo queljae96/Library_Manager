@@ -27,7 +27,7 @@
         <a href="pagprinc(1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
     </header>
 
-    
+    <a class="volt" href="pagprinc(1).php"><img src="img/de-volta (1).png"></a>
 
     <main>
 

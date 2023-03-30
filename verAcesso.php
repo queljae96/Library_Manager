@@ -86,8 +86,8 @@
                 echo "<tr>";
                 echo "<td class='nome'><b>Excluir livro</b></td>";
                 echo "<td class='email'><b>Excluir usuário</b></td>";
-                echo "<td class='email'><b>Adicionar livros</b></td>";
-                echo "<td class='email'><b>Fazer empréstimos</b></td>";
+                // echo "<td class='email'><b>Adicionar livros</b></td>";
+                // echo "<td class='email'><b>Fazer empréstimos</b></td>";
 
                     
                         $ver_permissao = mysqli_query($conexao,"SELECT * FROM permissoes WHERE idAcesso = '$emailAcesso' ");
@@ -115,21 +115,21 @@
                                 echo "<td class='pAceito'><a href='mudarPermissao.php?tipo=p2&sttAtual=$p2&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p2</b></a></td>";
                             }
 
-                            if($p3 == 'negado'){
+                            // if($p3 == 'negado'){
 
 
-                                echo "<td class='pNegado'><a href='mudarPermissao.php?tipo=p3&sttAtual=$p3&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p3</b></a></td>";
-                            }else{
-                                echo "<td class='pAceito'><a href='mudarPermissao.php?tipo=p3&sttAtual=$p3&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p3</b></a></td>";
-                            }
+                            //     echo "<td class='pNegado'><a href='mudarPermissao.php?tipo=p3&sttAtual=$p3&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p3</b></a></td>";
+                            // }else{
+                            //     echo "<td class='pAceito'><a href='mudarPermissao.php?tipo=p3&sttAtual=$p3&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p3</b></a></td>";
+                            // }
 
-                            if($p4 == 'negado'){
+                            // if($p4 == 'negado'){
 
 
-                                echo "<td class='pNegado'><a href='mudarPermissao.php?tipo=p4&sttAtual=$p4&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p4</b></a></td>";
-                            }else{
-                                echo "<td class='pAceito'><a href='mudarPermissao.php?tipo=p4&sttAtual=$p4&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p4</b></a></td>";
-                            }
+                            //     echo "<td class='pNegado'><a href='mudarPermissao.php?tipo=p4&sttAtual=$p4&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p4</b></a></td>";
+                            // }else{
+                            //     echo "<td class='pAceito'><a href='mudarPermissao.php?tipo=p4&sttAtual=$p4&nome=$nomeAcesso&email=$emailAcesso&id=$idAcesso&statusC=$statusC'><b>$p4</b></a></td>";
+                            // }
 
                             echo "</tr>";
                         }

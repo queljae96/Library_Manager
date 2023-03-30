@@ -9,12 +9,13 @@
         header('Location: inicio (1).php');
     }
     $logado = $_SESSION['email'];
-    $visualizar_livros = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND estoque > 1 ");
+    $visualizar_livros = mysqli_query($conexao,"SELECT * FROM livros WHERE id_email='$logado' AND estoque > 0 ");
     
     $statusC = $_GET["statusC"];
     $nome=$_GET["nome"];
     $turma=$_GET["turma"];
     $id=$_GET["id"];
+    $dado = $_GET["tipoDado"];
 
 
     if(!empty($nome and $turma)){
@@ -40,7 +41,7 @@
         <a href="pagprinc(1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
     </header>
 
-    <?php echo "<a class='volt' href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'><img src='img/de-volta (1).png'></a>"?>
+    <?php echo "<a class='volt' href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado'><img src='img/de-volta (1).png'></a>"?>
 
     <main>
         <section >
@@ -54,7 +55,7 @@
                             $livros = implode(',', $result);
 
                             // Adiciona o valor ao link
-                            $link = 'previa_de_livros.php?nome='.$nome.'&turma='.$turma.'&livros='. urlencode($livros).'&statusC='.$statusC.'&id='.$id;
+                            $link = 'previa_de_livros.php?nome='.$nome.'&turma='.$turma.'&livros='. urlencode($livros).'&statusC='.$statusC.'&id='.$id.'&tipoDado='.$dado;
                             header ("Location: $link");
 
                         }
@@ -64,7 +65,7 @@
                             <!-- código para visualizar os livros cadastrados no banco de dados -->
                         <?php
                                if(mysqli_num_rows($visualizar_livros) == 0){
-                                    echo "<p class='bv'>Ops você ainda não tem nenhum livro cadastrado no sitema ou os seus livros ficaram sem estoque...<br><a href='new_livro.php'><b>clique aqui</b></a> e cadastre um livro</p>";
+                                    echo "<p class='bv'>Ops você ainda não tem nenhum livro cadastrado no sitema ou os seus livros ficaram sem estoque...<br><a href='new_livro.php?statusC=$statusC&tipoDado=$dado'><b>clique aqui</b></a> e cadastre um livro</p>";
                                 }else{
                                     echo "<button type='submit' value='Enviar' name='enviar'>Enviar</button> ";
                                     echo "<table>";

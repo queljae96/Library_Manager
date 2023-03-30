@@ -9,6 +9,7 @@
     $turma = $_GET['turma'];
     $status = $_GET['status'];
     $statusC = $_GET['statusC'];
+    $dado = $_GET['tipoDado'];
 
         echo "<script>
             var confirmacao = confirm('Tem certeza que excluir esse registro?');                        
@@ -22,7 +23,7 @@
 
         echo "<script>
                 alert('Registro deletado com sucesso');                        
-                window.location = 'visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id';
+                window.location = 'visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado';
             </script>";
 ?>
         
