@@ -16,10 +16,10 @@
 
 <body>
     <header>
-        <a href="cadastro.php"><img class="logo" src="img/2 (1).png" alt=""></a>
+        <a href="pagprinc(1).php"><img class="logo" src="img/2 (1).png" alt=""></a>
     </header>
 
-    <a class="volt" href="cadastro.php"><img src="img/de-volta (1).png"></a>
+    <a class="volt" href="pagprinc(1).php"><img src="img/de-volta (1).png"></a>
 
 
     <main>
@@ -34,12 +34,28 @@
         Para isso, contamos com a sua ajuda. Assim poderemos construir mais ideias inovadoras para vocês.
         Att. Equipe Library</p>
 
+        <h4>Chave pix: <b>31981178349</b></h4>
+
         <h4>QRCODE para doações</h4>
 
-        <img src="img/">
+        <img class="cdqr" src="img/qrcode.jpg">
 
     </section>
 
     </main>
 </body>
+
+<style>
+    h4{
+        margin-left: 2vw;
+        text-align: center;
+        margin-top:1vw
+    }
+
+    .cdqr{
+        width: 20%;
+        margin-left: 24vw;
+    }
+</style>
+
 </html>

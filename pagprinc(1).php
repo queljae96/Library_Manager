@@ -148,6 +148,7 @@
             <a class="bt" href="suporte (1).php">Suporte</a>
             <a class="bt" href="termos_de_uso.php" target="_blank">Termos de uso</a>
             <a class="bt" href="doacao.php" >Ajude o site</a>
+            <!-- <a class="bt" href="manual.php" >Manual de uso</a> -->
         </div>
     </footer>
 </body>

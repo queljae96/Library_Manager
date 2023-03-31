@@ -36,11 +36,11 @@
 <body>
     <?php
        echo " <header>
-                <a href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'><img class='logo' src='img/2 (1).png' alt=''></a>
+                <a href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado'><img class='logo' src='img/2 (1).png' alt=''></a>
             </header>
 
             <div class='voltar'>
-                <a class='volt' href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id'><img src='img/de-volta (1).png'></a>
+                <a class='volt' href='visualizar.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado'><img src='img/de-volta (1).png'></a>
             </div>";
     ?>
     <main>
