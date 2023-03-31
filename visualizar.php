@@ -133,7 +133,7 @@
                             echo "<a class='botao' href='emprestimo.php?nome=$nome&turma=$turma&statusC=$statusC&id=$id&tipoDado=$dado'>+ Livro</a>";
                             while($usuario = mysqli_fetch_array($contato)){
                                 $email = $usuario['email'];
-                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email&id=$id&statusC=$statusC'>Entrar em contato</a>";
+                                echo "<a class='contato' href='entrar_em_contato.php?nome=$nome&turma=$turma&email=$email&id=$id&statusC=$statusC&tipoDado=$dado'>Entrar em contato</a>";
                             }
 
                             if($dado == "compartilhado"){
